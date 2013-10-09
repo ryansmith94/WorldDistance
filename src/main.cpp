@@ -3,10 +3,11 @@
 using namespace std;
 
 template <class OptionType>
-class Options {
+class OptionsView {
 		OptionType options[];
 	public:
 		Options display() {
+		OptionsView display() {
 
 		}
 		OptionType getOption() {
