@@ -1,5 +1,5 @@
-#import <iostream>
-#import <string>
+#include <iostream>
+#include <string>
 using namespace std;
 
 template <class OptionType>
