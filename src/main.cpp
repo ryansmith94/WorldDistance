@@ -46,19 +46,19 @@ class Place {
 			return 0;
 		}
 		Place* setName(string newName) {
-			return new Place();
+			return this;
 		}
 		Place* getParent() {
-			return new Place();
+			return parent;
 		}
 		Place* getChild() {
-			return new Place();
+			return new Place("", 0.0, 0.0, this);
 		}
 		int getNbrChildren() {
 			return 0;
 		}
 		Place* addChild(Place newPlace) {
-			return new Place();
+			return this;
 		}
 };
 
