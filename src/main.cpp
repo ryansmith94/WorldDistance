@@ -6,7 +6,12 @@ template <class OptionType>
 class OptionsView {
 		OptionType options[];
 	public:
-		Options display() {
+		OptionsView (OptionType options[]) {
+
+		}
+		~OptionsView () {
+
+		}
 		OptionsView display() {
 
 		}
@@ -25,6 +30,12 @@ class Place {
 		Place* parent;
 		Place* children[];
 	public:
+		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
+
+		}
+		~Place() {
+
+		}
 		string getName() {
 			return 0;
 		}
@@ -54,6 +65,12 @@ class Place {
 class PlacesController {
 		Place places[];
 	public:
+		PlacesController() {
+
+		}
+		~PlacesController() {
+
+		}
 		Place* getPlaces(string name, Place parent) {
 			return 0;
 		}
@@ -71,6 +88,12 @@ class PlacesController {
 class DistanceApp {
 		PlacesController* places;
 	public:
+		DistanceApp() {
+
+		}
+		~DistanceApp() {
+
+		}
 		DistanceApp* start() {
 			return this;
 		}
@@ -79,6 +102,12 @@ class DistanceApp {
 class DistanceView {
 		PlacesController* places;
 	public:
+		DistanceView(PlacesController* places) {
+
+		}
+		~DistanceView() {
+
+		}
 		DistanceView* start() {
 			return this;
 		}
@@ -87,6 +116,12 @@ class DistanceView {
 class PlacesView {
 		PlacesController* places;
 	public:
+		PlacesView(PlacesController* places) {
+
+		}
+		~PlacesView() {
+
+		}
 		PlacesView* start() {
 			return this;
 		}
@@ -95,6 +130,12 @@ class PlacesView {
 class AddPlacesView {
 		PlacesController* places;
 	public:
+		AddPlacesView(PlacesController* places) {
+
+		}
+		~AddPlacesView() {
+			
+		}
 		AddPlacesView* start() {
 			return this;
 		}
