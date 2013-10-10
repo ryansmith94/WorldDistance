@@ -77,6 +77,9 @@ class PlacesController {
 		PlacesController* addPlace(Place newPlace) {
 			return this;
 		}
+		PlacesController* deletePlace(Place newPlace) {
+			return this;
+		}
 		PlacesController* loadPlaces(string dataLocation) {
 			return this;
 		}
@@ -137,6 +140,34 @@ class AddPlacesView {
 			
 		}
 		AddPlacesView* start() {
+			return this;
+		}
+};
+
+class ModifyPlacesView {
+		PlacesController* places;
+	public:
+		ModifyPlacesView(PlacesController* places) {
+
+		}
+		~ModifyPlacesView() {
+			
+		}
+		ModifyPlacesView* start() {
+			return this;
+		}
+};
+
+class DeletePlacesView {
+		PlacesController* places;
+	public:
+		DeletePlacesView(PlacesController* places) {
+
+		}
+		~DeletePlacesView() {
+			
+		}
+		DeletePlacesView* start() {
 			return this;
 		}
 };
