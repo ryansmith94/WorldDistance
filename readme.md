@@ -1,4 +1,4 @@
-# WorldDistance
+# WorldDistance [![Build Status](https://travis-ci.org/ryansmith94/Scorebook.png)](https://travis-ci.org/ryansmith94/Scorebook)
 WorldDistance is a application based upon a fictional specification created for the first assignment of the Software Development with C and C++ module (2013/2014, Semester 1).
 
 ### Credit
