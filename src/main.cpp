@@ -51,6 +51,9 @@ class Place {
 		Place* getParent() {
 			return parent;
 		}
+		Place* getChildren(){
+			return this;
+		}
 		Place* getChild() {
 			return new Place("", 0.0, 0.0, this);
 		}
@@ -60,36 +63,20 @@ class Place {
 		Place* addChild(Place newPlace) {
 			return this;
 		}
-};
-
-class PlacesController {
-		Place places[];
-	public:
-		PlacesController() {
-
-		}
-		~PlacesController() {
-
-		}
-		Place* getPlaces(string name, Place parent) {
-			return 0;
-		}
-		PlacesController* addPlace(Place newPlace) {
+		Place* removeChild(int index){
 			return this;
 		}
-		PlacesController* deletePlace(Place newPlace) {
+		Place* loadPlace(string dataLocation){
 			return this;
 		}
-		PlacesController* loadPlaces(string dataLocation) {
+		Place* savePlace(string datalocation){
 			return this;
 		}
-		PlacesController* savePlaces(string dataLocation) {
-			return this;
-		}
+		
 };
 
 class DistanceApp {
-		PlacesController* places;
+		Place* place;
 	public:
 		DistanceApp() {
 
@@ -103,9 +90,9 @@ class DistanceApp {
 };
 
 class DistanceView {
-		PlacesController* places;
+		Place* place;
 	public:
-		DistanceView(PlacesController* places) {
+		DistanceView(Place* place) {
 
 		}
 		~DistanceView() {
@@ -117,9 +104,9 @@ class DistanceView {
 };
 
 class PlacesView {
-		PlacesController* places;
+		Place* place;
 	public:
-		PlacesView(PlacesController* places) {
+		PlacesView(Place* place) {
 
 		}
 		~PlacesView() {
@@ -131,9 +118,9 @@ class PlacesView {
 };
 
 class AddPlacesView {
-		PlacesController* places;
+		Place* place;
 	public:
-		AddPlacesView(PlacesController* places) {
+		AddPlacesView(Place* place) {
 
 		}
 		~AddPlacesView() {
@@ -145,9 +132,9 @@ class AddPlacesView {
 };
 
 class ModifyPlacesView {
-		PlacesController* places;
+		Place* places;
 	public:
-		ModifyPlacesView(PlacesController* places) {
+		ModifyPlacesView(Place* place) {
 
 		}
 		~ModifyPlacesView() {
@@ -159,9 +146,9 @@ class ModifyPlacesView {
 };
 
 class DeletePlacesView {
-		PlacesController* places;
+		Place* place;
 	public:
-		DeletePlacesView(PlacesController* places) {
+		DeletePlacesView(Place* place) {
 
 		}
 		~DeletePlacesView() {
