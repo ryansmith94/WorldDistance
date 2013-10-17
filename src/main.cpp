@@ -4,22 +4,29 @@ using namespace std;
 
 template <class OptionType>
 class OptionsView {
-		OptionType options[];
+		OptionType *options;
+		int numberOfOptions;
 	public:
-		OptionsView (OptionType options[]) {
-
+		OptionsView (OptionType *opts, int len = 0) {
+			options = opts;
+			numberOfOptions = len;
 		}
 		~OptionsView () {
-
+			delete[] options;
+			delete numberOfOptions;
 		}
-		OptionsView display() {
-
+		OptionsView* display() {
+			for (int i = 0; i < numberOfOptions; i += 1) {
+				cout << i + 1 << ". " << options[i] << endl;
+			}
+			cout << endl;
+			return this;
 		}
 		OptionType getOption() {
-
+			return options[0];
 		}
 		OptionType* getOptions() {
-
+			return options;
 		}
 };
 
@@ -161,5 +168,12 @@ class DeletePlacesView {
 
 int main() {
 	cout << "I work... for now >;)" << endl;
+
+	// Demonstration of OptionsView
+	cout << endl << "Just testing the OptionsView class ;)" << endl;
+	string opts[] = {"Option 1", "Option 2", "Quit"};
+	OptionsView<string>* o = new OptionsView<string>(opts, sizeof(opts) / sizeof(string));
+	cout << o->display()->getOption() << endl; // Notice that you can chain calls `display()->getOption()`
+
 	return 0;
 }
