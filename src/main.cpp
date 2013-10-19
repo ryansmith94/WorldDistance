@@ -79,7 +79,7 @@ class Place {
 		Place* savePlace(string datalocation){
 			return this;
 		}
-		
+
 };
 
 class DistanceApp {
@@ -131,7 +131,7 @@ class AddPlacesView {
 
 		}
 		~AddPlacesView() {
-			
+
 		}
 		AddPlacesView* start() {
 			return this;
@@ -145,7 +145,7 @@ class ModifyPlacesView {
 
 		}
 		~ModifyPlacesView() {
-			
+
 		}
 		ModifyPlacesView* start() {
 			return this;
@@ -159,7 +159,7 @@ class DeletePlacesView {
 
 		}
 		~DeletePlacesView() {
-			
+
 		}
 		DeletePlacesView* start() {
 			return this;
