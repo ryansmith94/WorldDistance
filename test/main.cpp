@@ -37,7 +37,6 @@ class TestWithStdIO {
         std::streambuf *coutbuf;
         std::ifstream inStream;
         std::ofstream outStream;
-        char* outFile;
     public:
         TestWithStdIO(const char* inFile, const char* outFile) : inStream(inFile), outStream(outFile) {
             outFile = outFile;
