@@ -26,11 +26,11 @@ class OptionsView {
 			int selected = -1;
 
 			do {
-				cout << "Please select an option (0-" << numberOfOptions <<  "): ";
+				cout << "Please select an option (1-" << numberOfOptions <<  "): ";
 				cin >> selected;
 			} while (selected < 0 || selected >= numberOfOptions);
 
-			return options[selected];
+			return options[selected - 1];
 		}
 		OptionType* getOptions() {
 			return options;
