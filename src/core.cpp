@@ -12,8 +12,7 @@ class OptionsView {
 			numberOfOptions = len;
 		}
 		~OptionsView () {
-			delete[] options;
-			delete numberOfOptions;
+
 		}
 		OptionsView* display() {
 			for (int i = 0; i < numberOfOptions; i += 1) {
