@@ -84,30 +84,37 @@ Describe(OptionsView_class) {
         }
     };
     Describe(getOption_method) {
-        It_Skip(should_ask_user_for_option) { // This does not work for some reason :(
-            TestWithStdIO ioTest("../test/validInput1.txt", "../tmp/out.txt");
+        It(should_accept_valid_option_above_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
-            view.getOption();
+
+            TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
-        It_Skip(should_accept_valid_option) {
-            TestWithStdIO ioTest("", "");
+        It(should_accept_valid_option_below_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
-            view.getOption();
+
+            TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
-        It_Skip(should_reject_invalid_option) {
-            TestWithStdIO ioTest("", "");
+        It(should_reject_invalid_option_below_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
-            view.getOption();
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(0));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
-        It_Skip(should_return_valid_option) {
-            TestWithStdIO ioTest("", "");
+        It(should_reject_invalid_option_above_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
-            view.getOption();
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
     };
     Describe(getOptions_method) {
