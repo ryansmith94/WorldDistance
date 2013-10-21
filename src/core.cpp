@@ -27,7 +27,7 @@ class OptionsView {
 			do {
 				cout << "Please select an option (1-" << numberOfOptions <<  "): ";
 				cin >> selected;
-			} while (selected < 0 || selected >= numberOfOptions);
+			} while (selected < 1 || selected > numberOfOptions);
 
 			return options[selected - 1];
 		}
