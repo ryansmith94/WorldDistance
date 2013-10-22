@@ -160,7 +160,7 @@ class Place {
 		float longitude;
 		float latitude;
 		Place* parent;
-		LinkedList<Place>* children;	/* Should we place a limit on this?	*/
+		LinkedList<Place>* children;
 	public:
 		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
 			name = newName;
@@ -223,11 +223,10 @@ class Place {
 			return children->getLength();
 		}
 		
-		Place* addChild(Place newPlace) {
+		void addChild(Place newPlace) {
 			cout<<"appending newPlace..."<<endl;cin.get();
 			children->append(newPlace);
 			cout<<"done"<<endl;cin.get();
-            return NULL;
 		}
 		
 		Place* removeChild(int index){
@@ -353,7 +352,9 @@ int main() {
 	Place *Salzburg = 	new Place("Salzburg",	13.047256,47.808221,Austria);
 
 	// addChild doesnt do anything yet!
+	cout<<"Now on Vienna..."<<endl;cin.get();
 	Austria->addChild(*Vienna);
+	cout<<"Now on Linz..."<<endl;cin.get();
 	Austria->addChild(*Linz);
 	Austria->addChild(*Salzburg);
 
