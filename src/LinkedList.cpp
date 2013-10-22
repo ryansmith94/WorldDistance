@@ -67,6 +67,33 @@ class LinkedList {
 			else result = data;
 			return result;
 		}
+		void insert(T newData, int index){
+			if(index == 1 && next == NULL){
+				next = new LinkedList(newData);
+				next->next = NULL;
+			}
+			else if(index) getNext()->insert(newData,--index);
+			else{
+				LinkedList *newNext = new LinkedList(data);
+				newNext->next = next;
+				data = new T(newData);
+				next = newNext;
+			}
+		}
+		void insert(T *newData, int index){
+			if(index == 1 && next ==NULL){
+				next = new LinkedList(newData);
+				next->next = NULL;
+			}
+			else if(index) getNext()->insert(newData,--index);
+			else{
+				LinkedList *newNext = new LinkedList(data);
+				newNext->next = next;
+				data = newData;
+				next = newNext;
+			}
+				
+		}
 		void remove(int index){
 			//special case for end of list(remove last element)
 			if (index == 1 && next->next == NULL){
@@ -106,6 +133,10 @@ int main(){
 	}
 	myList->append("dog");
 	myList->append("cat");
+	myList->insert("ape",2);
+	string *myString = new string("chicken");
+	myList->insert(myString,3);
+	*myString = "donkey";
 	for(int i = 0; i<myList->getLength();i++){
 		cout<<myList->getData(i)<<endl;
 	}
