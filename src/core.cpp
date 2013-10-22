@@ -310,6 +310,9 @@ class DeletePlacesView {
 			return this;
 		}
 };
+<<<<<<< HEAD
 
 /* Only a temp main - Linking on Windows gives me errors :S   -H */
 
+=======
+>>>>>>> pourmoi
