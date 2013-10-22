@@ -194,8 +194,3 @@ class DeletePlacesView {
 			return this;
 		}
 };
-
-/* Only a temp main - Linking on Windows gives me errors :S   -H */
-int main() {
-	return 0;
-}
