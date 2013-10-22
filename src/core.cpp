@@ -160,13 +160,22 @@ class Place {
 		float longitude;
 		float latitude;
 		Place* parent;
-		LinkedList<Place> *children;	/* Should we place a limit on this?	*/
+		LinkedList<Place>* children;	/* Should we place a limit on this?	*/
 	public:
 		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
 			name = newName;
 			longitude = newLongitude;
 			latitude = newLatitude;
 			parent = newParent;
+			children = new LinkedList<Place>();
+		}
+
+		/* Super Parent constructor */
+		Place(string newName, float newLongitude, float newLatitude) {
+			name = newName;
+			longitude = newLongitude;
+			latitude = newLatitude;
+			//parent = earth ?
 			children = new LinkedList<Place>();
 		}
 		
@@ -215,8 +224,10 @@ class Place {
 		}
 		
 		Place* addChild(Place newPlace) {
-			
-			return this;
+			cout<<"appending newPlace..."<<endl;cin.get();
+			children->append(newPlace);
+			cout<<"done"<<endl;cin.get();
+            return NULL;
 		}
 		
 		Place* removeChild(int index){
@@ -273,6 +284,8 @@ class PlacesView {
 		}
 		PlacesView* start() {
 			int r = place->getNbrChildren();
+
+			cout << r << endl;
 			
 			for (int i=0; i < r; i++){
 				Place* child = place->getChild(i);
@@ -329,9 +342,24 @@ class DeletePlacesView {
 		}
 };
 
-/* Only a temp main - Linking on Windows gives me errors :S   -H */
+
+
+/* Only a temp main */
 int main() {
+	Place *Austria = 	new Place("Austria",	14.301758,48.283787);
 	
+	Place *Vienna = 	new Place("Vienna",	16.400146,48.210627,Austria);
+	Place *Linz = 		new Place("Linz",		14.312744,48.327633,Austria);
+	Place *Salzburg = 	new Place("Salzburg",	13.047256,47.808221,Austria);
+
+	// addChild doesnt do anything yet!
+	Austria->addChild(*Vienna);
+	Austria->addChild(*Linz);
+	Austria->addChild(*Salzburg);
+
+	PlacesView con = PlacesView(Austria);
+
+	con.start();
 	
 	return 0;
 }
