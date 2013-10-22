@@ -6,3 +6,6 @@ tmp/
 
 # Netbeans
 nbproject/
+
+core.o
+core.exe
