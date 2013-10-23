@@ -130,9 +130,9 @@ Describe(OptionsView_class) {
 };
 
 Describe(Place_class) {
-	It(should_construct_a_place) {
-		Assert::That((new Place("name", 0, 0, NULL))->getName() == "name", Equals(1));
-	}
+    It(should_construct_a_place) {
+        Assert::That((new Place("name", 0, 0, NULL))->getName() == "name", Equals(1));
+    }
 };
 
 int main(int argc, const char *argv[]) {

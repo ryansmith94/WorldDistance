@@ -1,0 +1,19 @@
+# Top-most EditorConfig file
+root = true
+
+# All files.
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Cpp files.
+[**.cpp]
+indent_style = space
+indent_size = 4
+
+# Make file.
+[makefile]
+indent_style = tab
+indent_size = 4
