@@ -234,20 +234,6 @@ class Place {
 
 };
 
-class DistanceApp {
-		Place* place;
-	public:
-		DistanceApp() {
-
-		}
-		~DistanceApp() {
-
-		}
-		DistanceApp* start() {
-			return this;
-		}
-};
-
 class DistanceView {
 		Place* place;
 	public:
@@ -316,4 +302,42 @@ class DeletePlacesView {
 		DeletePlacesView* start() {
 			return this;
 		}
+};
+
+class DistanceApp {
+        string dataLocation;
+        Place* place;
+    public:
+        DistanceApp() {
+            dataLocation = "data.txt";
+            place = new Place("Earth", 0.0, 0.0, NULL);
+        }
+        DistanceApp* start() {
+            string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
+            OptionsView<string> optionsView(opts, 6);
+            DistanceView distanceView(place);
+            PlacesView placesView(place);
+            AddPlacesView addPlacesView(place);
+            ModifyPlacesView modifyPlacesView(place);
+            DeletePlacesView deletePlacesView(place);
+            string selected;
+
+            do {
+                selected = optionsView.display()->getOption();
+
+                if (selected == opts[0]) {
+                    distanceView.start();
+                } else if (selected == opts[1]) {
+                    placesView.start();
+                } else if (selected == opts[2]) {
+                    addPlacesView.start();
+                } else if (selected == opts[3]) {
+                    modifyPlacesView.start();
+                } else if (selected == opts[4]) {
+                    deletePlacesView.start();
+                }
+            } while (selected != "Quit");
+
+            return this;
+        }
 };
