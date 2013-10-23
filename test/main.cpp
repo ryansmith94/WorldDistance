@@ -70,7 +70,7 @@ Describe(OptionsView_class) {
         Assert::That(!!(&OptionsView<int>::getOptions), Equals(1));
     }
     Describe(display_method) {
-        It(should_print_options) {
+        It_Skip(should_print_options) {
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
@@ -127,6 +127,12 @@ Describe(OptionsView_class) {
             Assert::That(view.getOptions()[2], Equals(2));
         }
     };
+};
+
+Describe(Place_class) {
+	It(should_construct_a_place) {
+		Assert::That((new Place("name", 0, 0, NULL))->getName() == "name", Equals(1));
+	}
 };
 
 int main(int argc, const char *argv[]) {

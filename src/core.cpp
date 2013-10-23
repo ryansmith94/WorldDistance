@@ -159,18 +159,21 @@ class Place {
 		float longitude;
 		float latitude;
 		Place* parent;
-		LinkedList<Place> *children;	/* Should we place a limit on this?	*/
+		Place* children[50];	/* Should we place a limit on this?	*/
+		int nbrChildren;
 	public:
 		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
 			name = newName;
 			longitude = newLongitude;
 			latitude = newLatitude;
 			parent = newParent;
-			children = new LinkedList<Place>();
+			for (int i=0;i<50; i++){
+				children[i] = NULL;
+			}
+			nbrChildren = 0;
 		}
 		
 		~Place() {
-			delete children;
 		}
 		
 		string getName() {
@@ -194,26 +197,30 @@ class Place {
 			return parent;
 		}
 		
-		Place* getChildren(){
+		Place* getChildren(string searchTerm){
 			return this;
 		}
 		
 		Place* getChild(int index) {
-			if (!getNbrChildren()) return NULL;
-			else return children->getDataRef(index);
+			return children[index];
 		}
 		
 		int getNbrChildren() {
-			return children->getLength();
+			return nbrChildren;
 		}
 		
-		Place* addChild(Place newPlace) {
-			children->append(newPlace);
+		Place* addChild(Place* newPlace) {
+			children[nbrChildren] = newPlace;
+			nbrChildren++;
 			return this;
 		}
 		
 		Place* removeChild(int index){
-			children->remove(index);
+			delete children[index];
+			for (int i=index;i<nbrChildren;i++){
+				children[index] = children[index+1];
+			}
+			children[--nbrChildren] = NULL;
 			return this;
 		}
 		
