@@ -3,122 +3,167 @@
 using namespace std;
 
 template <class T>
-class LinkedList {
-    private:
-        T *data;
-        LinkedList *next;
-        
-        T getData(){
-            return *data;
-        }
-        T* getDataRef(){
-            return data;
-        }
-        LinkedList* getNext(){
-            return next;
-        }
-    public:
-        LinkedList(){
-            data = NULL;
-            next = NULL;
-        }
-        LinkedList (T nextData){
-            data = new T(nextData);
-            next = NULL;
-        }
-        LinkedList (T *nextData){
-            data = nextData;
-            next = NULL;
-        }
-        ~LinkedList(){
-            delete data;
-            delete next;
-        }
-        void append(T nextData){
-            if (data == NULL) data = new T(nextData);
-            else {
-                if (next == NULL) next = new LinkedList(nextData);
-                else next->append(nextData);
-            }       
-        }
-        void append(T *nextData){
-            if (data == NULL) data = nextData;
-            else{
-                if (next == NULL) next = new LinkedList(*nextData);
-                else next->append(*nextData);
-            }
-        }
-        int getLength(){
-            int result;
-            if (data == NULL) result = 0;
-            else result = 1;
-            if (next != NULL) result += next->getLength();
-            return result;
-        }
-        T getData(int index){
-            T result;
-            if (index) result = getNext()->getData(--index);
-            else result = *data;
-            return result;
-        }
-        T* getDataRef(int index){
-            T *result;
-            if (index) result = getNext()->getDataRef(--index);
-            else result = data;
-            return result;
-        }
-        void insert(T newData, int index){
-            if(index == 1 && next == NULL){
-                next = new LinkedList(newData);
-                next->next = NULL;
-            }
-            else if(index) getNext()->insert(newData,--index);
-            else{
-                LinkedList *newNext = new LinkedList(data);
-                newNext->next = next;
-                data = new T(newData);
-                next = newNext;
-            }
-        }
-        void insert(T *newData, int index){
-            if(index == 1 && next ==NULL){
-                next = new LinkedList(newData);
-                next->next = NULL;
-            }
-            else if(index) getNext()->insert(newData,--index);
-            else{
-                LinkedList *newNext = new LinkedList(data);
-                newNext->next = next;
-                data = newData;
-                next = newNext;
-            }
-                
-        }
-        void remove(int index){
-            //special case for end of list(remove last element)
-            if (index == 1 && next->next == NULL){
-                delete next;
-                next = NULL;
-            }
-            //recurse if not at element to remove
-            else if (index) getNext()->remove(--index);
-            //special case for first element is last element(cant remove first link)
-            else if (!index && next == NULL){
-                delete data;
-                data = NULL;
-            }
-            //normal case
-            else{
-                LinkedList *temp = next;
-                delete data;
-                data = temp->data;
-                temp->data = NULL;
-                next = temp->next;
-                temp->next = NULL;
-                delete temp;
-            }
-        }
+class Node{
+	private:
+		T *data;
+		Node *next;
+	public:
+		Node(T*,Node*);
+		Node(T*);
+		Node();
+		~Node();
+		Node* getNext();
+		void setNext(Node*);
+		T* getData();
+		void setData(T*);
 };
+template <class T>
+class LList{
+	private:
+		int size;
+		Node<T> *first;
+	public:
+		LList();
+		~LList();
+		int getSize();
+		void append(T*);
+		void insert(T*,int);
+		void remove(int);
+		T* getData(int);	
+		void addAll(LList<T>*);
+		void clear();
+};
+
+template <class T>
+Node<T>::Node(T *newData, Node *nextNode){
+	data = newData;
+	next = nextNode;
+}
+template <class T>
+Node<T>::Node(T *newData){
+	data = newData;
+	next = NULL;
+}
+template <class T>
+Node<T>::Node(){
+	data = new T();
+	next = NULL;
+}
+template <class T>
+Node<T>::~Node(){
+	delete next;
+	delete data;
+}
+template <class T>
+Node<T>* Node<T>::getNext(){
+	return next;
+}
+template <class T>
+void Node<T>::setNext(Node *nextNode){
+	next = nextNode;
+}
+template <class T>
+T* Node<T>::getData(){
+	return data;
+}
+template <class T>
+void Node<T>::setData(T *newData){
+	data = newData;
+}
+
+template <class T>
+LList<T>::LList(){
+	size = 0;
+	first = NULL;
+}
+template <class T>
+LList<T>::~LList(){
+	delete first;
+}
+template <class T>
+int LList<T>::getSize(){
+	return size;
+}
+template <class T>
+void LList<T>::append(T *newData){
+	if (first == NULL){
+		first = new Node<T>(newData);
+	}
+	else{
+		Node<T> *node = first;
+		while(node->getNext() != NULL){
+			node = node->getNext();
+		}
+		node->setNext(new Node<T>(newData));
+	}
+	size++;
+}
+template <class T>
+void LList<T>::insert(T *newData,int index){
+	if (!index){
+		Node<T> *newNode = new Node<T>(newData,first);
+		first = newNode;
+	}
+	else if(index == size){
+		this->append(newData);
+		size--;
+	}
+	else{
+		Node<T> *node = first;
+		for (int i=0;i<index-1;i++){
+			node = node->getNext();
+		}
+		Node<T> *newNode = new Node<T>(newData,node->getNext());
+		node->setNext(newNode);
+	}
+	size++;
+}
+template <class T>
+void LList<T>::remove(int index){
+	if (!index){
+		Node<T> *temp = first;
+		first = first->getNext();
+		temp->setNext(NULL);
+		delete temp;
+	}
+	else{
+		Node<T> *node = first;
+		for (int i=0;i<index-1;i++){
+			node = node->getNext();
+		}
+		if (node->getNext()->getNext() == NULL){
+			delete node->getNext();
+			node->setNext(NULL);
+		}
+		else{
+			Node<T> *temp = node->getNext();
+			node->setNext(temp->getNext());
+			temp->setNext(NULL);
+			delete temp;
+		}
+	}
+	size--;
+}
+template <class T>
+T* LList<T>::getData(int index){
+	Node<T> *node = first;
+	for (int i=0;i<index;i++){
+		node = node->getNext();
+	}
+	return node->getData();
+}
+template <class T>
+void LList<T>::addAll(LList<T> *list){
+	for (int i=0;i<list->getSize();i++){
+		append(list->getData(i));
+	}
+}
+template <class T>
+void LList<T>::clear(){
+	delete first;
+	first = NULL;
+	size = 0;
+}
 
 template <class OptionType>
 class OptionsView {
@@ -155,82 +200,105 @@ class OptionsView {
 };
 
 class Place {
-        string name;
-        float longitude;
-        float latitude;
-        Place* parent;
-        Place* children[50];    /* Should we place a limit on this? */
-        int nbrChildren;
-    public:
-        Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
-            name = newName;
-            longitude = newLongitude;
-            latitude = newLatitude;
-            parent = newParent;
-            for (int i=0;i<50; i++){
-                children[i] = NULL;
-            }
-            nbrChildren = 0;
-        }
-        
-        ~Place() {
-        }
-        
-        string getName() {
-            return name;
-        }
-        
-        float getLongitude() {
-            return longitude;
-        }
-        
-        float getLatitude() {
-            return latitude;
-        }
-        
-        Place* setName(string newName) {
-            this->name = newName;
-            return this;
-        }
-        
-        Place* getParent() {
-            return parent;
-        }
-        
-        Place* getChildren(string searchTerm){
-            return this;
-        }
-        
-        Place* getChild(int index) {
-            return children[index];
-        }
-        
-        int getNbrChildren() {
-            return nbrChildren;
-        }
-        
-        Place* addChild(Place* newPlace) {
-            children[nbrChildren] = newPlace;
-            nbrChildren++;
-            return this;
-        }
-        
-        Place* removeChild(int index){
-            delete children[index];
-            for (int i=index;i<nbrChildren;i++){
-                children[index] = children[index+1];
-            }
-            children[--nbrChildren] = NULL;
-            return this;
-        }
-        
-        Place* loadPlace(string dataLocation){
-            return this;
-        }
-        
-        Place* savePlace(string datalocation){
-            return this;
-        }
+	private:
+		string name;
+		float longitude;
+		float latitude;
+		Place* parent;
+		LList<Place> children;
+		string address;
+		LList<Place> *matches;
+		
+		void setAddress(){
+			string newAddress = name;
+			if (parent!=NULL){
+				newAddress = parent->getAddress() + ", " + newAddress;
+			}
+			address = newAddress;
+			for (int i=0;i<children.getSize();i++){
+				children.getData(i)->setAddress();
+			}
+		}
+		
+	public:
+		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
+			name = newName;
+			longitude = newLongitude;
+			latitude = newLatitude;
+			parent = newParent;
+			setAddress();
+			matches = new LList<Place>();
+		}
+		
+		~Place() {
+		delete matches;
+		}
+		
+		string getName() {
+			return name;
+		}
+		
+		float getLongitude() {
+			return longitude;
+		}
+		
+		float getLatitude() {
+			return latitude;
+		}
+		
+		Place* setName(string newName) {
+			this->name = newName;
+			setAddress();
+			return this;
+		}
+		
+		Place* getParent() {
+			return parent;
+		}
+		
+		LList<Place>* getMatchedChildren(string searchTerm){
+			matches->clear();
+			if (searchTerm.find(name)!=string::npos && address.find(searchTerm)!=string::npos){
+				matches->append(this);
+			}
+			for(int i=0;i<children.getSize();i++){
+				matches->addAll(children.getData(i)->getMatchedChildren(searchTerm));
+			}
+			return matches;
+		}
+		
+		Place* getChild(int index) {
+			return children.getData(index);
+		}
+		
+		int getNbrChildren() {
+			return children.getSize();
+		}
+		
+		Place* addChild(Place* newPlace) {
+			newPlace->parent = this;
+			children.append(newPlace);
+			children.getData(children.getSize()-1)->setAddress();
+			return this;
+		}
+		
+		Place* removeChild(int index){
+			children.remove(index);
+			return this;
+		}
+		
+		Place* loadPlace(string dataLocation){
+			return this;
+		}
+		
+		Place* savePlace(string datalocation){
+			return this;
+		}
+		
+		string getAddress(){
+			return address;
+		}
+		
 
 };
 
