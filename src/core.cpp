@@ -160,9 +160,16 @@ void LList<T>::addAll(LList<T> *list){
 }
 template <class T>
 void LList<T>::clear(){
-	delete first;
-	first = NULL;
-	size = 0;
+	if (first!=NULL){
+		Node<T> *temp = first;
+		for (int i=0;i<size;i++){
+			temp->setData(NULL);
+			temp = temp->getNext();
+		}
+		delete first;
+		first = NULL;
+		size = 0;
+	}
 }
 
 template <class OptionType>
@@ -258,7 +265,7 @@ class Place {
 		
 		LList<Place>* getMatchedChildren(string searchTerm){
 			matches->clear();
-			if (searchTerm.find(name)!=string::npos && address.find(searchTerm)!=string::npos){
+			if (name.find(searchTerm)!=string::npos||(searchTerm.find(name)!=string::npos && address.find(searchTerm)!=string::npos)){
 				matches->append(this);
 			}
 			for(int i=0;i<children.getSize();i++){
