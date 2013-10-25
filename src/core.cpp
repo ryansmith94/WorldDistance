@@ -238,7 +238,8 @@ class Place {
 		}
 		
 		~Place() {
-		delete matches;
+			matches->clear();
+			delete matches;
 		}
 		
 		string getName() {
