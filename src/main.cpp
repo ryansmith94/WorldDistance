@@ -25,5 +25,27 @@ int main() {
 	for (int i=0;i<result->getSize();i++){
 		cout << result->getData(i)->getName()<<endl;
 	}
+	result = p->getMatchedChildren("test");
+	cout<< result->getSize()<<endl;
+	for (int i=0;i<result->getSize();i++){
+		cout << result->getData(i)->getName()<<endl;
+	}
+	result = p->getMatchedChildren("test");
+	cout<< result->getSize()<<endl;
+	for (int i=0;i<result->getSize();i++){
+		cout << result->getData(i)->getName()<<endl;
+	}
+	result = p->getMatchedChildren("test");
+	cout<< result->getSize()<<endl;
+	for (int i=0;i<result->getSize();i++){
+		cout << result->getData(i)->getName()<<endl;
+	}
+	result = p->getMatchedChildren("test");
+	cout<< result->getSize()<<endl;
+	for (int i=0;i<result->getSize();i++){
+		cout << result->getData(i)->getName()<<endl;
+	}
 	return 0;
+	string in;
+	cin>>in;
 }
