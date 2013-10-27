@@ -234,71 +234,62 @@ class Place {
 
 };
 
-class DistanceView {
-        Place* place;
+class View {
+    protected:
+        Place* rootPlace;
+        string getAddress() {
+            string address;
+            cout << "Please enter an address: ";
+            cin >> address;
+            return address;
+        }
     public:
-        DistanceView(Place* place) {
-
+        View(Place* place) {
+            rootPlace = place;
         }
-        ~DistanceView() {
+        virtual View* start();
+};
 
-        }
+class DistanceView: public View {
+    public:
+        DistanceView(Place* place) : View(place) {}
         DistanceView* start() {
+            string address1;
+            string address2;
+            address1 = getAddress();
+            address2 = getAddress();
+            // Calculate distance.
             return this;
         }
 };
 
-class PlacesView {
-        Place* place;
+class PlacesView: public View {
     public:
-        PlacesView(Place* place) {
-
-        }
-        ~PlacesView() {
-
-        }
+        PlacesView(Place* place) : View(place) {}
         PlacesView* start() {
             return this;
         }
 };
 
-class AddPlacesView {
-        Place* place;
+class AddPlacesView: public View {
     public:
-        AddPlacesView(Place* place) {
-
-        }
-        ~AddPlacesView() {
-
-        }
+        AddPlacesView(Place* place) : View(place) {}
         AddPlacesView* start() {
             return this;
         }
 };
 
-class ModifyPlacesView {
-        Place* places;
+class ModifyPlacesView: public View {
     public:
-        ModifyPlacesView(Place* place) {
-
-        }
-        ~ModifyPlacesView() {
-
-        }
+        ModifyPlacesView(Place* place) : View(place) {}
         ModifyPlacesView* start() {
             return this;
         }
 };
 
-class DeletePlacesView {
-        Place* place;
+class DeletePlacesView: public View {
     public:
-        DeletePlacesView(Place* place) {
-
-        }
-        ~DeletePlacesView() {
-
-        }
+        DeletePlacesView(Place* place) : View(place) {}
         DeletePlacesView* start() {
             return this;
         }
