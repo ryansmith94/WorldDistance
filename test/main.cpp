@@ -40,8 +40,6 @@ class TestWithStdIO {
         std::ofstream outStream;
     public:
         TestWithStdIO(const char* inFile, const char* outFile) : inStream(inFile), outStream(outFile) {
-            outFile = outFile;
-
             // Store the previous buffers for destruction.
             cinbuf = std::cin.rdbuf();
             coutbuf = std::cout.rdbuf();
