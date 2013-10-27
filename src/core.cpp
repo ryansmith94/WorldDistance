@@ -305,21 +305,21 @@ class DeletePlacesView {
 };
 
 class DistanceApp {
+        Place* rootPlace;
         string dataLocation;
-        Place* place;
     public:
         DistanceApp() {
             dataLocation = "data.txt";
-            place = new Place("Earth", 0.0, 0.0, NULL);
+            rootPlace = new Place("Earth", 0.0, 0.0, NULL);
         }
         DistanceApp* start() {
             string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
             OptionsView<string> optionsView(opts, 6);
-            DistanceView distanceView(place);
-            PlacesView placesView(place);
-            AddPlacesView addPlacesView(place);
-            ModifyPlacesView modifyPlacesView(place);
-            DeletePlacesView deletePlacesView(place);
+            DistanceView distanceView(rootPlace);
+            PlacesView placesView(rootPlace);
+            AddPlacesView addPlacesView(rootPlace);
+            ModifyPlacesView modifyPlacesView(rootPlace);
+            DeletePlacesView deletePlacesView(rootPlace);
             string selected;
 
             do {
