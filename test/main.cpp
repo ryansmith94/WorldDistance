@@ -194,6 +194,38 @@ Describe(DistanceApp_class) {
     };
 };
 
+Describe(DistanceView_class) {
+    It(should_expose_a_start_method) {
+        Assert::That(!!(&DistanceView::start), Equals(1));
+    }
+    Describe(start_method) {
+        It_Skip(should_return_the_distance_view) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            Place place("name", 0, 0, NULL);
+            DistanceView view(&place);
+            Assert::That(view.start(), Equals(&view));*/
+        }
+        It_Skip(should_accept_two_valid_addresses) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceView view();
+            view.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_reject_an_invalid_address) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceView view();
+            view.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_output_the_correct_distance_between_the_two_places) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceView view();
+            view.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+    };
+};
+
 int main(int argc, const char *argv[]) {
     return TestRunner::RunAllTests(argc, argv);
 }
