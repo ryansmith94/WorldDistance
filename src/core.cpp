@@ -323,7 +323,7 @@ class View {
         View(Place* place) {
             rootPlace = place;
         }
-        virtual View* start();
+        virtual View* start() =0;
 };
 
 class DistanceView: public View {
