@@ -138,10 +138,10 @@ Describe(DistanceApp_class) {
         Assert::That(!!(&DistanceApp::start), Equals(1));
     }
     Describe(start_method) {
-        It_Skip(should_return_the_distance_app) {
-            // TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            // DistanceApp app = *(new DistanceApp());
-            // Assert::That(app.start(), Equals(&app));
+        It(should_return_the_distance_app) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
+            Assert::That(app.start(), Equals(&app));
         }
         It_Skip(should_output_a_menu_of_options) {
             /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
