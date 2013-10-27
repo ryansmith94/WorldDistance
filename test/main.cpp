@@ -133,6 +133,67 @@ Describe(Place_class) {
     }
 };
 
+Describe(DistanceApp_class) {
+    It(should_expose_a_start_method) {
+        Assert::That(!!(&DistanceApp::start), Equals(1));
+    }
+    Describe(start_method) {
+        It_Skip(should_return_the_distance_app) {
+            // TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            // DistanceApp app = *(new DistanceApp());
+            // Assert::That(app.start(), Equals(&app));
+        }
+        It_Skip(should_output_a_menu_of_options) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_accept_a_valid_option_from_the_user) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_reject_a_invalid_option_from_the_user) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_show_the_distance_view_if_that_option_is_chosen) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_show_the_places_view_if_that_option_is_chosen) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_show_the_add_place_view_if_that_option_is_chosen) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_show_the_delete_place_view_if_that_option_is_chosen) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+        It_Skip(should_show_the_modify_place_view_if_that_option_is_chosen) {
+            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+            DistanceApp app();
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+        }
+    };
+};
+
 int main(int argc, const char *argv[]) {
     return TestRunner::RunAllTests(argc, argv);
 }
