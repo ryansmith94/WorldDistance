@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 template <class T>
@@ -313,10 +314,12 @@ class Place {
 class View {
     protected:
         Place* rootPlace;
-        string getAddress() {
+        string getAddress(int rejectEmpty = 0) {
             string address;
-            cout << "Please enter an address: ";
-            cin >> address;
+            do {
+                cout << "Please enter an address: ";
+                cin >> address;
+            } while (rejectEmpty == 1 && address == "");
             return address;
         }
     public:
@@ -327,13 +330,29 @@ class View {
 };
 
 class DistanceView: public View {
+        double calculateDistance(Place* from, Place* to) {
+            // Using the haversine forumla.
+            double radius = 6371;
+            double lat1 = from->getLatitude();
+            double lat2 = to->getLatitude();
+            double dLat = (lat2 - lat1) * (M_PI / 180);
+            double dLon = (to->getLongitude() - from->getLongitude()) * (M_PI / 180);
+            double a;
+
+            lat1 = lat1 * (M_PI / 180);
+            lat2 = lat2 * (M_PI / 180);
+
+            a = sin(dLat / 2) * sin(dLat / 2) + sin(dLon / 2) * sin(dLon / 2) * cos(lat1) * cos(lat2);
+            
+            return radius * (2 * atan2(sqrt(a), sqrt(1 - a)));
+        }
     public:
         DistanceView(Place* place) : View(place) {}
         DistanceView* start() {
             string address1;
             string address2;
-            address1 = getAddress();
-            address2 = getAddress();
+            address1 = getAddress(1);
+            address2 = getAddress(1);
             // Calculate distance.
             return this;
         }
