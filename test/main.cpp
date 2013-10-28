@@ -83,7 +83,7 @@ Describe(OptionsView_class) {
         }
     };
     Describe(getOption_method) {
-        It(should_accept_valid_option_above_minimum) {
+        It(should_accept_a_valid_option_above_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
@@ -91,7 +91,7 @@ Describe(OptionsView_class) {
             Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
-        It(should_accept_valid_option_below_maximum) {
+        It(should_accept_a_valid_option_below_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
@@ -99,7 +99,7 @@ Describe(OptionsView_class) {
             Assert::That(view.getOption(), Equals(2));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
-        It(should_reject_invalid_option_below_minimum) {
+        It(should_reject_an_invalid_option_below_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
@@ -107,7 +107,7 @@ Describe(OptionsView_class) {
             Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
-        It(should_reject_invalid_option_above_maximum) {
+        It(should_reject_an_invalid_option_above_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
@@ -143,53 +143,59 @@ Describe(DistanceApp_class) {
             DistanceApp app = *(new DistanceApp());
             Assert::That(app.start(), Equals(&app));
         }
-        It_Skip(should_output_a_menu_of_options) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_output_a_menu_of_options) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitValidOutput.txt"), Equals(1));
         }
-        It_Skip(should_accept_a_valid_option_from_the_user) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_reject_an_invalid_option_below_minimum) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitInvalidInput1.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitInvalidOutput.txt"), Equals(1));
         }
-        It_Skip(should_reject_a_invalid_option_from_the_user) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_reject_an_invalid_option_above_maximum) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitInvalidInput2.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitInvalidOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_distance_view_if_that_option_is_chosen) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_show_the_distance_view_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/distanceInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/distanceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_places_view_if_that_option_is_chosen) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_show_the_places_view_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/placesInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/placesOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_add_place_view_if_that_option_is_chosen) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_show_the_add_place_view_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/addPlaceInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/addPlaceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_delete_place_view_if_that_option_is_chosen) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_show_the_delete_place_view_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/deletePlaceInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/deletePlaceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_modify_place_view_if_that_option_is_chosen) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceApp app();
+        It(should_show_the_modify_place_view_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/modifyPlaceInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
             app.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/modifyPlaceOutput.txt"), Equals(1));
+        }
+        It(should_quit_if_that_option_is_chosen) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", "../tmp/out.txt");
+            DistanceApp app = *(new DistanceApp());
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitValidOutput.txt"), Equals(1));
         }
     };
 };
@@ -199,27 +205,30 @@ Describe(DistanceView_class) {
         Assert::That(!!(&DistanceView::start), Equals(1));
     }
     Describe(start_method) {
-        It_Skip(should_return_the_distance_view) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
+        It(should_return_the_distance_view) {
+            TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
             Place place("name", 0, 0, NULL);
             DistanceView view(&place);
-            Assert::That(view.start(), Equals(&view));*/
+            Assert::That(view.start(), Equals(&view));
         }
-        It_Skip(should_accept_two_valid_addresses) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceView view();
+        It(should_accept_two_valid_addresses) {
+            TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
+            Place place("name", 0, 0, NULL);
+            DistanceView view(&place);
             view.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/validOutput1.txt"), Equals(1));
         }
-        It_Skip(should_reject_an_invalid_address) {
-            /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceView view();
+        It(should_reject_an_invalid_address) {
+            TestWithStdIO ioTest("../test/DistanceView/invalidInput1.txt", "../tmp/out.txt");
+            Place place("name", 0, 0, NULL);
+            DistanceView view(&place);
             view.start();
-            Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/invalidOutput1.txt"), Equals(1));
         }
         It_Skip(should_output_the_correct_distance_between_the_two_places) {
             /*TestWithStdIO ioTest("../test/someFile.txt", "../tmp/out.txt");
-            DistanceView view();
+            Place place("name", 0, 0, NULL);
+            DistanceView view(&place);
             view.start();
             Assert::That(compareFiles("../tmp/out.txt", "../test/someFile.txt"), Equals(1));*/
         }
