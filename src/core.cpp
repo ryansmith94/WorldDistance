@@ -237,10 +237,12 @@ class Place {
 class View {
     protected:
         Place* rootPlace;
-        string getAddress() {
+        string getAddress(int rejectEmpty = 0) {
             string address;
-            cout << "Please enter an address: ";
-            cin >> address;
+            do {
+                cout << "Please enter an address: ";
+                cin >> address;
+            } while (rejectEmpty == 1 && address == "");
             return address;
         }
     public:
@@ -256,8 +258,8 @@ class DistanceView: public View {
         DistanceView* start() {
             string address1;
             string address2;
-            address1 = getAddress();
-            address2 = getAddress();
+            address1 = getAddress(1);
+            address2 = getAddress(1);
             // Calculate distance.
             return this;
         }
