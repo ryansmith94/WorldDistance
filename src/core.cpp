@@ -3,6 +3,8 @@
 #include <cmath>
 using namespace std;
 
+/*#define M_PI 3.141592654*/
+
 template <class T>
 class Node{
 	private:
@@ -360,8 +362,24 @@ class DistanceView: public View {
 
 class PlacesView: public View {
     public:
-        PlacesView(Place* place) : View(place) {}
-        PlacesView* start() {
+		Place* place;
+        PlacesView(Place* newPlace) : View(place) {place = newPlace;}
+		PlacesView* start() {
+
+			cout << place->getName() << "\thas " << place->getNbrChildren() << " Children:" << endl << endl;
+
+			cout << "Name" << "\t\t| " << "Longitude" << "\t| " << "Latitude" << endl;
+
+			for (int i=0; i < place->getNbrChildren(); i++){
+				Place* child = place->getChild(i);
+
+				// Tab Aesthetics for longer names (Greater than tab width (8) - 2 (see cout's second param))
+				string n = (child->getName().length()<6) ? (child->getName()+"\t"):(child->getName());
+
+				cout << ". " << n << "\t| " << child->getLongitude() << "\t| " << child->getLatitude() << endl;
+
+			}
+
             return this;
         }
 };
