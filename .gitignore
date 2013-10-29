@@ -4,5 +4,8 @@
 # Temporary files
 tmp/
 
+# Stackdump
+**.stackdump
+
 # Netbeans
 nbproject/
