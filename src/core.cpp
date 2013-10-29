@@ -1,9 +1,14 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <sstream> 
 #include <cmath>
 using namespace std;
 
-/*#define M_PI 3.141592654*/
+#ifndef M_PI
+#define M_PI 3.141592654
+#endif
+
 
 template <class T>
 class Node{
@@ -366,7 +371,7 @@ class PlacesView: public View {
         PlacesView(Place* newPlace) : View(place) {place = newPlace;}
 		PlacesView* start() {
 
-			cout << place->getName() << "\thas " << place->getNbrChildren() << " Children:" << endl << endl;
+			cout << place->getName() << "\tcontains " << place->getNbrChildren() << " Children:" << endl << endl;
 
 			cout << "Name" << "\t\t| " << "Longitude" << "\t| " << "Latitude" << endl;
 
@@ -386,8 +391,37 @@ class PlacesView: public View {
 
 class AddPlacesView: public View {
     public:
-        AddPlacesView(Place* place) : View(place) {}
+		Place* place;
+        AddPlacesView(Place* newPlace) : View(place) {place = newPlace;}
+        AddPlacesView() : View(place) {}
+
         AddPlacesView* start() {
+			if (place != NULL){
+				
+				string sInput;
+				string slInput1, slInput2;
+				float lInput1, lInput2;
+
+				cout << "Adding a child to " << place->getName() << "..." << endl;
+				
+				cout << endl << "New child name:\t ";
+				getline(cin, sInput);
+				
+				cout << endl << "New child longitude:\t ";
+				cin >> lInput1;
+				cout << endl << "New child latitude:\t ";
+				cin >> lInput2;
+
+				place->addChild(new Place(sInput, lInput1, lInput2, place));
+				
+			} else {
+				//Add places to rootPlace...
+
+
+
+				//rootPlace->addChild(new Place(sInput, lInput1, lInput2, parent))
+			}
+
             return this;
         }
 };
