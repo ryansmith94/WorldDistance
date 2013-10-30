@@ -175,10 +175,10 @@ void LList<T>::clear(){
 
 template <class OptionType>
 class OptionsView {
-        OptionType *options;
+        OptionType* options;
         int numberOfOptions;
     public:
-        OptionsView (OptionType *opts, int len = 0) {
+        OptionsView (OptionType* opts, int len = 0) {
             options = opts;
             numberOfOptions = len;
         }
@@ -318,7 +318,9 @@ class View {
             string address;
             do {
                 cout << "Please enter an address: ";
-                cin >> address;
+                cin.clear();
+                cin.ignore();
+                getline(cin, address);
             } while (rejectEmpty == 1 && address == "");
             return address;
         }

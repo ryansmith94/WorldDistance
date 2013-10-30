@@ -75,7 +75,7 @@ Describe(OptionsView_class) {
             view.display();
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/printOptions.txt"), Equals(1));
         }
-        It(should_return_options_view) {
+        It(should_return_the_options_view) {
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
