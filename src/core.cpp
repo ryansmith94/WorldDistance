@@ -123,10 +123,10 @@ class LinkedList {
 
 template <class OptionType>
 class OptionsView {
-        OptionType *options;
+        OptionType* options;
         int numberOfOptions;
     public:
-        OptionsView (OptionType *opts, int len = 0) {
+        OptionsView (OptionType* opts, int len = 0) {
             options = opts;
             numberOfOptions = len;
         }
