@@ -242,7 +242,9 @@ class View {
             string address;
             do {
                 cout << "Please enter an address: ";
-                cin >> address;
+                cin.clear();
+                cin.ignore();
+                getline(cin, address);
             } while (rejectEmpty == 1 && address == "");
             return address;
         }
