@@ -83,7 +83,7 @@ Describe(OptionsView_class) {
         }
     };
     Describe(getOption_method) {
-        It(should_accept_a_valid_option_above_minimum) {
+        It(should_return_a_valid_option_inputted_above_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
@@ -91,7 +91,7 @@ Describe(OptionsView_class) {
             Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
-        It(should_accept_a_valid_option_below_maximum) {
+        It(should_return_a_valid_option_inputted_below_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
