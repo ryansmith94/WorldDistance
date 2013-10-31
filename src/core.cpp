@@ -434,23 +434,23 @@ class DistanceApp {
             AddPlacesView addPlacesView(rootPlace);
             ModifyPlacesView modifyPlacesView(rootPlace);
             DeletePlacesView deletePlacesView(rootPlace);
-            string selected;
+            int selected;
 
             do {
                 selected = optionsView.display()->getOption();
 
-                if (selected == opts[0]) {
+                if (selected == 0) {
                     distanceView.start();
-                } else if (selected == opts[1]) {
+                } else if (selected == 1) {
                     placesView.start();
-                } else if (selected == opts[2]) {
+                } else if (selected == 2) {
                     addPlacesView.start();
-                } else if (selected == opts[3]) {
+                } else if (selected == 3) {
                     modifyPlacesView.start();
-                } else if (selected == opts[4]) {
+                } else if (selected == 4) {
                     deletePlacesView.start();
                 }
-            } while (selected != "Quit");
+            } while (selected != 5);
 
             return this;
         }
