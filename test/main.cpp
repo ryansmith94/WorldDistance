@@ -161,7 +161,7 @@ Describe(DistanceApp_class) {
             app.start();
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitInvalidOutput.txt"), Equals(1));
         }
-        It(should_show_the_distance_view_if_that_option_is_chosen) {
+        It_Skip(should_show_the_distance_view_if_that_option_is_chosen) {
             TestWithStdIO ioTest("../test/DistanceApp/distanceInput.txt", "../tmp/out.txt");
             DistanceApp app;
             app.start();
@@ -205,20 +205,20 @@ Describe(DistanceView_class) {
         Assert::That(!!(&DistanceView::start), Equals(1));
     }
     Describe(start_method) {
-        It(should_return_the_distance_view) {
+        It_Skip(should_return_the_distance_view) {
             TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
             Place place("name", 0, 0, NULL);
             DistanceView view(&place);
             Assert::That(view.start(), Equals(&view));
         }
-        It(should_accept_two_valid_addresses) {
+        It_Skip(should_accept_two_valid_places) {
             TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
             Place place("name", 0, 0, NULL);
             DistanceView view(&place);
             view.start();
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/validOutput1.txt"), Equals(1));
         }
-        It(should_reject_an_invalid_address) {
+        It_Skip(should_reject_an_invalid_address) {
             TestWithStdIO ioTest("../test/DistanceView/invalidInput1.txt", "../tmp/out.txt");
             Place place("name", 0, 0, NULL);
             DistanceView view(&place);
