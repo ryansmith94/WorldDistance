@@ -178,12 +178,9 @@ class OptionsView {
         OptionType* options;
         int numberOfOptions;
     public:
-        OptionsView (OptionType* opts, int len = 0) {
+        OptionsView(OptionType* opts, int len) {
             options = opts;
             numberOfOptions = len;
-        }
-        ~OptionsView () {
-
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
@@ -192,7 +189,7 @@ class OptionsView {
             cout << endl;
             return this;
         }
-        OptionType getOption() {
+        int getOption() {
             int selected = -1;
 
             do {
@@ -200,7 +197,7 @@ class OptionsView {
                 cin >> selected;
             } while (selected < 1 || selected > numberOfOptions);
 
-            return options[selected - 1];
+            return (selected - 1);
         }
         OptionType* getOptions() {
             return options;
