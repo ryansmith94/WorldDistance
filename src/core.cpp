@@ -377,11 +377,11 @@ class DistanceView: public View {
     public:
         DistanceView(Place* place) : View(place) {}
         DistanceView* start() {
-            string address1;
-            string address2;
-            address1 = getAddress(1);
-            address2 = getAddress(1);
-            // Calculate distance.
+            Place* place1;
+            Place* place2;
+            place1 = getPlace();
+            place2 = getPlace();
+            cout << calculateDistance(place1, place2);
             return this;
         }
 };
