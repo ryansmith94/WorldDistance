@@ -321,6 +321,35 @@ class View {
             } while (rejectEmpty == 1 && address == "");
             return address;
         }
+        Place* getPlace() {
+        	Place* place = NULL;
+
+        	do {
+        		LList<Place>* matched = rootPlace->getMatchedChildren(getAddress(1));
+        		int size = matched->getSize();
+
+        		if (size == 1) {
+        			place = matched->getData(0);
+        		} else if (size > 1) {
+        			int selected = -1;
+
+        			// Output the addresses of the matched places like an options view.
+        			for (int i = 0; i < size; i += 1) {
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << endl;
+        			}
+
+        			// Get a chosen place.
+        			do {
+        			    cout << "Please select an option (1-" << size <<  "): ";
+        			    cin >> selected;
+        			} while (selected < 1 || selected > size);
+
+        			place = matched->getData(selected);
+        		}
+        	} while (place == NULL);
+
+        	return place;
+        }
     public:
         View(Place* place) {
             rootPlace = place;
