@@ -325,9 +325,40 @@ class View {
             string address;
             do {
                 cout << "Please enter an address: ";
-                cin >> address;
+                cin.clear();
+                cin.ignore();
+                getline(cin, address);
             } while (rejectEmpty == 1 && address == "");
             return address;
+        }
+        Place* getPlace() {
+                Place* place = NULL;
+
+                do {
+                        LList<Place>* matched = rootPlace->getMatchedChildren(getAddress(1));
+                        int size = matched->getSize();
+
+                        if (size == 1) {
+                                place = matched->getData(0);
+                        } else if (size > 1) {
+                                int selected = -1;
+
+                                // Output the addresses of the matched places like an options view.
+                                for (int i = 0; i < size; i += 1) {
+                                        cout << i + 1 << ". " << matched->getData(i)->getAddress() << endl;
+                                }
+
+                                // Get a chosen place.
+                                do {
+                                    cout << "Please select an option (1-" << size <<  "): ";
+                                    cin >> selected;
+                                } while (selected < 1 || selected > size);
+
+                                place = matched->getData(selected);
+                        }
+                } while (place == NULL);
+
+                return place;
         }
     public:
         View(Place* place) {
@@ -390,40 +421,27 @@ class PlacesView: public View {
 };
 
 class AddPlacesView: public View {
-    public:
-		Place* place;
-        AddPlacesView(Place* newPlace) : View(place) {place = newPlace;}
-        AddPlacesView() : View(place) {}
+	public:
+		AddPlacesView(Place* place) : View(place) {}
 
-        AddPlacesView* start() {
-			if (place != NULL){
-				
-				string sInput;
-				string slInput1, slInput2;
-				float lInput1, lInput2;
+		AddPlacesView* start() {
+			string sInput;
+			string slInput1, slInput2;
+			float lInput1, lInput2;
 
-				cout << "Adding a child to " << place->getName() << "..." << endl;
-				
-				cout << endl << "New child name:\t ";
-				getline(cin, sInput);
-				
-				cout << endl << "New child longitude:\t ";
-				cin >> lInput1;
-				cout << endl << "New child latitude:\t ";
-				cin >> lInput2;
+			cout << "Adding a child to " << rootPlace->getName() << "..." << endl;
 
-				place->addChild(new Place(sInput, lInput1, lInput2, place));
-				
-			} else {
-				//Add places to rootPlace...
+			cout << endl << "New child name:\t ";
+			getline(cin, sInput);
 
+			cout << endl << "New child longitude:\t ";
+			cin >> lInput1;
+			cout << endl << "New child latitude:\t ";
+			cin >> lInput2;
 
-
-				//rootPlace->addChild(new Place(sInput, lInput1, lInput2, parent))
-			}
-
-            return this;
-        }
+			rootPlace->addChild(new Place(sInput, lInput1, lInput2, NULL));
+			return this;
+		}
 };
 
 class ModifyPlacesView: public View {

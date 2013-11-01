@@ -20,6 +20,8 @@ int main() {
 
 	con->start();
 
+	
+
 	/* Ollies Test Code
 
 	Place *p = new Place("test",0.0,0.0,NULL);
