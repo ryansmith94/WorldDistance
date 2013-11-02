@@ -410,16 +410,15 @@ class DistanceView: public View {
 
 class PlacesView: public View {
     public:
-		Place* place;
-        PlacesView(Place* newPlace) : View(place) {place = newPlace;}
+        PlacesView(Place* place) : View(place) {}
 		PlacesView* start() {
 
-			cout << place->getName() << "\tcontains " << place->getNbrChildren() << " Children:" << endl << endl;
+			cout << rootPlace->getName() << "\tcontains " << rootPlace->getNbrChildren() << " Children:" << endl << endl;
 
 			cout << "Name" << "\t\t| " << "Longitude" << "\t| " << "Latitude" << endl;
 
-			for (int i=0; i < place->getNbrChildren(); i++){
-				Place* child = place->getChild(i);
+			for (int i=0; i < rootPlace->getNbrChildren(); i++){
+				Place* child = rootPlace->getChild(i);
 
 				// Tab Aesthetics for longer names (Greater than tab width (8) - 2 (see cout's second param))
 				string n = (child->getName().length()<6) ? (child->getName()+"\t"):(child->getName());
