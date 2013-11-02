@@ -15,8 +15,13 @@ int main() {
 
 	cin.get();
 
-	AddPlacesView *trol = new AddPlacesView(Austria);
-	trol->start();
+	/*AddPlacesView *trol = new AddPlacesView(Austria);
+	trol->start();*/
+
+	ModifyPlacesView *mod = new ModifyPlacesView(Austria->getChild(0));
+
+	mod->start();
+
 
 	con->start();
 
