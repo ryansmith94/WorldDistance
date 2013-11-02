@@ -294,6 +294,15 @@ class Place {
 			}
 			return matches;
 		}
+
+		int getIndexOfChild(string searchTerm){
+			for (int n = 0; n<children.getSize();n++){
+				if (children.getData(n)->getName() == searchTerm){
+					return n;
+				}
+			}
+			return 101;
+		}
 		
 		Place* getChild(int index) {
 			return children.getData(index);
@@ -500,6 +509,21 @@ class DeletePlacesView: public View {
     public:
         DeletePlacesView(Place* place) : View(place) {}
         DeletePlacesView* start() {
+			cout << endl << "Are you sure you want to delete " << rootPlace->getName() << "?" << endl;
+			cout << "Y/N   > ";
+			string menuSelection;cin >> menuSelection;cout << endl;
+
+			if (menuSelection == "y" || menuSelection == "Y"){
+				int childPos = rootPlace->getParent()->getIndexOfChild(rootPlace->getName());
+				cout<<"Child: "<<rootPlace->getName()<<"\t Parent: "<<rootPlace->getParent()->getName()<< "\t Child Index is "<<childPos<<endl<<endl;
+				rootPlace->getParent()->removeChild(childPos);
+				
+			} else if (menuSelection == "n" || menuSelection == "N"){
+				cout << "User abort. Returning to menu."<<endl;
+			} else {
+				cout << "Bad selection. Returning to menu."<<endl;
+			}
+			
             return this;
         }
 };

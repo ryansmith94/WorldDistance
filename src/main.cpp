@@ -4,26 +4,36 @@ using namespace std;
 int main() {
 	Place * Austria = new Place("Austria",14.618683,47.391144,NULL);
 
-	Austria->addChild(new Place("Linz",14.290466,48.269712,Austria));
+	Place * Linz = new Place("Linz",14.290466,48.269712,Austria);
+
+	Austria->addChild(Linz);
 	Austria->addChild(new Place("Graz",15.444031,47.071291,Austria));
 	Austria->addChild(new Place("Vienna",16.377182,48.203397,Austria));
 	Austria->addChild(new Place("Salzburg",13.059311,47.806468,Austria));
 
 	PlacesView *con = new PlacesView(Austria);
 	cout << Austria->getName() << endl;
+	
 	con->start();
 
 	cin.get();
 
-	/*AddPlacesView *trol = new AddPlacesView(Austria);
-	trol->start();*/
+	/*AddPlacesView *add = new AddPlacesView(Austria);
+	add->start();
 
-	ModifyPlacesView *mod = new ModifyPlacesView(Austria->getChild(0));
+	con->start();*/
 
+	/*ModifyPlacesView *mod = new ModifyPlacesView(Austria->getChild(0));
 	mod->start();
 
+	con->start();*/
+
+	DeletePlacesView *del = new DeletePlacesView(Linz);
+	del->start();
 
 	con->start();
+
+	cin.get();
 
 	
 
