@@ -455,7 +455,6 @@ public:
 class AddPlacesView: public View {
 public:
     AddPlacesView(Place* place) : View(place) {}
-
     AddPlacesView* start() {
         string sInput;
         string slInput1, slInput2;
@@ -496,25 +495,23 @@ public:
             string newString;
             cin >> newString;
             rootPlace->setName(newString);
-        }
+        } else
 
-        if (menuSelection == 2) {
-            cout << "New Longitude: ";
-            float newFloat;
-            cin >> newFloat;
-            rootPlace->setLongitude(newFloat);
-        }
+            if (menuSelection == 2) {
+                cout << "New Longitude: ";
+                float newFloat;
+                cin >> newFloat;
+                rootPlace->setLongitude(newFloat);
+            } else
 
-        if (menuSelection == 3) {
-            cout << "New Latitude: ";
-            float newFloat;
-            cin >> newFloat;
-            rootPlace->setLatitude(newFloat);
-        }
-
-
-        //cout << "Debug:\t\t" << menuSelection << endl;
-
+                if (menuSelection == 3) {
+                    cout << "New Latitude: ";
+                    float newFloat;
+                    cin >> newFloat;
+                    rootPlace->setLatitude(newFloat);
+                } else {
+                    cout << "Bad selection. Returning to menu."<<endl;
+                }
 
         return this;
     }
