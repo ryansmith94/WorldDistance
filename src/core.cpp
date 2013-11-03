@@ -301,7 +301,7 @@ class Place {
 					return n;
 				}
 			}
-			return 101;
+			return NULL;
 		}
 		
 		Place* getChild(int index) {
