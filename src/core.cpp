@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 template <class T>
@@ -294,10 +296,50 @@ class Place {
 		}
 		
 		Place* loadPlace(string dataLocation){
+			ifstream myfile(dataLocation.c_str());
+			if (myfile.is_open()){
+				Place* placeToAddTo = this;
+				Place* lastPlaceAdded;
+				int lastDepth = 0;
+				int depth;
+				string line;
+				string name;
+				double lat,lon;
+				while(getline(myfile,line)){
+					istringstream iss(line);
+					iss >> depth;
+					iss.ignore();
+					getline(iss, name, '\t');
+					iss >> lat >> lon;
+					if (depth > lastDepth){ placeToAddTo = lastPlaceAdded;}
+					else if (depth < lastDepth){
+						for (int i = 0; i<(lastDepth-depth); i++){
+							placeToAddTo = placeToAddTo->getParent();
+						}
+					}
+					lastPlaceAdded = new Place(name,lat,lon,this);
+					placeToAddTo->addChild(lastPlaceAdded);
+					lastDepth = depth;
+				}
+			}
 			return this;
+		}
+		void saveConstructor(ofstream *data,int depth){
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << '\n';
+			for (int i = 0; i<children.getSize();i++){
+				children.getData(i)->saveConstructor(data,depth+1);
+			}
 		}
 		
 		Place* savePlace(string datalocation){
+			ofstream myfile(datalocation.c_str());
+			if (myfile.is_open()){
+				for (int i=0;i<children.getSize();i++){
+					children.getData(i)->saveConstructor(&myfile,0);
+				}
+				myfile.close();
+			}
+			
 			return this;
 		}
 		
