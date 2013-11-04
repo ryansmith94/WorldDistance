@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 template <class T>
@@ -294,6 +296,33 @@ class Place {
 		}
 		
 		Place* loadPlace(string dataLocation){
+			ifstream myfile(dataLocation.c_str());
+			if (myfile.is_open()){
+				Place* placeToAddTo = this;
+				Place* lastPlaceAdded;
+				int lastDepth = 0;
+				int depth;
+				string line;
+				string name;
+				double lat,lon;
+				while(getline(myfile,line)){
+					istringstream iss(line);
+					iss >> depth;
+					iss.ignore();
+					getline(iss, name, '\t');
+					iss >> lat >> lon;
+					cout << depth << name << lat << lon << endl;
+					if (depth > lastDepth){ placeToAddTo = lastPlaceAdded;}
+					else if (depth < lastDepth){
+						for (int i = 0; i<(lastDepth-depth); i++){
+							placeToAddTo = placeToAddTo->getParent();
+						}
+					}
+					lastPlaceAdded = new Place(name,lat,lon,this);
+					placeToAddTo->addChild(lastPlaceAdded);
+					lastDepth = depth;
+				}
+			}
 			return this;
 		}
 		

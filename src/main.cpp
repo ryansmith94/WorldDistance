@@ -2,10 +2,6 @@
 using namespace std;
 
 int main() {
-#include "core.cpp"
-using namespace std;
-
-int main() {
 	Place *p = new Place("test",0.0,0.0,NULL);
 	cout<<p->getName()<<endl;
 	Place *t = new Place("test2",0.0,0.0,NULL);
@@ -49,6 +45,17 @@ int main() {
 	for (int i=0;i<result->getSize();i++){
 		cout << result->getData(i)->getName()<<endl;
 	}
+	Place *root = new Place("test",0.0,0.0,NULL);
+	root->loadPlace("data.txt");
+	cout << root->getNbrChildren()<< endl;
+	cout << root->getChild(0)->getName()<<endl;
+	cout << root->getChild(1)->getName()<<endl;
+	cout << root->getChild(0)->getNbrChildren() << endl;
+	cout << root->getChild(1)->getChild(0)->getChild(0)->getName() << endl;
+	cout << root->getChild(1)->getChild(0)->getChild(0)->getNbrChildren() << endl;
+	cout << root->getChild(1)->getChild(0)->getNbrChildren() << endl;
+	cout << root->getChild(1)->getChild(0)->getName() << endl;
+	//cout << root->getChild(2)->getName()<<endl;
 	delete p;
 	return 0;
 }
