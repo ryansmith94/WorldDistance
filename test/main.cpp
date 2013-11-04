@@ -287,14 +287,14 @@ Describe(Place_class) {
 			Assert::That(testPlace.getChild(2),Equals(testPlace4));
 		}
 	};
-	Describe(getNbrChildren_method){
-		It(should_return_the_number_of_children){
-			Place testPlace("one",1.2,2.3);
-			Place *testPlace2 = new Place("two",3.4,4.5);
-			Place *testPlace3 = new Place("three",5.6,6.7);
-			//Assert::That();
-		}
-	}
+	//Describe(getNbrChildren_method){
+	//	It(should_return_the_number_of_children){
+	//		Place testPlace("one",1.2,2.3);
+	//		Place *testPlace2 = new Place("two",3.4,4.5);
+	//		Place *testPlace3 = new Place("three",5.6,6.7);
+	//		//Assert::That();
+	//	}
+	//}
 };
 
 Describe(DistanceApp_class) {
