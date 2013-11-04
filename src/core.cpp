@@ -311,7 +311,6 @@ class Place {
 					iss.ignore();
 					getline(iss, name, '\t');
 					iss >> lat >> lon;
-					cout << depth << name << lat << lon << endl;
 					if (depth > lastDepth){ placeToAddTo = lastPlaceAdded;}
 					else if (depth < lastDepth){
 						for (int i = 0; i<(lastDepth-depth); i++){
@@ -325,8 +324,22 @@ class Place {
 			}
 			return this;
 		}
+		void saveConstructor(ofstream *data,int depth){
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << '\n';
+			for (int i = 0; i<children.getSize();i++){
+				children.getData(i)->saveConstructor(data,depth+1);
+			}
+		}
 		
 		Place* savePlace(string datalocation){
+			ofstream myfile(datalocation.c_str());
+			if (myfile.is_open()){
+				for (int i=0;i<children.getSize();i++){
+					children.getData(i)->saveConstructor(&myfile,0);
+				}
+				myfile.close();
+			}
+			
 			return this;
 		}
 		

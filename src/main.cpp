@@ -45,8 +45,8 @@ int main() {
 	for (int i=0;i<result->getSize();i++){
 		cout << result->getData(i)->getName()<<endl;
 	}
-	Place *root = new Place("test",0.0,0.0,NULL);
-	root->loadPlace("data.txt");
+	Place *root = new Place("Earth",0.0,0.0,NULL);
+	root->loadPlace("test.txt");
 	cout << root->getNbrChildren()<< endl;
 	cout << root->getChild(0)->getName()<<endl;
 	cout << root->getChild(1)->getName()<<endl;
@@ -55,7 +55,12 @@ int main() {
 	cout << root->getChild(1)->getChild(0)->getChild(0)->getNbrChildren() << endl;
 	cout << root->getChild(1)->getChild(0)->getNbrChildren() << endl;
 	cout << root->getChild(1)->getChild(0)->getName() << endl;
-	//cout << root->getChild(2)->getName()<<endl;
+	//LList<Place> *searchResults = root->getMatchedChildren("");
+	//for (int i = 0; i<searchResults->getSize();i++){
+	//	cout<<searchResults->getData(i)->getAddress()<<endl;
+	//}
+	root->savePlace("test2.txt");
 	delete p;
+	delete root;
 	return 0;
 }
