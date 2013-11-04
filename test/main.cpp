@@ -287,14 +287,66 @@ Describe(Place_class) {
 			Assert::That(testPlace.getChild(2),Equals(testPlace4));
 		}
 	};
-	//Describe(getNbrChildren_method){
-	//	It(should_return_the_number_of_children){
-	//		Place testPlace("one",1.2,2.3);
-	//		Place *testPlace2 = new Place("two",3.4,4.5);
-	//		Place *testPlace3 = new Place("three",5.6,6.7);
-	//		//Assert::That();
-	//	}
-	//}
+	Describe(getNbrChildren_method){
+		It(should_return_the_number_of_children){
+			Place testPlace("one",1.2,2.3);
+			Place *testPlace2 = new Place("two",3.4,4.5);
+			Place *testPlace3 = new Place("three",5.6,6.7);
+			Assert::That(testPlace.getNbrChildren(), Equals(0));
+			testPlace.addChild(testPlace2);
+			Assert::That(testPlace.getNbrChildren(), Equals(1));
+			testPlace.addChild(testPlace3);
+			Assert::That(testPlace.getNbrChildren(), Equals(2));
+		}
+	};
+	Describe(addChild_method){
+		It(should_add_the_given_child_place_to_the_list_of_children){
+			Place testPlace("one",1.2,2.3);
+			Place *testPlace2 = new Place("two",3.4,4.5);
+			testPlace.addChild(testPlace2);
+			Assert::That(testPlace.getChild(0)), Equals(testPlace2);
+		}
+	};
+	Describe(removeChild_method){
+		It(should_remove_the_given_child_){
+			Place testPlace("one",1.2,2.3);
+			Place *testPlace2 = new Place("two",3.4,4.5);
+			testPlace.addChild(testPlace2);
+			Assert::That(testPlace.getNbrChildren(), Equals(1));
+			testPlace.removeChild(0);
+			Assert::That(testPlace.getNbrChildren(), Equals(0));
+		}
+	};
+	Describe(loadPlace_method){
+		It(should_load_places_from_a_file){
+			Place testPlace("Earth",0.0,0.0);
+			testPlace.loadPlace("../test/Place/LoadTestData.txt");
+			Assert::That(testPlace.getChild(0)->getName(), Equals("UK"));
+			Assert::That(testPlace.getChild(0)->getLongitude(), Equals(2.4333f));
+			Assert::That(testPlace.getChild(0)->getLatitude(), Equals(53.55f));
+			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getName(), Equals("Birmingham"));
+			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLongitude(), Equals(86.8127f));
+			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLatitude(), Equals(33.5248f));
+		}
+	};
+	Describe(savePlace_method){
+		It(should_save_places_to_a_file){
+			Place testPlace("Earth",0.0,0.0);
+			testPlace.loadPlace("../test/Place/LoadTestData.txt");
+			testPlace.savePlace("../test/Place/SaveTestData.txt");
+			Assert::That(compareFiles("../test/Place/LoadTestData.txt", "../test/Place/SaveTestData.txt"), Equals(1));
+		}
+	};
+	Describe(getAddress_methhod){
+		It(should_get_the_address){
+			Place testPlace("Earth",0.0,0.0);
+			Place *testPlace2 = new Place("UK",3.4,4.5);
+			Place *testPlace3 = new Place("London",3.4,4.5);
+			testPlace.addChild(testPlace2);
+			testPlace2->addChild(testPlace3);
+			Assert::That(testPlace3->getAddress(), Equals("Earth, UK, London"));
+		}
+	};
 };
 
 Describe(DistanceApp_class) {
