@@ -2,13 +2,13 @@
 using namespace std;
 
 int main() {
-	Place *p = new Place("test",0.0,0.0,NULL);
+	Place *p = new Place("test",0.0,0.0);
 	cout<<p->getName()<<endl;
-	Place *t = new Place("test2",0.0,0.0,NULL);
-	Place *u = new Place("test3",0.0,0.0,NULL);
-	Place *v = new Place("test4",0.0,0.0,NULL);
-	Place *w = new Place("test5",0.0,0.0,NULL);
-	Place *x = new Place("test6",0.0,0.0,NULL);
+	Place *t = new Place("test2",0.0,0.0);
+	Place *u = new Place("test3",0.0,0.0);
+	Place *v = new Place("test4",0.0,0.0);
+	Place *w = new Place("test5",0.0,0.0);
+	Place *x = new Place("test6",0.0,0.0);
 	p->addChild(t);
 	p->addChild(u);
 	p->addChild(v);
@@ -45,7 +45,7 @@ int main() {
 	for (int i=0;i<result->getSize();i++){
 		cout << result->getData(i)->getName()<<endl;
 	}
-	Place *root = new Place("Earth",0.0,0.0,NULL);
+	Place *root = new Place("Earth",0.0,0.0);
 	root->loadPlace("test.txt");
 	cout << root->getNbrChildren()<< endl;
 	cout << root->getChild(0)->getName()<<endl;
