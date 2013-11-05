@@ -2,6 +2,7 @@
 using namespace std;
 
 int main() {
+    // Troll that merge
 	Place *p = new Place("test",0.0,0.0);
 	cout<<p->getName()<<endl;
 	Place *t = new Place("test2",0.0,0.0);
