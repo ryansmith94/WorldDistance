@@ -32,7 +32,7 @@ class LList{
 		void append(T*);
 		void insert(T*,int);
 		void remove(int);
-		T* getData(int);	
+		T* getData(int);
 		void addAll(LList<T>*);
 		void clear();
 };
@@ -186,9 +186,9 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << "\r\n";
+                cout << i + 1 << ". " << options[i] << (char)10;
             }
-            cout << "\r\n";
+            cout << (char)10;
             return this;
         }
         int getOption() {
@@ -215,7 +215,7 @@ class Place {
 		LList<Place> children;
 		string address;
 		LList<Place> *matches;
-		
+
 		void setAddress(){
 			string newAddress = name;
 			if (parent!=NULL){
@@ -226,14 +226,14 @@ class Place {
 				children.getData(i)->setAddress();
 			}
 		}
-		
+
 		void saveConstructor(ofstream *data,int depth){
-			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << "\r\n";
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << (char)10;
 			for (int i = 0; i<children.getSize();i++){
 				children.getData(i)->saveConstructor(data,depth+1);
 			}
 		}
-		
+
 	public:
 		Place(string newName, float newLongitude, float newLatitude) {
 			name = newName;
@@ -243,34 +243,34 @@ class Place {
 			setAddress();
 			matches = new LList<Place>();
 		}
-		
+
 		~Place() {
 			matches->clear();
 			delete matches;
 		}
-		
+
 		string getName() {
 			return name;
 		}
-		
+
 		float getLongitude() {
 			return longitude;
 		}
-		
+
 		float getLatitude() {
 			return latitude;
 		}
-		
+
 		Place* setName(string newName) {
 			this->name = newName;
 			setAddress();
 			return this;
 		}
-		
+
 		Place* getParent() {
 			return parent;
 		}
-		
+
 		LList<Place>* getMatchedChildren(string searchTerm){
 			matches->clear();
 			if (name.find(searchTerm)!=string::npos||(searchTerm.find(name)!=string::npos && address.find(searchTerm)!=string::npos)){
@@ -281,27 +281,27 @@ class Place {
 			}
 			return matches;
 		}
-		
+
 		Place* getChild(int index) {
 			return children.getData(index);
 		}
-		
+
 		int getNbrChildren() {
 			return children.getSize();
 		}
-		
+
 		Place* addChild(Place* newPlace) {
 			newPlace->parent = this;
 			children.append(newPlace);
 			children.getData(children.getSize()-1)->setAddress();
 			return this;
 		}
-		
+
 		Place* removeChild(int index){
 			children.remove(index);
 			return this;
 		}
-		
+
 		Place* loadPlace(string dataLocation){
 			ifstream myfile(dataLocation.c_str());
 			if (myfile.is_open()){
@@ -332,7 +332,7 @@ class Place {
 			return this;
 		}
 
-		
+
 		Place* savePlace(string dataLocation){
 			ofstream myfile(dataLocation.c_str());
 			if (myfile.is_open()){
@@ -341,14 +341,14 @@ class Place {
 				}
 				myfile.close();
 			}
-			
+
 			return this;
 		}
-		
+
 		string getAddress(){
 			return address;
 		}
-		
+
 
 };
 
@@ -379,7 +379,7 @@ class View {
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << "\r\n";
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << (char)10;
         			}
 
         			// Get a chosen place.
@@ -415,7 +415,7 @@ class DistanceView: public View {
             lat2 = lat2 * (M_PI / 180);
 
             a = sin(dLat / 2) * sin(dLat / 2) + sin(dLon / 2) * sin(dLon / 2) * cos(lat1) * cos(lat2);
-            
+
             return radius * (2 * atan2(sqrt(a), sqrt(1 - a)));
         }
     public:
@@ -425,7 +425,7 @@ class DistanceView: public View {
             Place* place2;
             place1 = getPlace();
             place2 = getPlace();
-            cout << calculateDistance(place1, place2) << "\r\n";
+            cout << calculateDistance(place1, place2) << (char)10;
             return this;
         }
 };
