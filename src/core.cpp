@@ -186,9 +186,9 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << "\n";
+                cout << i + 1 << ". " << options[i] << "\r\n";
             }
-            cout << "\n";
+            cout << "\r\n";
             return this;
         }
         int getOption() {
@@ -228,7 +228,7 @@ class Place {
 		}
 		
 		void saveConstructor(ofstream *data,int depth){
-			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << '\n';
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << "\r\n";
 			for (int i = 0; i<children.getSize();i++){
 				children.getData(i)->saveConstructor(data,depth+1);
 			}
@@ -379,7 +379,7 @@ class View {
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << "\n";
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << "\r\n";
         			}
 
         			// Get a chosen place.
@@ -425,7 +425,7 @@ class DistanceView: public View {
             Place* place2;
             place1 = getPlace();
             place2 = getPlace();
-            cout << calculateDistance(place1, place2);
+            cout << calculateDistance(place1, place2) << "\r\n";
             return this;
         }
 };
@@ -463,21 +463,21 @@ class DeletePlacesView: public View {
 };
 
 class DistanceApp {
-        Place* rootPlace;
+        Place rootPlace;
         string dataLocation;
     public:
-        DistanceApp() {
+        DistanceApp() : rootPlace("Earth", 0.0, 0.0) {
             dataLocation = "data.txt";
-            rootPlace = new Place("Earth", 0.0, 0.0);
+            rootPlace.loadPlace(dataLocation);
         }
         DistanceApp* start() {
             string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
             OptionsView<string> optionsView(opts, 6);
-            DistanceView distanceView(rootPlace);
-            PlacesView placesView(rootPlace);
-            AddPlacesView addPlacesView(rootPlace);
-            ModifyPlacesView modifyPlacesView(rootPlace);
-            DeletePlacesView deletePlacesView(rootPlace);
+            DistanceView distanceView(&rootPlace);
+            PlacesView placesView(&rootPlace);
+            AddPlacesView addPlacesView(&rootPlace);
+            ModifyPlacesView modifyPlacesView(&rootPlace);
+            DeletePlacesView deletePlacesView(&rootPlace);
             int selected;
 
             do {
