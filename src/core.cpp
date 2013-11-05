@@ -186,9 +186,9 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << endl;
+                cout << i + 1 << ". " << options[i] << "\n";
             }
-            cout << endl;
+            cout << "\n";
             return this;
         }
         int getOption() {
@@ -227,12 +227,19 @@ class Place {
 			}
 		}
 		
+		void saveConstructor(ofstream *data,int depth){
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << '\n';
+			for (int i = 0; i<children.getSize();i++){
+				children.getData(i)->saveConstructor(data,depth+1);
+			}
+		}
+		
 	public:
-		Place(string newName, float newLongitude, float newLatitude, Place* newParent) {
+		Place(string newName, float newLongitude, float newLatitude) {
 			name = newName;
 			longitude = newLongitude;
 			latitude = newLatitude;
-			parent = newParent;
+			parent = NULL;
 			setAddress();
 			matches = new LList<Place>();
 		}
@@ -317,22 +324,17 @@ class Place {
 							placeToAddTo = placeToAddTo->getParent();
 						}
 					}
-					lastPlaceAdded = new Place(name,lat,lon,this);
+					lastPlaceAdded = new Place(name,lat,lon);
 					placeToAddTo->addChild(lastPlaceAdded);
 					lastDepth = depth;
 				}
 			}
 			return this;
 		}
-		void saveConstructor(ofstream *data,int depth){
-			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << '\n';
-			for (int i = 0; i<children.getSize();i++){
-				children.getData(i)->saveConstructor(data,depth+1);
-			}
-		}
+
 		
-		Place* savePlace(string datalocation){
-			ofstream myfile(datalocation.c_str());
+		Place* savePlace(string dataLocation){
+			ofstream myfile(dataLocation.c_str());
 			if (myfile.is_open()){
 				for (int i=0;i<children.getSize();i++){
 					children.getData(i)->saveConstructor(&myfile,0);
@@ -377,7 +379,7 @@ class View {
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << endl;
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << "\n";
         			}
 
         			// Get a chosen place.
@@ -466,7 +468,7 @@ class DistanceApp {
     public:
         DistanceApp() {
             dataLocation = "data.txt";
-            rootPlace = new Place("Earth", 0.0, 0.0, NULL);
+            rootPlace = new Place("Earth", 0.0, 0.0);
         }
         DistanceApp* start() {
             string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
