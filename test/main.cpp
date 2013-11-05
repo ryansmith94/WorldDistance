@@ -68,7 +68,7 @@ Describe(OptionsView_class) {
         Assert::That(!!(&OptionsView<int>::getOptions), Equals(1));
     }
     Describe(display_method) {
-        It_Skip(should_print_options) {
+        It(should_print_options) {
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
