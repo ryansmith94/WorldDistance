@@ -12,4 +12,4 @@ Please select an option (1-6): 1. Distance
 5. Delete place
 6. Quit
 
-Please select an option (1-6): 
+Please select an option (1-6):
