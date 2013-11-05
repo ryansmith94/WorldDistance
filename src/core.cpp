@@ -186,9 +186,9 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << endl;
+                cout << i + 1 << ". " << options[i] << "\n";
             }
-            cout << endl;
+            cout << "\n";
             return this;
         }
         int getOption() {
@@ -379,7 +379,7 @@ class View {
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << endl;
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << "\n";
         			}
 
         			// Get a chosen place.
