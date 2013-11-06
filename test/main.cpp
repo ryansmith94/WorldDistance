@@ -69,10 +69,10 @@ Describe(OptionsView_class) {
     }
     Describe(display_method) {
         It(should_print_options) {
+            int opts[] = {0, 1, 2};
+            OptionsView<int> view(opts, 3);
 			{
 				TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
-				int opts[] = {0, 1, 2};
-				OptionsView<int> view(opts, 3);
 				view.display();
 			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/printOptions.txt"), Equals(1));
@@ -133,6 +133,111 @@ Describe(OptionsView_class) {
             Assert::That(view.getOptions()[0], Equals(0));
             Assert::That(view.getOptions()[1], Equals(1));
             Assert::That(view.getOptions()[2], Equals(2));
+        }
+    };
+};
+
+Describe(OptionsViewPlaces_class) {
+    It(should_expose_a_display_method) {
+        Assert::That(!!(&OptionsViewPlaces::display), Equals(1));
+    }
+    It(should_expose_a_getOption_method) {
+        Assert::That(!!(&OptionsViewPlaces::getOption), Equals(1));
+    }
+    It(should_expose_a_getOptions_method) {
+        Assert::That(!!(&OptionsViewPlaces::getOptions), Equals(1));
+    }
+    Describe(display_method) {
+        It(should_print_options) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+            {
+                TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
+                view.display();
+            }
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsViewPlaces/validOutput1.txt"), Equals(1));
+        }
+        It(should_return_the_options_view_places) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+            TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
+            Assert::That(view.display(), Equals(&view));
+        }
+    };
+    Describe(getOption_method) {
+        It(should_return_a_valid_option_inputted_above_minimum) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+
+            TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(0));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
+        }
+        It(should_return_a_valid_option_inputted_below_maximum) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+
+            TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getValidOption.txt"), Equals(1));
+        }
+        It(should_reject_an_invalid_option_below_minimum) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(0));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+        }
+        It(should_reject_an_invalid_option_above_maximum) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+        }
+        It(should_reject_an_invalid_option_of_wrong_type) {
+            LList<Place> opts;
+            opts.append(new Place("place1", 0.0, 0.0));
+            opts.append(new Place("place2", 0.0, 0.0));
+            opts.append(new Place("place3", 0.0, 0.0));
+            OptionsViewPlaces view(&opts);
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+        }
+    };
+    Describe(getOptions_method) {
+        It(should_return_all_of_the_options) {
+            LList<Place> opts;
+            Place* place1 = new Place("place1", 0.0, 0.0);
+            Place* place2 = new Place("place2", 0.0, 0.0);
+            Place* place3 = new Place("place3", 0.0, 0.0);
+            opts.append(place1);
+            opts.append(place2);
+            opts.append(place3);
+            OptionsViewPlaces view(&opts);
+            Assert::That(view.getOptions(), Equals(&opts));
         }
     };
 };
