@@ -389,7 +389,7 @@ class View {
         			    cin >> selected;
         			} while (selected < 1 || selected > size);
 
-        			place = matched->getData(selected);
+        			place = matched->getData(selected - 1);
         		}
         	} while (place == NULL);
 
