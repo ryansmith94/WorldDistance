@@ -29,7 +29,7 @@ class DistanceView: public View {
             Place* place2;
             place1 = getPlace();
             place2 = getPlace();
-            cout << calculateDistance(place1, place2) << LF;
+            cout << LF << "\tThe distance is " << calculateDistance(place1, place2) << "km" << LF;
             return this;
         }
 };

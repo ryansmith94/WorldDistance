@@ -19,7 +19,7 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << LF;
+                cout << "\t" << i + 1 << ". " << options[i] << LF;
             }
             cout << LF;
             return this;
@@ -29,7 +29,7 @@ class OptionsView {
             string input;
 
             do {
-                cout << "Please select an option (1-" << numberOfOptions <<  "): ";
+                cout << "<\tPlease select an option (1-" << numberOfOptions <<  "): ";
                 getline(cin, input);
                 stringstream myStream(input);
                 myStream >> selected;
