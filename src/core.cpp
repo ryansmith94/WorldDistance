@@ -194,10 +194,13 @@ class OptionsView {
         }
         int getOption() {
             int selected = -1;
+            string input;
 
             do {
                 cout << "Please select an option (1-" << numberOfOptions <<  "): ";
-                cin >> selected;
+                getline(cin, input);
+                stringstream myStream(input);
+                myStream >> selected;
             } while (selected < 1 || selected > numberOfOptions);
 
             return (selected - 1);
@@ -377,6 +380,7 @@ class View {
         			place = matched->getData(0);
         		} else if (size > 1) {
         			int selected = -1;
+                    string input;
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
@@ -386,7 +390,9 @@ class View {
         			// Get a chosen place.
         			do {
         			    cout << "Please select an option (1-" << size <<  "): ";
-        			    cin >> selected;
+                        getline(cin, input);
+                        stringstream myStream(input);
+                        myStream >> selected;
         			} while (selected < 1 || selected > size);
 
         			place = matched->getData(selected - 1);
