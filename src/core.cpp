@@ -352,8 +352,40 @@ class Place {
 		string getAddress(){
 			return address;
 		}
+};
 
+template <>
+class OptionsView <LList<Place> > {
+        LList<Place>* options;
+        int numberOfOptions;
+    public:
+        OptionsView(LList<Place>* opts) {
+            options = opts;
+            numberOfOptions = opts->getSize();
+        }
+        OptionsView* display() {
+            for (int i = 0; i < numberOfOptions; i += 1) {
+                cout << i + 1 << ". " << options->getData(i)->getAddress() << LF;
+            }
+            cout << LF;
+            return this;
+        }
+        int getOption() {
+            int selected = -1;
+            string input;
 
+            do {
+                cout << "Please select an option (1-" << numberOfOptions <<  "): ";
+                getline(cin, input);
+                stringstream myStream(input);
+                myStream >> selected;
+            } while (selected < 1 || selected > numberOfOptions);
+
+            return (selected - 1);
+        }
+        LList<Place>* getOptions() {
+            return options;
+        }
 };
 
 class View {
@@ -372,6 +404,7 @@ class View {
         Place* getPlace() {
         	Place* place = NULL;
 
+
         	do {
         		LList<Place>* matched = rootPlace->getMatchedChildren(getAddress(1));
         		int size = matched->getSize();
@@ -379,23 +412,8 @@ class View {
         		if (size == 1) {
         			place = matched->getData(0);
         		} else if (size > 1) {
-        			int selected = -1;
-                    string input;
-
-        			// Output the addresses of the matched places like an options view.
-        			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << LF;
-        			}
-
-        			// Get a chosen place.
-        			do {
-        			    cout << "Please select an option (1-" << size <<  "): ";
-                        getline(cin, input);
-                        stringstream myStream(input);
-                        myStream >> selected;
-        			} while (selected < 1 || selected > size);
-
-        			place = matched->getData(selected - 1);
+                    OptionsView<LList<Place> > view(matched);
+        			place = matched->getData(view.display()->getOption());
         		}
         	} while (place == NULL);
 
