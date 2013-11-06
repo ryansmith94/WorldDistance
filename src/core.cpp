@@ -3,6 +3,7 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
+#define LF (char)0x0A
 using namespace std;
 
 template <class T>
@@ -186,17 +187,20 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << (char)10;
+                cout << i + 1 << ". " << options[i] << LF;
             }
-            cout << (char)10;
+            cout << LF;
             return this;
         }
         int getOption() {
             int selected = -1;
+            string input;
 
             do {
                 cout << "Please select an option (1-" << numberOfOptions <<  "): ";
-                cin >> selected;
+                getline(cin, input);
+                stringstream myStream(input);
+                myStream >> selected;
             } while (selected < 1 || selected > numberOfOptions);
 
             return (selected - 1);
@@ -228,7 +232,7 @@ class Place {
 		}
 
 		void saveConstructor(ofstream *data,int depth){
-			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << (char)10;
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << LF;
 			for (int i = 0; i<children.getSize();i++){
 				children.getData(i)->saveConstructor(data,depth+1);
 			}
@@ -376,19 +380,22 @@ class View {
         			place = matched->getData(0);
         		} else if (size > 1) {
         			int selected = -1;
+                    string input;
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << (char)10;
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << LF;
         			}
 
         			// Get a chosen place.
         			do {
         			    cout << "Please select an option (1-" << size <<  "): ";
-        			    cin >> selected;
+                        getline(cin, input);
+                        stringstream myStream(input);
+                        myStream >> selected;
         			} while (selected < 1 || selected > size);
 
-        			place = matched->getData(selected);
+        			place = matched->getData(selected - 1);
         		}
         	} while (place == NULL);
 
@@ -425,7 +432,7 @@ class DistanceView: public View {
             Place* place2;
             place1 = getPlace();
             place2 = getPlace();
-            cout << calculateDistance(place1, place2) << (char)10;
+            cout << calculateDistance(place1, place2) << LF;
             return this;
         }
 };
