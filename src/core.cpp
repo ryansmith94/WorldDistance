@@ -3,6 +3,7 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
+#define LF (char)0x0A
 using namespace std;
 
 template <class T>
@@ -186,9 +187,9 @@ class OptionsView {
         }
         OptionsView* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options[i] << (char)10;
+                cout << i + 1 << ". " << options[i] << LF;
             }
-            cout << (char)10;
+            cout << LF;
             return this;
         }
         int getOption() {
@@ -228,7 +229,7 @@ class Place {
 		}
 
 		void saveConstructor(ofstream *data,int depth){
-			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << (char)10;
+			*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << LF;
 			for (int i = 0; i<children.getSize();i++){
 				children.getData(i)->saveConstructor(data,depth+1);
 			}
@@ -379,7 +380,7 @@ class View {
 
         			// Output the addresses of the matched places like an options view.
         			for (int i = 0; i < size; i += 1) {
-        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << (char)10;
+        				cout << i + 1 << ". " << matched->getData(i)->getAddress() << LF;
         			}
 
         			// Get a chosen place.
@@ -425,7 +426,7 @@ class DistanceView: public View {
             Place* place2;
             place1 = getPlace();
             place2 = getPlace();
-            cout << calculateDistance(place1, place2) << (char)10;
+            cout << calculateDistance(place1, place2) << LF;
             return this;
         }
 };
