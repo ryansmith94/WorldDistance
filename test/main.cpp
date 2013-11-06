@@ -117,6 +117,14 @@ Describe(OptionsView_class) {
             Assert::That(view.getOption(), Equals(2));
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
+        It(should_reject_an_invalid_option_of_wrong_type) {
+            int opts[] = {0, 1, 2};
+            OptionsView<int> view(opts, 3);
+
+            TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", "../tmp/out.txt");
+            Assert::That(view.getOption(), Equals(2));
+            Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+        }
     };
     Describe(getOptions_method) {
         It(should_return_all_of_the_options) {
@@ -652,6 +660,12 @@ Describe(DistanceApp_class) {
         }
         It(should_reject_an_invalid_option_above_maximum) {
             TestWithStdIO ioTest("../test/DistanceApp/quitInvalidInput2.txt", "../tmp/out.txt");
+            DistanceApp app;
+            app.start();
+            Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitInvalidOutput.txt"), Equals(1));
+        }
+        It(should_reject_an_invalid_option_of_wrong_type) {
+            TestWithStdIO ioTest("../test/DistanceApp/quitInvalidInput3.txt", "../tmp/out.txt");
             DistanceApp app;
             app.start();
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitInvalidOutput.txt"), Equals(1));
