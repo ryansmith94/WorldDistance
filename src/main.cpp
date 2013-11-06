@@ -1,4 +1,4 @@
-#include "core.cpp"
+#include "DistanceApp.cpp"
 using namespace std;
 
 int main() {
