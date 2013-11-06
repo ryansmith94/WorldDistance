@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "LList.h"
+#include "LList.cpp"
 #ifndef LF
 #define LF (char)0x0A
 #endif

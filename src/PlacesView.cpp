@@ -1,7 +1,7 @@
 #ifndef PlacesView_H
 #define PlacesView_H
 #include <iostream>
-#include "View.h"
+#include "View.cpp"
 using namespace std;
 
 class PlacesView: public View {

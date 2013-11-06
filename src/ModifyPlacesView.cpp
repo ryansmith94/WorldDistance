@@ -1,7 +1,7 @@
 #ifndef ModifyPlacesView_H
 #define ModifyPlacesView_H
 #include <iostream>
-#include "View.h"
+#include "View.cpp"
 using namespace std;
 
 class ModifyPlacesView: public View {

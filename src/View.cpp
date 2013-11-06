@@ -3,8 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Place.h"
-#include "OptionsViewPlaces.h"
+#include "Place.cpp"
+#include "OptionsViewPlaces.cpp"
 using namespace std;
 
 class View {

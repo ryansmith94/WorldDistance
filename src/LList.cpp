@@ -1,6 +1,6 @@
 #ifndef LList_H
 #define LList_H
-#include "Node.h"
+#include "Node.cpp"
 using namespace std;
 
 template <class T>

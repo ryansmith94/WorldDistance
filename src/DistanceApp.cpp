@@ -1,11 +1,13 @@
+#ifndef DistanceApp_H
+#define DistanceApp_H
 #include <string>
-#include "OptionsView.h"
-#include "Place.h"
-#include "DistanceView.h"
-#include "PlacesView.h"
-#include "AddPlacesView.h"
-#include "ModifyPlacesView.h"
-#include "DeletePlacesView.h"
+#include "OptionsView.cpp"
+#include "Place.cpp"
+#include "DistanceView.cpp"
+#include "PlacesView.cpp"
+#include "AddPlacesView.cpp"
+#include "ModifyPlacesView.cpp"
+#include "DeletePlacesView.cpp"
 using namespace std;
 
 class DistanceApp {
@@ -45,3 +47,4 @@ class DistanceApp {
             return this;
         }
 };
+#endif

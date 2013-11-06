@@ -2,7 +2,7 @@
 #define DistanceView_H
 #include <iostream>
 #include <cmath>
-#include "View.h"
+#include "View.cpp"
 using namespace std;
 
 class DistanceView: public View {

@@ -1,8 +1,8 @@
 #ifndef OptionsViewPlaces_H
 #define OptionsViewPlaces_H
 #include <iostream>
-#include "OptionsView.h"
-#include "Place.h"
+#include "OptionsView.cpp"
+#include "Place.cpp"
 #ifndef LF
 #define LF (char)0x0A
 #endif
