@@ -70,6 +70,18 @@ class Place {
 			return this;
 		}
 
+		Place* setLongitude(float newLongitude) {
+			this->longitude = newLongitude;
+			setAddress();
+			return this;
+		}
+
+		Place* setLatitude(float newLatitude) {
+			this->latitude = newLatitude;
+			setAddress();
+			return this;
+		}
+		
 		Place* getParent() {
 			return parent;
 		}
@@ -83,6 +95,15 @@ class Place {
 				matches->addAll(children.getData(i)->getMatchedChildren(searchTerm));
 			}
 			return matches;
+		}
+
+		int getIndexOfChild(string searchTerm) {
+			for (int n = 0; n<children.getSize(); n++) {
+				if (children.getData(n)->getName() == searchTerm) {
+					return n;
+				}
+			}
+			return -1;
 		}
 
 		Place* getChild(int index) {
