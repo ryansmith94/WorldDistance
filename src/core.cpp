@@ -178,6 +178,7 @@ void LList<T>::clear(){
 
 template <class OptionType>
 class OptionsView {
+    protected:
         OptionType* options;
         int numberOfOptions;
     public:
@@ -192,7 +193,7 @@ class OptionsView {
             cout << LF;
             return this;
         }
-        int getOption() {
+        virtual int getOption() {
             int selected = -1;
             string input;
 
@@ -205,7 +206,7 @@ class OptionsView {
 
             return (selected - 1);
         }
-        OptionType* getOptions() {
+        virtual OptionType* getOptions() {
             return options;
         }
 };
@@ -354,37 +355,19 @@ class Place {
 		}
 };
 
-template <>
-class OptionsView <LList<Place> > {
+class OptionsViewPlaces: public OptionsView<LList<Place> > {
+    protected:
         LList<Place>* options;
-        int numberOfOptions;
     public:
-        OptionsView(LList<Place>* opts) {
+        OptionsViewPlaces(LList<Place>* opts) : OptionsView<LList<Place> >(opts, opts->getSize()) {
             options = opts;
-            numberOfOptions = opts->getSize();
         }
-        OptionsView* display() {
+        OptionsViewPlaces* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
                 cout << i + 1 << ". " << options->getData(i)->getAddress() << LF;
             }
             cout << LF;
             return this;
-        }
-        int getOption() {
-            int selected = -1;
-            string input;
-
-            do {
-                cout << "Please select an option (1-" << numberOfOptions <<  "): ";
-                getline(cin, input);
-                stringstream myStream(input);
-                myStream >> selected;
-            } while (selected < 1 || selected > numberOfOptions);
-
-            return (selected - 1);
-        }
-        LList<Place>* getOptions() {
-            return options;
         }
 };
 
@@ -412,7 +395,7 @@ class View {
         		if (size == 1) {
         			place = matched->getData(0);
         		} else if (size > 1) {
-                    OptionsView<LList<Place> > view(matched);
+                    OptionsViewPlaces view(matched);
         			place = matched->getData(view.display()->getOption());
         		}
         	} while (place == NULL);
