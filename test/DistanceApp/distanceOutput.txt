@@ -13,4 +13,4 @@ Please select an option (1-6): Please enter an address: Please enter an address:
 5. Delete place
 6. Quit
 
-Please select an option (1-6):
+Please select an option (1-6): 

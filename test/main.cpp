@@ -69,10 +69,12 @@ Describe(OptionsView_class) {
     }
     Describe(display_method) {
         It(should_print_options) {
-            TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
-            int opts[] = {0, 1, 2};
-            OptionsView<int> view(opts, 3);
-            view.display();
+			{
+				TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", "../tmp/out.txt");
+				int opts[] = {0, 1, 2};
+				OptionsView<int> view(opts, 3);
+				view.display();
+			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/OptionsView/printOptions.txt"), Equals(1));
         }
         It(should_return_the_options_view) {
@@ -360,9 +362,11 @@ Describe(DistanceApp_class) {
             Assert::That(app.start(), Equals(&app));
         }
         It(should_output_a_menu_of_options) {
-            TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", "../tmp/out.txt");
-            DistanceApp app;
-            app.start();
+			{
+				TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", "../tmp/out.txt");
+				DistanceApp app;
+				app.start();
+			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceApp/quitValidOutput.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_below_minimum) {
@@ -429,28 +433,34 @@ Describe(DistanceView_class) {
             Assert::That(view.start(), Equals(&view));
         }
         It(should_accept_two_valid_places) {
-            TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
-            Place place("name", 0, 0);
-            place.addChild(new Place("place1", 0.0, 0.0));
-            DistanceView view(&place);
-            view.start();
+			{
+				TestWithStdIO ioTest("../test/DistanceView/validInput1.txt", "../tmp/out.txt");
+				Place place("name", 0, 0);
+				place.addChild(new Place("place1", 0.0, 0.0));
+				DistanceView view(&place);
+				view.start();
+			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/validOutput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_address) {
-            TestWithStdIO ioTest("../test/DistanceView/invalidInput1.txt", "../tmp/out.txt");
-            Place place("name", 0, 0);
-            place.addChild(new Place("place1", 0.0, 0.0));
-            DistanceView view(&place);
-            view.start();
+			{
+				TestWithStdIO ioTest("../test/DistanceView/invalidInput1.txt", "../tmp/out.txt");
+				Place place("name", 0, 0);
+				place.addChild(new Place("place1", 0.0, 0.0));
+				DistanceView view(&place);
+				view.start();
+			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/invalidOutput1.txt"), Equals(1));
         }
         It(should_output_the_correct_distance_between_the_two_places) {
-            TestWithStdIO ioTest("../test/DistanceView/validInput2.txt", "../tmp/out.txt");
-            Place place("name", 0, 0);
-            place.addChild(new Place("London", 0.1275, 51.5072));
-            place.addChild(new Place("New York", 74.0060, 40.7144));
-            DistanceView view(&place);
-            view.start();
+			{
+				TestWithStdIO ioTest("../test/DistanceView/validInput2.txt", "../tmp/out.txt");
+				Place place("name", 0, 0);
+				place.addChild(new Place("London", 0.1275, 51.5072));
+				place.addChild(new Place("New York", 74.0060, 40.7144));
+				DistanceView view(&place);
+				view.start();
+			}
             Assert::That(compareFiles("../tmp/out.txt", "../test/DistanceView/validOutput2.txt"), Equals(1));
         }
     };
