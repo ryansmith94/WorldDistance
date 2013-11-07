@@ -1,8 +1,10 @@
-1. Distance
-2. Places
-3. Add place
-4. Modify place
-5. Delete place
-6. Quit
+WORLD DISTANCE
+	1. Distance
+	2. Places
+	3. Add place
+	4. Modify place
+	5. Delete place
+	6. Quit
 
-Please select an option (1-6): 
+<	Please select an option (1-6): 
+

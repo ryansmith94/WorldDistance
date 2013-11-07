@@ -41,40 +41,50 @@ Describe(OptionsView_class) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
-            TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
-            Assert::That(view.getOption(), Equals(0));
+            {
+                TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
+                Assert::That(view.getOption(), Equals(0));
+            }
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
         It(should_return_a_valid_option_inputted_below_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
-            TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", TMP_OUT);
-            Assert::That(view.getOption(), Equals(2));
+            {
+                TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", TMP_OUT);
+                Assert::That(view.getOption(), Equals(2));
+            }
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_below_minimum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
-            TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", TMP_OUT);
-            Assert::That(view.getOption(), Equals(0));
+            {
+                TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", TMP_OUT);
+                Assert::That(view.getOption(), Equals(0));
+            }
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_above_maximum) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
-            TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", TMP_OUT);
-            Assert::That(view.getOption(), Equals(2));
+            {
+                TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", TMP_OUT);
+                Assert::That(view.getOption(), Equals(2));
+            }
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_of_wrong_type) {
             int opts[] = {0, 1, 2};
             OptionsView<int> view(opts, 3);
 
-            TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", TMP_OUT);
-            Assert::That(view.getOption(), Equals(2));
+            {
+                TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", TMP_OUT);
+                Assert::That(view.getOption(), Equals(2));
+            }
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
     };
