@@ -17,9 +17,8 @@ class OptionsViewPlaces: public OptionsView<LList<Place> > {
         }
         OptionsViewPlaces* display() {
             for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << i + 1 << ". " << options->getData(i)->getAddress() << LF;
+                cout << "\t" << i + 1 << ". " << options->getData(i)->getAddress() << LF;
             }
-            cout << LF;
             return this;
         }
 };

@@ -1,1 +1,2 @@
-Please enter an address: Please enter an address: 5570.14
+<	Please enter an address: <	Please enter an address: 
+	The distance is 5570.14km

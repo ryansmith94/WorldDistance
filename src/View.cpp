@@ -13,7 +13,7 @@ class View {
         string getAddress(int rejectEmpty = 0) {
             string address;
             do {
-                cout << "Please enter an address: ";
+                cout << "<\tPlease enter an address: ";
                 cin.clear();
                 cin.ignore();
                 getline(cin, address);

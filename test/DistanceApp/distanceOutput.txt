@@ -1,16 +1,23 @@
-1. Distance
-2. Places
-3. Add place
-4. Modify place
-5. Delete place
-6. Quit
+WORLD DISTANCE
+	1. Distance
+	2. Places
+	3. Add place
+	4. Modify place
+	5. Delete place
+	6. Quit
 
-Please select an option (1-6): Please enter an address: Please enter an address: 0
-1. Distance
-2. Places
-3. Add place
-4. Modify place
-5. Delete place
-6. Quit
+<	Please select an option (1-6): 
+DISTANCE
+<	Please enter an address: <	Please enter an address: 
+	The distance is 0km
 
-Please select an option (1-6): 
+WORLD DISTANCE
+	1. Distance
+	2. Places
+	3. Add place
+	4. Modify place
+	5. Delete place
+	6. Quit
+
+<	Please select an option (1-6): 
+
