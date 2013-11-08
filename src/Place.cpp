@@ -97,9 +97,19 @@ class Place {
 			return matches;
 		}
 
+		//Will remove soon
 		int getIndexOfChild(string searchTerm) {
 			for (int n = 0; n<children.getSize(); n++) {
 				if (children.getData(n)->getName() == searchTerm) {
+					return n;
+				}
+			}
+			return -1;
+		}
+
+		int getIndexOfChild(Place* searchPlace) {
+			for (int n = 0; n<children.getSize(); n++) {
+				if (children.getData(n) == searchPlace) {
 					return n;
 				}
 			}

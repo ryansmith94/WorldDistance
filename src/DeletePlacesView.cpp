@@ -15,7 +15,8 @@ public:
         cout << endl;
 
         if (menuSelection == "y" || menuSelection == "Y") {
-            int childPos = rootPlace->getParent()->getIndexOfChild(rootPlace->getName());
+            //old :: int childPos = rootPlace->getParent()->getIndexOfChild(rootPlace->getName());
+            int childPos = rootPlace->getParent()->getIndexOfChild(rootPlace);
             cout<<"Child: "<<rootPlace->getName()<<"\t Parent: "<<rootPlace->getParent()->getName()<< "\t Child Index is "<<childPos<<endl<<endl;
             rootPlace->getParent()->removeChild(childPos);
 
