@@ -15,7 +15,7 @@ class HashTable {
         Place* placeTable[LIMIT];
         HashTable* hashTable[LIMIT];
         int index;
-        int count = 0;
+        int count;
 
         int hash(string value) {
             int asciiChar = value[index];
@@ -88,6 +88,7 @@ class HashTable {
     public:
         HashTable(int nIndex = 0) {
             index = nIndex;
+            count = 0;
         }
         HashTable* add(Place* place) {
             return addPlace(place->getAddress(), place);
