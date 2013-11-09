@@ -66,6 +66,7 @@ class HashTable {
                     if (ht != NULL) {
                         count -= 1;
                         if (hashTable[key]->count == 0) {
+                            delete hashTable[key];
                             hashTable[key] = NULL;
                             return this;
                         }
@@ -112,6 +113,13 @@ class HashTable {
         HashTable(int nIndex = 0) {
             index = nIndex;
             count = 0;
+        }
+        ~HashTable() {
+            for (int i = 0; i < LIMIT; i += 1) {
+                if (hashTable[i] != NULL) {
+                    delete hashTable[i];
+                }
+            }
         }
         HashTable* add(Place* place) {
             return addPlace(place->getAddress(), place);
