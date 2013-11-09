@@ -56,6 +56,32 @@ class HashTable {
             placeTable[key] = place;
             return this;
         }
+        // Return the hashtable that the place was removed from.
+        HashTable* removePlace(string address, Place* place) {
+            int key = hash(address);
+
+            if (hashTable[key] != NULL) {
+                if (address[index + 1] != NUL) {
+                    HashTable* ht = hashTable[key]->removePlace(address, place);
+                    if (ht != NULL) {
+                        count -= 1;
+                        if (hashTable[key]->count == 0) {
+                            hashTable[key] = NULL;
+                            return this;
+                        }
+                    }
+                    return ht;
+                }
+            } else if (placeTable[key] != NULL) {
+                if (placeTable[key] == place) {
+                    placeTable[key] = NULL;
+                    count -= 1;
+                    return this;
+                }
+            }
+
+            return NULL;
+        }
         Node<Place>* tableToNodes(Node<Place>* lastNode) {
             Node<Place>* firstNode = lastNode;
 
@@ -90,33 +116,8 @@ class HashTable {
         HashTable* add(Place* place) {
             return addPlace(place->getAddress(), place);
         }
-        HashTable* remove(string address) {
-            int key = hash(address);
-
-            if (hashTable[key] != NULL) {
-                if (address[index + 1] != NUL) {
-                    HashTable* ht = hashTable[key]->remove(address);
-                    if (ht != NULL) {
-                        count -= 1;
-                        if (hashTable[key]->count == 0) {
-                            hashTable[key] = NULL;
-                            return this;
-                        }
-                    }
-                    return ht;
-                } else {
-                    return NULL;
-                }
-            } else if (placeTable[key] != NULL) {
-                if (placeTable[key]->getAddress() == address) {
-                    placeTable[key] = NULL;
-                    count -= 1;
-                    return this;
-                }
-                return NULL;
-            }
-
-            return NULL;
+        HashTable* remove(Place* place) {
+            return removePlace(place->getAddress(), place);
         }
         Node<Place>* get(string address) {
             int key = hash(address);
@@ -128,9 +129,11 @@ class HashTable {
                 } else {
                     return hashTable[key]->tableToNodes(NULL);
                 }
+            } else if (placeTable[key] != NULL) {
+                return new Node<Place>(placeTable[key]);
             }
 
-            return new Node<Place>(placeTable[key]);
+            return NULL;
         }
 };
 
@@ -157,11 +160,13 @@ int main() {
     cout << ht.add(place5) << (char)0x0A;
     cout << ht.add(place6) << (char)0x0A;
 
-    Node<Place>* p = ht.get("b");
+    Node<Place>* p = ht.get("c");
     while (p != NULL) {
         cout << p->getData()->getAddress() << (char)0x0A;
         p = p->getNext();
     }
+
+    cout << ht.remove(place6) << (char)0x0A;
 
     return 0;
 }
