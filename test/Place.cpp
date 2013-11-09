@@ -82,11 +82,11 @@ Describe(Place_class) {
 			Place *yetAnotherPlace = new Place("yet another name",5.6,6.7);
 			testPlace.addChild(anotherPlace);
 			testPlace.addChild(yetAnotherPlace);
-			Assert::That(anotherPlace->getAddress(), Equals("name, another name"));
-			Assert::That(yetAnotherPlace->getAddress(), Equals("name, yet another name"));
+			Assert::That(anotherPlace->getAddress(), Equals("another name, name"));
+			Assert::That(yetAnotherPlace->getAddress(), Equals("yet another name, name"));
 			testPlace.setName("newName");
-			Assert::That(anotherPlace->getAddress(), Equals("newName, another name"));
-			Assert::That(yetAnotherPlace->getAddress(), Equals("newName, yet another name"));
+			Assert::That(anotherPlace->getAddress(), Equals("another name, newName"));
+			Assert::That(yetAnotherPlace->getAddress(), Equals("yet another name, newName"));
 		}
 	};
 	Describe(getParent_method){
@@ -222,7 +222,7 @@ Describe(Place_class) {
 			Place *testPlace3 = new Place("London",3.4,4.5);
 			testPlace.addChild(testPlace2);
 			testPlace2->addChild(testPlace3);
-			Assert::That(testPlace3->getAddress(), Equals("Earth, UK, London"));
+			Assert::That(testPlace3->getAddress(), Equals("London, UK, Earth"));
 		}
 	};
 };

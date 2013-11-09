@@ -1,6 +1,6 @@
-<	Please enter an address: 	1. name, place1, place2
-	2. name, place2
-<	Please select an option (1-2): <	Please enter an address: 	1. name, place1, place2
-	2. name, place2
+<	Please enter an address: 	1. place2, place1, name
+	2. place2, name
+<	Please select an option (1-2): <	Please enter an address: 	1. place2, place1, name
+	2. place2, name
 <	Please select an option (1-2): 
 	The distance is 0km
