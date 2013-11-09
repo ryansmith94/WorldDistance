@@ -145,7 +145,7 @@ class HashTable {
         }
 };
 
-int main() {
+/*int main() {
     HashTable ht;
 
     Place* place1 = new Place("earth", 0.0, 0.0);
@@ -177,6 +177,6 @@ int main() {
     cout << ht.remove(place6) << (char)0x0A;
 
     return 0;
-}
+}*/
 
 #endif
