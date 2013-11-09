@@ -82,9 +82,6 @@ class HashTable {
 
             return firstNode;
         }
-        int getNbrPlaces() {
-            return count;
-        }
     public:
         HashTable(int nIndex = 0) {
             index = nIndex;
@@ -94,7 +91,32 @@ class HashTable {
             return addPlace(place->getAddress(), place);
         }
         HashTable* remove(string address) {
-            return this;
+            int key = hash(address);
+
+            if (hashTable[key] != NULL) {
+                if (address[index + 1] != NUL) {
+                    HashTable* ht = hashTable[key]->remove(address);
+                    if (ht != NULL) {
+                        count -= 1;
+                        if (hashTable[key]->count == 0) {
+                            hashTable[key] = NULL;
+                            return this;
+                        }
+                    }
+                    return ht;
+                } else {
+                    return NULL;
+                }
+            } else if (placeTable[key] != NULL) {
+                if (placeTable[key]->getAddress() == address) {
+                    placeTable[key] = NULL;
+                    count -= 1;
+                    return this;
+                }
+                return NULL;
+            }
+
+            return NULL;
         }
         Node<Place>* get(string address) {
             int key = hash(address);
