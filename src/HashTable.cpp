@@ -8,7 +8,7 @@
 #define SPACE 32
 #define NUL 0
 #define COMMA 44
-#define LIMIT 29
+#define LIMIT 30
 
 class HashTable {
     private:
@@ -30,7 +30,7 @@ class HashTable {
                 return 28;
             }
 
-            return 0;
+            return 29;
         }
         // Return the hashtable that the place is added to.
         HashTable* addPlace(string address, Place* place) {
