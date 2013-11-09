@@ -15,6 +15,7 @@ class HashTable {
         Place* placeTable[LIMIT];
         HashTable* hashTable[LIMIT];
         int index;
+        int count = 0;
 
         int hash(string value) {
             int asciiChar = value[index];
@@ -44,11 +45,14 @@ class HashTable {
                 hashTable[key] = ht;
                 ht->addPlace(placeTable[key]->getAddress(), placeTable[key]);
                 placeTable[key] = NULL;
+                count += 1;
                 return ht->addPlace(address, place);
             } else if (hashTable[key] != NULL) {
+                count += 1;
                 return hashTable[key]->addPlace(address, place);
             }
 
+            count += 1;
             placeTable[key] = place;
             return this;
         }
@@ -78,6 +82,9 @@ class HashTable {
 
             return firstNode;
         }
+        int getNbrPlaces() {
+            return count;
+        }
     public:
         HashTable(int nIndex = 0) {
             index = nIndex;
@@ -86,7 +93,6 @@ class HashTable {
             return addPlace(place->getAddress(), place);
         }
         HashTable* remove(string address) {
-
             return this;
         }
         Node<Place>* get(string address) {
