@@ -8,7 +8,7 @@
 #define TMP_OUT "../tmp/out.txt"
 #endif
 #define TMP_SAVE_OUT "../tmp/saveout.txt"
-#define LOAD_IN "../Place/LoadTestData.txt"
+#define LOAD_IN "../test/Place/LoadTestData.txt"
 using namespace igloo;
 
 Describe(DistanceApp_class) {
