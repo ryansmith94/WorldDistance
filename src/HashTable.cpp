@@ -113,6 +113,10 @@ class HashTable {
         HashTable(int nIndex = 0) {
             index = nIndex;
             count = 0;
+			for (int i = 0;i<LIMIT;i++){
+				placeTable[i] = NULL;
+				hashTable[i] = NULL;
+			}
         }
         ~HashTable() {
             /*for (int i = 0; i < LIMIT; i += 1) {

@@ -1,5 +1,5 @@
 #include "igloo/igloo_alt.h"
-//#include "DistanceApp.cpp"
+#include "DistanceApp.cpp"
 #include "DistanceView.cpp"
 #include "LList.cpp"
 #include "Node.cpp"

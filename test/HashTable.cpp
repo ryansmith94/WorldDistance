@@ -15,7 +15,7 @@ Describe(HashTable_class){
         Assert::That(!!(&HashTable::get), Equals(1));
     }
     Describe(add_method) {
-        It_Skip(should_add_a_place) {
+        It(should_add_a_place) {
             HashTable hashTable;
             Assert::That(hashTable.add(new Place("earth", 0.0, 0.0)) == &hashTable, Equals(1)); // Seg Fault.
         }
@@ -26,7 +26,7 @@ Describe(HashTable_class){
         }
     };
     Describe(remove_method) {
-        It_Skip(should_remove_a_existing_place) {
+        It(should_remove_a_existing_place) {
             HashTable hashTable;
             Place place("earth", 0.0, 0.0);
             hashTable.add(&place);
@@ -34,14 +34,14 @@ Describe(HashTable_class){
         }
     };
     Describe(get_method) {
-        It_Skip(should_return_places_that_contain_the_address) {
+        It(should_return_places_that_contain_the_address) {
             HashTable hashTable;
             Place place("earth", 0.0, 0.0);
             hashTable.add(&place);
             Assert::That(!!hashTable.get("e"), Equals(1)); // Seg Fault.
             Assert::That(hashTable.get("earth")->getData(), Equals(&place)); // Seg Fault.
         }
-        It_Skip(should_return_null_if_no_places_contain_the_address) {
+        It(should_return_null_if_no_places_contain_the_address) {
             HashTable hashTable;
             Place place("earth", 0.0, 0.0);
             hashTable.add(&place);
