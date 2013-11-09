@@ -15,9 +15,9 @@ class DistanceApp {
         Place rootPlace;
         string dataLocation;
     public:
-        DistanceApp() : rootPlace("Earth", 0.0, 0.0) {
-            dataLocation = "data.txt";
-            rootPlace.loadPlace(dataLocation);
+        DistanceApp(string loadLocation = "data.txt", string sDataLocation = "data.txt") : rootPlace("Earth", 0.0, 0.0) {
+            dataLocation = sDataLocation;
+            rootPlace.loadPlace(loadLocation);
         }
         ~DistanceApp() {
             rootPlace.savePlace(dataLocation);
