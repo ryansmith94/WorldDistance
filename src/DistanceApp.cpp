@@ -9,14 +9,16 @@
 #include "AddPlacesView.cpp"
 #include "ModifyPlacesView.cpp"
 #include "DeletePlacesView.cpp"
+#include "HashTable.cpp"
 using namespace std;
 
 class DistanceApp {
         Place rootPlace;
+        HashTable hashTable;
         string dataLocation;
     public:
-        DistanceApp(string loadLocation = "data.txt", string sDataLocation = "data.txt") : rootPlace("Earth", 0.0, 0.0) {
-            dataLocation = sDataLocation;
+        DistanceApp(string loadLocation = "data.txt", string saveLocation = "data.txt") : rootPlace("Earth", 0.0, 0.0) {
+            dataLocation = saveLocation;
             rootPlace.loadPlace(loadLocation);
         }
         ~DistanceApp() {
@@ -25,11 +27,11 @@ class DistanceApp {
         DistanceApp* start() {
             string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
             OptionsView<string> optionsView(opts, 6);
-            DistanceView distanceView(&rootPlace);
-            PlacesView placesView(&rootPlace);
-            AddPlacesView addPlacesView(&rootPlace);
-            ModifyPlacesView modifyPlacesView(&rootPlace);
-            DeletePlacesView deletePlacesView(&rootPlace);
+            DistanceView distanceView(&rootPlace, &hashTable);
+            PlacesView placesView(&rootPlace, &hashTable);
+            AddPlacesView addPlacesView(&rootPlace, &hashTable);
+            ModifyPlacesView modifyPlacesView(&rootPlace, &hashTable);
+            DeletePlacesView deletePlacesView(&rootPlace, &hashTable);
             int selected;
 
             do {

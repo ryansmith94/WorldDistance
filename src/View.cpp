@@ -5,11 +5,13 @@
 #include <string>
 #include "Place.cpp"
 #include "OptionsViewPlaces.cpp"
+#include "HashTable.cpp"
 using namespace std;
 
 class View {
     protected:
         Place* rootPlace;
+        HashTable* hashTable;
         string getAddress(int rejectEmpty = 0) {
             string address;
             do {
@@ -39,8 +41,9 @@ class View {
         	return place;
         }
     public:
-        View(Place* place) {
+        View(Place* place, HashTable* hTable) {
             rootPlace = place;
+            hashTable = hTable;
         }
         virtual View* start() =0;
 };

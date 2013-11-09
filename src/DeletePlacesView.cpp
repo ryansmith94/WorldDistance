@@ -6,7 +6,7 @@ using namespace std;
 
 class DeletePlacesView: public View {
     public:
-        DeletePlacesView(Place* place) : View(place) {}
+        DeletePlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
         DeletePlacesView* start() {
             return this;
         }

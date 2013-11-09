@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include "View.cpp"
+#include "HashTable.cpp"
 using namespace std;
 
 class DistanceView: public View {
@@ -23,7 +24,7 @@ class DistanceView: public View {
             return radius * (2 * atan2(sqrt(a), sqrt(1 - a)));
         }
     public:
-        DistanceView(Place* place) : View(place) {}
+        DistanceView(Place* place, HashTable* hTable) : View(place, hTable) {}
         DistanceView* start() {
             Place* place1;
             Place* place2;

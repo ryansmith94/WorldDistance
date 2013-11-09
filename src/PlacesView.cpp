@@ -6,7 +6,7 @@ using namespace std;
 
 class PlacesView: public View {
     public:
-        PlacesView(Place* place) : View(place) {}
+        PlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
         PlacesView* start() {
             return this;
         }
