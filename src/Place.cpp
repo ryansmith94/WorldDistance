@@ -22,7 +22,7 @@ class Place {
 		void setAddress(){
 			string newAddress = name;
 			if (parent!=NULL){
-				newAddress = parent->getAddress() + ", " + newAddress;
+				newAddress = newAddress + ", " + parent->getAddress();
 			}
 			address = newAddress;
 			for (int i=0;i<children.getSize();i++){
