@@ -19,6 +19,9 @@ class DistanceApp {
             dataLocation = "data.txt";
             rootPlace.loadPlace(dataLocation);
         }
+        ~DistanceApp() {
+            rootPlace.savePlace(dataLocation);
+        }
         DistanceApp* start() {
             string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
             OptionsView<string> optionsView(opts, 6);
