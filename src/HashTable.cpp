@@ -8,11 +8,12 @@
 #define SPACE 32
 #define NUL 0
 #define COMMA 44
+#define LIMIT 29
 
 class HashTable {
     private:
-        Place* placeTable[29];
-        HashTable* hashTable[29];
+        Place* placeTable[LIMIT];
+        HashTable* hashTable[LIMIT];
         int index;
 
         int hash(string value) {
@@ -54,7 +55,7 @@ class HashTable {
         Node<Place>* tableToNodes(Node<Place>* lastNode) {
             Node<Place>* firstNode = lastNode;
 
-            for (int i = 0; i < 28; i += 1) {
+            for (int i = 0; i < LIMIT; i += 1) {
                 Node<Place>* tmp;
                 if (hashTable[i] != NULL) {
                     tmp = hashTable[i]->tableToNodes(lastNode);
@@ -127,7 +128,7 @@ int main() {
     cout << ht.add(place5) << (char)0x0A;
     cout << ht.add(place6) << (char)0x0A;
 
-    Node<Place>* p = ht.get("birmingham");
+    Node<Place>* p = ht.get("u");
     while (p != NULL) {
         cout << p->getData()->getAddress() << (char)0x0A;
         p = p->getNext();
