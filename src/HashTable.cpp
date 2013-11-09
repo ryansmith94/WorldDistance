@@ -85,17 +85,17 @@ class HashTable {
         HashTable* add(Place* place) {
             return addPlace(place->getAddress(), place);
         }
-        HashTable* remove(string name) {
+        HashTable* remove(string address) {
+
             return this;
         }
-        Node<Place>* get(string name) {
-            int key = hash(name);
-            
+        Node<Place>* get(string address) {
+            int key = hash(address);
 
             // Get from hashtable.
             if (hashTable[key] != NULL) {
-                if (name[index + 1] != NUL) {
-                    return hashTable[key]->get(name);
+                if (address[index + 1] != NUL) {
+                    return hashTable[key]->get(address);
                 } else {
                     return hashTable[key]->tableToNodes(NULL);
                 }
@@ -128,7 +128,7 @@ int main() {
     cout << ht.add(place5) << (char)0x0A;
     cout << ht.add(place6) << (char)0x0A;
 
-    Node<Place>* p = ht.get("u");
+    Node<Place>* p = ht.get("b");
     while (p != NULL) {
         cout << p->getData()->getAddress() << (char)0x0A;
         p = p->getNext();
