@@ -13,7 +13,7 @@ OptionsView<OptionType>::OptionsView(OptionType* opts, int len) {
 }
 
 template <class OptionType>
-OptionsView* OptionsView<OptionType>::display() {
+OptionsView<OptionType>* OptionsView<OptionType>::display() {
     for (int i = 0; i < numberOfOptions; i += 1) {
         cout << "\t" << i + 1 << ". " << options[i] << LF;
     }
