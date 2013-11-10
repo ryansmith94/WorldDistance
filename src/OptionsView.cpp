@@ -7,13 +7,13 @@
 using namespace std;
 
 template <class OptionType>
-OptionsView::OptionsView(OptionType* opts, int len) {
+OptionsView<OptionType>::OptionsView(OptionType* opts, int len) {
     options = opts;
     numberOfOptions = len;
 }
 
 template <class OptionType>
-OptionsView* OptionsView::display() {
+OptionsView* OptionsView<OptionType>::display() {
     for (int i = 0; i < numberOfOptions; i += 1) {
         cout << "\t" << i + 1 << ". " << options[i] << LF;
     }
@@ -22,7 +22,7 @@ OptionsView* OptionsView::display() {
 }
 
 template <class OptionType>
-int OptionsView::getOption() {
+int OptionsView<OptionType>::getOption() {
     int selected = -1;
     string input;
 
@@ -37,7 +37,7 @@ int OptionsView::getOption() {
 }
 
 template <class OptionType>
-OptionType* OptionsView::getOptions() {
+OptionType* OptionsView<OptionType>::getOptions() {
     return options;
 }
 
