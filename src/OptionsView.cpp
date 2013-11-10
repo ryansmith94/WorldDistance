@@ -3,7 +3,9 @@
 #include <sstream>
 #include <iostream>
 #include "OptionsView.h"
+#ifndef LF
 #define LF (char)0x0A
+#endif
 using namespace std;
 
 template <class OptionType>
