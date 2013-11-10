@@ -25,17 +25,16 @@ class View {
         Place* getPlace() {
         	Place* place = NULL;
 
-
         	do {
-        		LList<Place>* matched = rootPlace->getMatchedChildren(getAddress(1));
-        		int size = matched->getSize();
+        		Node<Place>* matched = hashTable->get(getAddress(1));
+                OptionsViewPlaces view(matched);
+                int selected = view.display()->getOption();
 
-        		if (size == 1) {
-        			place = matched->getData(0);
-        		} else if (size > 1) {
-                    OptionsViewPlaces view(matched);
-        			place = matched->getData(view.display()->getOption());
-        		}
+                for (int i = 0; i <= selected; i += 1) {
+                    matched = matched->getNext();
+                }
+
+                place = matched->getData();
         	} while (place == NULL);
 
         	return place;
