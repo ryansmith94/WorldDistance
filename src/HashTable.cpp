@@ -149,38 +149,4 @@ class HashTable {
         }
 };
 
-/*int main() {
-    HashTable ht;
-
-    Place* place1 = new Place("earth", 0.0, 0.0);
-    Place* place2 = new Place("uk", 0.0, 0.0);
-    Place* place3 = new Place("birmingham", 0.0, 0.0);
-    Place* place4 = new Place("us", 0.0, 0.0);
-    Place* place5 = new Place("alabama", 0.0, 0.0);
-    Place* place6 = new Place("birmingham", 0.0, 0.0);
-
-    place1->addChild(place2);
-    place2->addChild(place3);
-    place1->addChild(place4);
-    place4->addChild(place5);
-    place5->addChild(place6);
-
-    cout << ht.add(place1) << (char)0x0A;
-    cout << ht.add(place2) << (char)0x0A;
-    cout << ht.add(place3) << (char)0x0A;
-    cout << ht.add(place4) << (char)0x0A;
-    cout << ht.add(place5) << (char)0x0A;
-    cout << ht.add(place6) << (char)0x0A;
-
-    Node<Place>* p = ht.get("c");
-    while (p != NULL) {
-        cout << p->getData()->getAddress() << (char)0x0A;
-        p = p->getNext();
-    }
-
-    cout << ht.remove(place6) << (char)0x0A;
-
-    return 0;
-}*/
-
 #endif
