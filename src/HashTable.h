@@ -1,7 +1,6 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include <string>
-#include "HashTable.h"
 #include "Node.h"
 #define LIMIT 30
 using namespace std;
