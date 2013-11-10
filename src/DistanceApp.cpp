@@ -3,13 +3,13 @@
 #include <iostream>
 #include <string>
 #include "OptionsView.cpp"
-#include "Place.cpp"
+#include "Place.h"
 #include "DistanceView.cpp"
 #include "PlacesView.cpp"
 #include "AddPlacesView.cpp"
 #include "ModifyPlacesView.cpp"
 #include "DeletePlacesView.cpp"
-#include "HashTable.cpp"
+#include "HashTable.h"
 using namespace std;
 
 class DistanceApp {

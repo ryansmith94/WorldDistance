@@ -3,9 +3,9 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Place.cpp"
+#include "Place.h"
 #include "OptionsViewPlaces.cpp"
-#include "HashTable.cpp"
+#include "HashTable.h"
 using namespace std;
 
 class View {

@@ -2,7 +2,7 @@
 #define OptionsViewPlaces_H
 #include <iostream>
 #include "OptionsView.cpp"
-#include "Place.cpp"
+#include "Place.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include "View.cpp"
-#include "HashTable.cpp"
+#include "HashTable.h"
 using namespace std;
 
 class DistanceView: public View {
