@@ -8,7 +8,7 @@
 #include "DistanceView.h"
 #include "PlacesView.h"
 #include "AddPlacesView.h"
-#include "ModifyPlacesView.h"
+#include "ModifyPlaceView.h"
 #include "DeletePlacesView.h"
 #include "HashTable.h"
 using namespace std;
