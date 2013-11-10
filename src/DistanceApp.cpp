@@ -19,7 +19,7 @@ class DistanceApp {
     public:
         DistanceApp(string loadLocation = "data.txt", string saveLocation = "data.txt") : rootPlace("Earth", 0.0, 0.0) {
             dataLocation = saveLocation;
-            rootPlace.loadPlace(loadLocation);
+            rootPlace.loadPlace(loadLocation, &hashTable);
         }
         ~DistanceApp() {
             rootPlace.savePlace(dataLocation);

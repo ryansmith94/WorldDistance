@@ -105,7 +105,7 @@ class Place {
 			return this;
 		}
 
-		Place* loadPlace(string dataLocation){
+		Place* loadPlace(string dataLocation, HashTable* ht){
 			ifstream myfile(dataLocation.c_str());
 			if (myfile.is_open()){
 				Place* placeToAddTo = this;
@@ -129,6 +129,7 @@ class Place {
 					}
 					lastPlaceAdded = new Place(name,lat,lon);
 					placeToAddTo->addChild(lastPlaceAdded);
+                    ht->add(lastPlaceAdded);
 					lastDepth = depth;
 				}
 			}
