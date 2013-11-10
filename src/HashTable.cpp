@@ -119,11 +119,11 @@ class HashTable {
 			}
         }
         ~HashTable() {
-            /*for (int i = 0; i < LIMIT; i += 1) {
+            for (int i = 0; i < LIMIT; i += 1) {
                 if (hashTable[i] != NULL) {
                     delete hashTable[i];
                 }
-            }*/
+            }
         }
         HashTable* add(Place* place) {
             return addPlace(place->getAddress(), place);
