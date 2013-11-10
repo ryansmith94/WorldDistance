@@ -11,9 +11,10 @@
 using namespace std;
 
 class DistanceApp {
-        Place rootPlace;
         string dataLocation;
+		Place rootPlace;
     public:
+
         DistanceApp() : rootPlace("Earth", 0.0, 0.0) {
             dataLocation = "data.txt";
             rootPlace.loadPlace(dataLocation);
