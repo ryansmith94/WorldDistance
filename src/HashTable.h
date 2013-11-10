@@ -4,6 +4,7 @@
 #include "HashTable.h"
 #include "Node.h"
 #define LIMIT 30
+using namespace std;
 
 class Place;
 

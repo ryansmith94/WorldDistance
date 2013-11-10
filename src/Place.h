@@ -1,8 +1,10 @@
 #ifndef Place_H
 #define Place_H
+#include <fstream>
 #include <string>
-#include "LList.cpp"
+#include "LList.h"
 #include "HashTable.h"
+using namespace std;
 
 class HashTable;
 

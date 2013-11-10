@@ -13,7 +13,7 @@
 #include "HashTable.h"
 using namespace std;
 
-DistanceApp::DistanceApp(string loadLocation = "data.txt", string saveLocation = "data.txt") : rootPlace("Earth", 0.0, 0.0) {
+DistanceApp::DistanceApp(string loadLocation, string saveLocation) : rootPlace("Earth", 0.0, 0.0) {
     dataLocation = saveLocation;
     rootPlace.loadPlace(loadLocation, &hashTable);
 }

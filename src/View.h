@@ -13,7 +13,7 @@ class View {
         Place* getPlace();
     public:
         View(Place* place, HashTable* hTable);
-        virtual View* start();
+        virtual View* start() =0;
 };
 
 #endif

@@ -24,7 +24,7 @@ OptionsView* OptionsView::display() {
 }
 
 template <class OptionType>
-virtual int OptionsView::getOption() {
+int OptionsView::getOption() {
     int selected = -1;
     string input;
 
@@ -39,7 +39,7 @@ virtual int OptionsView::getOption() {
 }
 
 template <class OptionType>
-virtual OptionType* OptionsView::getOptions() {
+OptionType* OptionsView::getOptions() {
     return options;
 }
 

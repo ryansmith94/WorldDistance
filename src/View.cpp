@@ -9,7 +9,7 @@
 #include "OptionsViewPlaces.h"
 using namespace std;
 
-string View::getAddress(int rejectEmpty = 0) {
+string View::getAddress(int rejectEmpty) {
     string address;
     do {
         cout << "<\tPlease enter an address: ";
@@ -41,6 +41,5 @@ View::View(Place* place, HashTable* hTable) {
     rootPlace = place;
     hashTable = hTable;
 }
-virtual View* View::start() =0;
 
 #endif

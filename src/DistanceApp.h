@@ -1,9 +1,9 @@
 #ifndef DistanceApp_H
 #define DistanceApp_H
 #include <string>
-
-class Place;
-class hashTable;
+#include "HashTable.h"
+#include "Place.h"
+using namespace std;
 
 class DistanceApp {
         Place rootPlace;
