@@ -1,5 +1,11 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+#include "HashTable.h"
+#include "Place.h"
+#include "Node.cpp"
+#define LIMIT 30
+
+class Place;
 
 class HashTable {
     private:
@@ -11,7 +17,7 @@ class HashTable {
         int hash(string value);
         HashTable* addPlace(string address, Place* place);
         HashTable* removePlace(string address, Place* place);
-        Node<Place>* tableToNodes(Node<Place>* lastNode);
+        Node<Place>* tableToNodes(Node<Place>* lastNode = NULL);
     public:
         HashTable(int nIndex = 0);
         ~HashTable();

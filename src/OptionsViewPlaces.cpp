@@ -19,11 +19,11 @@ class OptionsViewPlaces: public OptionsView<Node<Place> > {
             Node<Place>* option = options;
             int i = 0;
 
-            do {
+            while (option != NULL && option->getData() != NULL) {
                 cout << "\t" << i + 1 << ". " << option->getData()->getAddress() << LF;
                 option = option->getNext();
                 i += 1;
-            } while (option != NULL);
+            }
 
             numberOfOptions = i;
             return this;

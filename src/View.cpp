@@ -16,8 +16,6 @@ class View {
             string address;
             do {
                 cout << "<\tPlease enter an address: ";
-                cin.clear();
-                cin.ignore();
                 getline(cin, address);
             } while (rejectEmpty == 1 && address == "");
             return address;
@@ -27,14 +25,17 @@ class View {
 
         	do {
         		Node<Place>* matched = hashTable->get(getAddress(1));
-                OptionsViewPlaces view(matched);
-                int selected = view.display()->getOption();
 
-                for (int i = 0; i <= selected; i += 1) {
-                    matched = matched->getNext();
+                if (matched != NULL) {
+                    OptionsViewPlaces view(matched);
+                    int selected = view.display()->getOption();
+
+                    for (int i = 0; i < selected; i += 1) {
+                        matched = matched->getNext();
+                    }
+
+                    place = matched->getData();
                 }
-
-                place = matched->getData();
         	} while (place == NULL);
 
         	return place;

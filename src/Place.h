@@ -1,0 +1,39 @@
+#ifndef Place_H
+#define Place_H
+#include <string>
+#include "LList.cpp"
+#include "HashTable.h"
+
+class HashTable;
+
+class Place {
+	private:
+		string name;
+		float longitude;
+		float latitude;
+		Place* parent;
+		LList<Place> children;
+		string address;
+		LList<Place> *matches;
+
+		void setAddress();
+		void saveConstructor(ofstream *data,int depth);
+	public:
+		Place(string newName, float newLongitude, float newLatitude);
+		~Place();
+		string getName();
+		float getLongitude();
+		float getLatitude();
+		Place* setName(string newName);
+		Place* getParent();
+		LList<Place>* getMatchedChildren(string searchTerm);
+		Place* getChild(int index);
+		int getNbrChildren();
+		Place* addChild(Place* newPlace);
+		Place* removeChild(int index);
+		Place* loadPlace(string dataLocation, HashTable* ht);
+		Place* savePlace(string dataLocation);
+		string getAddress();
+};
+
+#endif

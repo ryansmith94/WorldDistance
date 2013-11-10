@@ -32,7 +32,7 @@ Node<T>::Node(T *newData){
 }
 template <class T>
 Node<T>::Node(){
-	data = new T();
+	data = NULL; // Changed this!
 	next = NULL;
 }
 template <class T>

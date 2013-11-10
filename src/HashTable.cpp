@@ -1,11 +1,13 @@
 #ifndef HASHTABLE_CPP
 #define HASHTABLE_CPP
 #include <string>
+#include "Place.h"
 #include "HashTable.h"
-#include "Place.cpp"
 #include "Node.cpp"
-#define A 97
-#define Z 122
+#define LOWER_A 97
+#define LOWER_Z 122
+#define UPPER_A 65
+#define UPPER_Z 90
 #define SPACE 32
 #define NUL 0
 #define COMMA 44
@@ -15,8 +17,10 @@
 int HashTable::hash(string value) {
     int asciiChar = value[index];
 
-    if (asciiChar >= A && asciiChar <= Z) {
-        return asciiChar - A;
+    if (asciiChar >= LOWER_A && asciiChar <= LOWER_Z) {
+        return asciiChar - LOWER_A;
+    } else if (asciiChar >= UPPER_A && asciiChar <= UPPER_Z) {
+        return asciiChar - UPPER_A;
     } else if (asciiChar == SPACE) {
         return 26;
     } else if (asciiChar == NUL) {
@@ -44,8 +48,11 @@ HashTable* HashTable::addPlace(string address, Place* place) {
         count += 1;
         return ht->addPlace(address, place);
     } else if (hashTable[key] != NULL) {
-        count += 1;
-        return hashTable[key]->addPlace(address, place);
+        HashTable* ht = hashTable[key]->addPlace(address, place);
+        if (ht != NULL) {
+            count += 1;
+        }
+        return ht;
     }
 
     count += 1;
@@ -81,33 +88,28 @@ HashTable* HashTable::removePlace(string address, Place* place) {
     return NULL;
 }
 Node<Place>* HashTable::tableToNodes(Node<Place>* lastNode) {
-    Node<Place>* firstNode = lastNode;
+    Node<Place>* firstNode = NULL;
+
+    if (lastNode == NULL) {
+        lastNode = new Node<Place>();
+        firstNode = lastNode;
+    }
 
     for (int i = 0; i < LIMIT; i += 1) {
-        Node<Place>* tmp;
         if (hashTable[i] != NULL) {
-            tmp = hashTable[i]->tableToNodes(lastNode);
-            if (lastNode != NULL) {
-                lastNode->setNext(tmp);
-            } else {
-                firstNode = tmp;
-            }
-            lastNode = tmp;
+            lastNode = hashTable[i]->tableToNodes(lastNode);
         } else if (placeTable[i] != NULL) {
-            tmp = new Node<Place>(placeTable[i]);
-            if (lastNode != NULL) {
-                lastNode->setNext(tmp);
-            } else {
-                firstNode = tmp;
-            }
+            Node<Place>* tmp = new Node<Place>();
+            lastNode->setData(placeTable[i]);
+            lastNode->setNext(tmp);
             lastNode = tmp;
         }
     }
 
-    return firstNode;
+    return (firstNode == NULL) ? lastNode : firstNode;
 }
 
-HashTable::HashTable(int nIndex = 0) {
+HashTable::HashTable(int nIndex) {
     index = nIndex;
     count = 0;
 	for (int i = 0;i<LIMIT;i++){
@@ -140,10 +142,14 @@ Node<Place>* HashTable::get(string address) {
         if (address[index + 1] != NUL) {
             return hashTable[key]->get(address);
         } else {
-            return hashTable[key]->tableToNodes(NULL);
+            return hashTable[key]->tableToNodes();
         }
     } else if (placeTable[key] != NULL) {
-        return new Node<Place>(placeTable[key]);
+        if (address[index + 1] != NUL) {
+            return NULL;
+        } else {
+            return new Node<Place>(placeTable[key]);
+        }
     }
 
     return NULL;
