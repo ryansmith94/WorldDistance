@@ -8,17 +8,24 @@
 #endif
 using namespace std;
 
-class OptionsViewPlaces: public OptionsView<LList<Place> > {
+class OptionsViewPlaces: public OptionsView<Node<Place> > {
     protected:
-        LList<Place>* options;
+        Node<Place>* options;
     public:
-        OptionsViewPlaces(LList<Place>* opts) : OptionsView<LList<Place> >(opts, opts->getSize()) {
+        OptionsViewPlaces(Node<Place>* opts) : OptionsView<Node<Place> >(opts, 0) {
             options = opts;
         }
         OptionsViewPlaces* display() {
-            for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << "\t" << i + 1 << ". " << options->getData(i)->getAddress() << LF;
-            }
+            Node<Place>* option = options;
+            int i = 0;
+
+            do {
+                cout << "\t" << i + 1 << ". " << option->getData()->getAddress() << LF;
+                option = option->getNext();
+                i += 1;
+            } while (option != NULL);
+
+            numberOfOptions = i;
             return this;
         }
 };
