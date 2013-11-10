@@ -1,5 +1,5 @@
-#ifndef ModifyPlacesView_H
-#define ModifyPlacesView_H
+#ifndef ModifyPlaceView_H
+#define ModifyPlaceView_H
 #include "View.h"
 using namespace std;
 

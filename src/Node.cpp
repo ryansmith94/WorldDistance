@@ -5,22 +5,6 @@
 using namespace std;
 
 template <class T>
-class Node{
-	private:
-		T *data;
-		Node *next;
-	public:
-		Node(T*,Node*);
-		Node(T*);
-		Node();
-		~Node();
-		Node* getNext();
-		void setNext(Node*);
-		T* getData();
-		void setData(T*);
-};
-
-template <class T>
 Node<T>::Node(T *newData, Node *nextNode){
 	data = newData;
 	next = nextNode;

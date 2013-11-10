@@ -11,6 +11,9 @@
 #include "ModifyPlaceView.h"
 #include "DeletePlacesView.h"
 #include "HashTable.h"
+#ifndef LF
+#define LF (char)0x0A
+#endif
 using namespace std;
 
 DistanceApp::DistanceApp(string loadLocation, string saveLocation) : rootPlace("Earth", 0.0, 0.0) {

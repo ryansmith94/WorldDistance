@@ -1,8 +1,11 @@
-#ifndef ModifyPlacesView_CPP
-#define ModifyPlacesView_CPP
+#ifndef ModifyPlaceView_CPP
+#define ModifyPlaceView_CPP
 #include <iostream>
 #include "ModifyPlaceView.h"
 #include "View.h"
+#ifndef LF
+#define LF (char)0x0A
+#endif
 using namespace std;
 
 ModifyPlacesView::ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}

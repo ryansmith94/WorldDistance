@@ -5,6 +5,9 @@
 #include "DistanceView.h"
 #include "Place.h"
 #include "HashTable.h"
+#ifndef LF
+#define LF (char)0x0A
+#endif
 using namespace std;
 
 double DistanceView::calculateDistance(Place* from, Place* to) {
