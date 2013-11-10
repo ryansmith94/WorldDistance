@@ -1,26 +1,8 @@
-#ifndef LList_H
-#define LList_H
-#include "Node.cpp"
+#ifndef LList_CPP
+#define LList_CPP
+#include "LList.h"
+#include "Node.h"
 using namespace std;
-
-template <class T>
-class LList{
-	private:
-		int size;
-		Node<T> *first;
-	public:
-		LList();
-		~LList();
-		int getSize();
-		void append(T*);
-		void insert(T*,int);
-		void remove(int);
-		T* getData(int);
-		void addAll(LList<T>*);
-		void clear();
-};
-
-
 
 template <class T>
 LList<T>::LList(){

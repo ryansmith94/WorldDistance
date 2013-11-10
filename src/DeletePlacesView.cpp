@@ -1,15 +1,14 @@
-#ifndef DeletePlacesView_H
-#define DeletePlacesView_H
+#ifndef DeletePlacesView_CPP
+#define DeletePlacesView_CPP
 #include <iostream>
-#include "View.cpp"
+#include "DeletePlacesView.h"
+#include "Place.h"
+#include "HashTable.h"
 using namespace std;
 
-class DeletePlacesView: public View {
-    public:
-        DeletePlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
-        DeletePlacesView* start() {
-            return this;
-        }
-};
+DeletePlacesView::DeletePlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
+DeletePlacesView* DeletePlacesView::start() {
+    return this;
+}
 
 #endif

@@ -1,9 +1,9 @@
 #ifndef HASHTABLE_CPP
 #define HASHTABLE_CPP
 #include <string>
-#include "Place.h"
 #include "HashTable.h"
-#include "Node.cpp"
+#include "Place.h"
+#include "Node.h"
 #define LOWER_A 97
 #define LOWER_Z 122
 #define UPPER_A 65

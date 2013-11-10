@@ -1,15 +1,14 @@
-#ifndef AddPlacesView_H
-#define AddPlacesView_H
+#ifndef AddPlacesView_CPP
+#define AddPlacesView_CPP
 #include <iostream>
-#include "View.cpp"
+#include "AddPlacesView.h"
+#include "Place.h"
+#include "HashTable.h"
 using namespace std;
 
-class AddPlacesView: public View {
-    public:
-        AddPlacesView(Place* place, HashTable* hTable) : View(place, hTable){}
-        AddPlacesView* start() {
-            return this;
-        }
-};
+AddPlacesView::AddPlacesView(Place* place, HashTable* hTable) : View(place, hTable){}
+AddPlacesView* AddPlacesView::start() {
+    return this;
+}
 
 #endif

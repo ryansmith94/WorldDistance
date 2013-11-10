@@ -1,45 +1,46 @@
-#ifndef OptionsView_H
-#define OptionsView_H
+#ifndef OptionsView_CPP
+#define OptionsView_CPP
 #include <sstream>
 #include <iostream>
+#include "OptionsView.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
 using namespace std;
 
 template <class OptionType>
-class OptionsView {
-    protected:
-        OptionType* options;
-        int numberOfOptions;
-    public:
-        OptionsView(OptionType* opts, int len) {
-            options = opts;
-            numberOfOptions = len;
-        }
-        OptionsView* display() {
-            for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << "\t" << i + 1 << ". " << options[i] << LF;
-            }
-            cout << LF;
-            return this;
-        }
-        virtual int getOption() {
-            int selected = -1;
-            string input;
+OptionsView::OptionsView(OptionType* opts, int len) {
+    options = opts;
+    numberOfOptions = len;
+}
 
-            do {
-                cout << "<\tPlease select an option (1-" << numberOfOptions <<  "): ";
-                getline(cin, input);
-                stringstream myStream(input);
-                myStream >> selected;
-            } while (selected < 1 || selected > numberOfOptions);
+template <class OptionType>
+OptionsView* OptionsView::display() {
+    for (int i = 0; i < numberOfOptions; i += 1) {
+        cout << "\t" << i + 1 << ". " << options[i] << LF;
+    }
+    cout << LF;
+    return this;
+}
 
-            return (selected - 1);
-        }
-        virtual OptionType* getOptions() {
-            return options;
-        }
-};
+template <class OptionType>
+virtual int OptionsView::getOption() {
+    int selected = -1;
+    string input;
+
+    do {
+        cout << "<\tPlease select an option (1-" << numberOfOptions <<  "): ";
+        getline(cin, input);
+        stringstream myStream(input);
+        myStream >> selected;
+    } while (selected < 1 || selected > numberOfOptions);
+
+    return (selected - 1);
+}
+
+template <class OptionType>
+virtual OptionType* OptionsView::getOptions() {
+    return options;
+}
 
 #endif

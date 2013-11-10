@@ -1,15 +1,13 @@
-#ifndef ModifyPlacesView_H
-#define ModifyPlacesView_H
+#ifndef ModifyPlacesView_CPP
+#define ModifyPlacesView_CPP
 #include <iostream>
-#include "View.cpp"
+#include "ModifyPlacesView.h"
+#include "View.h"
 using namespace std;
 
-class ModifyPlacesView: public View {
-    public:
-        ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
-        ModifyPlacesView* start() {
-            return this;
-        }
-};
+ModifyPlacesView::ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
+ModifyPlacesView* ModifyPlacesView::start() {
+    return this;
+}
 
 #endif

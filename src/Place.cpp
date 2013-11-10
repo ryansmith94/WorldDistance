@@ -3,9 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "LList.cpp"
-#include "HashTable.h"
 #include "Place.h"
+#include "LList.h"
+#include "HashTable.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif

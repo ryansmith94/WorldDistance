@@ -1,7 +1,7 @@
-#ifndef Node_H
-#define Node_H
-
+#ifndef Node_CPP
+#define Node_CPP
 #include <iostream>
+#include "Node.h"
 using namespace std;
 
 template <class T>
@@ -32,7 +32,7 @@ Node<T>::Node(T *newData){
 }
 template <class T>
 Node<T>::Node(){
-	data = NULL; // Changed this!
+	data = NULL;
 	next = NULL;
 }
 template <class T>
