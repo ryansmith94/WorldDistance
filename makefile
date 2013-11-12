@@ -48,3 +48,5 @@ test:
 	./build/DistanceApp.o \
 	./build/testmain.o && \
 	cd test && ../tmp/testMain --output=color && cd ..
+
+.PHONY: objects release test
