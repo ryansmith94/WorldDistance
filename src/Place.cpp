@@ -17,7 +17,7 @@ void Place::setAddress(){
 }
 
 void Place::saveConstructor(ofstream *data,int depth){
-	*data << depth << '\t' << name << '\t' << longitude << '\t' << latitude << LF;
+	*data << depth << '\t' << name << '\t' << latitude << '\t' << longitude << LF;
 	for (int i = 0; i<children.getSize();i++){
 		children.getData(i)->saveConstructor(data,depth+1);
 	}
@@ -120,7 +120,7 @@ Place* Place::loadPlace(string dataLocation, HashTable* ht){
 					placeToAddTo = placeToAddTo->getParent();
 				}
 			}
-			lastPlaceAdded = new Place(name,lat,lon);
+			lastPlaceAdded = new Place(name,lon, lat);
 			placeToAddTo->addChild(lastPlaceAdded);
             ht->add(lastPlaceAdded);
 			lastDepth = depth;

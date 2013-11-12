@@ -144,11 +144,11 @@ Node<Place>* HashTable::get(string address) {
             return new Node<Place>(placeTable[key]);
         } else{
 			string foundAddress = placeTable[key]->getAddress();
-			int i = index;
+			int i = index + 1;
 			while (address[i] != NUL && hash(foundAddress[i]) == hash(address[i])) {
 				i += 1;
 			}
-			if (hash(foundAddress[i - 1]) == hash(address[i - 1])) {
+			if (address[i] == NUL || hash(foundAddress[i]) == hash(address[i])) {
 				return new Node<Place>(placeTable[key]);
 			}
             return NULL;

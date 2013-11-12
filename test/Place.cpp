@@ -220,11 +220,11 @@ Describe(Place_class) {
 			Place testPlace("Earth",0.0,0.0);
 			testPlace.loadPlace("../test/Place/LoadTestData.txt", new HashTable());
 			Assert::That(testPlace.getChild(0)->getName(), Equals("UK"));
-			Assert::That(testPlace.getChild(0)->getLatitude(), Equals(2.4333f));
-			Assert::That(testPlace.getChild(0)->getLongitude(), Equals(53.55f));
+			Assert::That(testPlace.getChild(0)->getLongitude(), Equals(2.4333f));
+			Assert::That(testPlace.getChild(0)->getLatitude(), Equals(53.55f));
 			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getName(), Equals("Birmingham"));
-			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLatitude(), Equals(86.8127f));
-			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLongitude(), Equals(33.5248f));
+			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLongitude(), Equals(86.8127f));
+			Assert::That(testPlace.getChild(1)->getChild(0)->getChild(0)->getLatitude(), Equals(33.5248f));
 		}
 	};
 	Describe(savePlace_method){
