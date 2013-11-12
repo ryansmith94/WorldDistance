@@ -45,6 +45,12 @@ Describe(Place_class) {
 	It(should_expose_a_savePlace_method){
 		Assert::That(!!(&Place::savePlace), Equals(1));
 	}
+	It(should_expose_a_setLongitude_method){
+		Assert::That(!!(&Place::setLongitude), Equals(1));
+	}
+	It(should_expose_a_setLatitude_method){
+		Assert::That(!!(&Place::setLatitude), Equals(1));
+	}
 	Describe(getName_method){
 		It(should_return_the_place_name){
 			Place testPlace("name",1.2,2.3);
@@ -61,6 +67,20 @@ Describe(Place_class) {
 		It(should_return_the_place_latitude){
 			Place testPlace("name",1.2,2.3);
 			Assert::That(testPlace.getLatitude(), Equals(2.3f));
+		}
+	};
+	Describe(setLatitude_method){
+		It(should_set_the_latitude){
+			Place testPlace("name",0.0,0.0);
+			testPlace.setLatitude(1.2);
+			Assert::That(testPlace.getLatitude(), Equals(1.2f));
+		}
+	};
+	Describe(setLongitude_method){
+		It(should_set_the_longitude){
+			Place testPlace("name",0.0,0.0);
+			testPlace.setLongitude(1.2);
+			Assert::That(testPlace.getLongitude(), Equals(1.2f));
 		}
 	};
 	Describe(setName_method){

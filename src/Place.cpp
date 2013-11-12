@@ -49,6 +49,14 @@ float Place::getLatitude() {
 	return latitude;
 }
 
+void Place::setLongitude(float newLongitude){
+	longitude = newLongitude;
+}
+
+void Place::setLatitude(float newLatitude){
+	latitude = newLatitude;
+}
+
 Place* Place::setName(string newName) {
 	this->name = newName;
 	setAddress();

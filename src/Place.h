@@ -26,6 +26,8 @@ class Place {
 		string getName();
 		float getLongitude();
 		float getLatitude();
+		void setLongitude(float newLongitude);
+		void setLatitude(float newLatitude);
 		Place* setName(string newName);
 		Place* getParent();
 		LList<Place>* getMatchedChildren(string searchTerm);
