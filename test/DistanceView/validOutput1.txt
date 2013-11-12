@@ -1,2 +1,4 @@
-<	Please enter an address: <	Please enter an address: 
+<	Please enter an address: 	1. place1, name
+<	Please select an option (1-1): <	Please enter an address: 	1. place1, name
+<	Please select an option (1-1): 
 	The distance is 0km
