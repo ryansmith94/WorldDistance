@@ -1,6 +1,6 @@
 #ifndef TestOptionsViewPlaces_H
 #define TestOptionsViewPlaces_H
-#include "../src/OptionsViewPlaces.cpp"
+#include "../src/OptionsViewPlaces.h"
 #include "TestWithStdIO.cpp"
 #include "compareFiles.cpp"
 #include "igloo/igloo_alt.h"
@@ -61,6 +61,7 @@ Describe(OptionsViewPlaces_class) {
             OptionsViewPlaces view(opts);
 
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
+			view.display();
             Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
@@ -75,6 +76,7 @@ Describe(OptionsViewPlaces_class) {
             OptionsViewPlaces view(opts);
 
             TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", TMP_OUT);
+			view.display();
             Assert::That(view.getOption(), Equals(2));
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
         }
@@ -89,6 +91,7 @@ Describe(OptionsViewPlaces_class) {
             OptionsViewPlaces view(opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", TMP_OUT);
+			view.display();
             Assert::That(view.getOption(), Equals(0));
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
@@ -103,6 +106,7 @@ Describe(OptionsViewPlaces_class) {
             OptionsViewPlaces view(opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", TMP_OUT);
+			view.display();
             Assert::That(view.getOption(), Equals(2));
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }
@@ -117,6 +121,7 @@ Describe(OptionsViewPlaces_class) {
             OptionsViewPlaces view(opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", TMP_OUT);
+			view.display();
             Assert::That(view.getOption(), Equals(2));
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
         }

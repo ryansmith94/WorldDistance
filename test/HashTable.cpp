@@ -1,6 +1,6 @@
 #ifndef HashTable_H
 #define HashTable_H
-#include "../src/HashTable.cpp"
+#include "../src/HashTable.h"
 #include "igloo/igloo_alt.h"
 using namespace igloo;
 

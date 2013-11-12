@@ -1,6 +1,6 @@
 #ifndef TestDistanceApp_H
 #define TestDistanceApp_H
-#include "../src/DistanceApp.cpp"
+#include "../src/DistanceApp.h"
 #include "TestWithStdIO.cpp"
 #include "compareFiles.cpp"
 #include "igloo/igloo_alt.h"

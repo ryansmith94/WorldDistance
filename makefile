@@ -14,6 +14,7 @@ objects:
 	$(COMPILER) $(FLAGS) -c -g -o ./build/DistanceApp.o ./src/DistanceApp.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/View.o ./src/View.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/main.o ./src/main.cpp
+	$(COMPILER) $(FLAGS) -c -g -o ./build/testmain.o ./test/main.cpp
 
 release: 
 
@@ -35,11 +36,8 @@ test:
 
 	$(COMPILER) $(FLAGS) -o \
 	./tmp/testMain \
-	./build/Node.o \
 	./build/HashTable.o \
-	./build/LList.o \
 	./build/Place.o \
-	./build/OptionsView.o \
 	./build/OptionsViewPlaces.o \
 	./build/View.o \
 	./build/AddPlacesView.o \
@@ -48,5 +46,5 @@ test:
 	./build/ModifyPlaceView.o \
 	./build/PlacesView.o \
 	./build/DistanceApp.o \
-	./test/main.cpp && \
+	./build/testmain.o && \
 	cd test && ../tmp/testMain --output=color && cd ..

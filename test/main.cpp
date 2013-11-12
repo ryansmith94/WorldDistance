@@ -4,9 +4,9 @@
 #include "LList.cpp"
 #include "Node.cpp"
 #include "OptionsView.cpp"
-//#include "OptionsViewPlaces.cpp"
-//#include "Place.cpp"
-//#include "HashTable.cpp"
+#include "OptionsViewPlaces.cpp"
+#include "Place.cpp"
+#include "HashTable.cpp"
 using namespace igloo;
 
 int main(int argc, const char *argv[]) {

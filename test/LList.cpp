@@ -1,6 +1,6 @@
 #ifndef TestLList_H
 #define TestLList_H
-#include "../src/LList.cpp"
+#include "../src/LList.h"
 #include "igloo/igloo_alt.h"
 using namespace igloo;
 
