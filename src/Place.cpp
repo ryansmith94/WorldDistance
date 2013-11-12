@@ -1,11 +1,4 @@
-#ifndef Place_CPP
-#define Place_CPP
-#include <fstream>
-#include <sstream>
-#include <string>
 #include "Place.h"
-#include "LList.h"
-#include "HashTable.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
@@ -143,5 +136,3 @@ Place* Place::savePlace(string dataLocation){
 string Place::getAddress(){
 	return address;
 }
-
-#endif
