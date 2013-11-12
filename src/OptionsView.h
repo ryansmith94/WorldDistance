@@ -14,7 +14,7 @@ class OptionsView {
         int numberOfOptions;
     public:
         OptionsView(OptionType* opts, int len);
-        virtual OptionsView* display();
+        OptionsView* display();
         int getOption();
         OptionType* getOptions();
 };
@@ -25,14 +25,14 @@ OptionsView<OptionType>::OptionsView(OptionType* opts, int len) {
     numberOfOptions = len;
 }
 
-/*template <class OptionType>
+template <class OptionType>
 OptionsView<OptionType>* OptionsView<OptionType>::display() {
     for (int i = 0; i < numberOfOptions; i += 1) {
         cout << "\t" << i + 1 << ". " << options[i] << LF;
     }
     cout << LF;
     return this;
-}*/
+}
 
 template <class OptionType>
 int OptionsView<OptionType>::getOption() {

@@ -5,7 +5,6 @@ objects:
 
 	$(COMPILER) $(FLAGS) -c -g -o ./build/HashTable.o ./src/HashTable.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/Place.o ./src/Place.cpp
-	$(COMPILER) $(FLAGS) -c -g -o ./build/OptionsView.o ./src/OptionsView.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/OptionsViewPlaces.o ./src/OptionsViewPlaces.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/AddPlacesView.o ./src/AddPlacesView.cpp
 	$(COMPILER) $(FLAGS) -c -g -o ./build/DeletePlacesView.o ./src/DeletePlacesView.cpp
@@ -22,7 +21,6 @@ release:
 	./build/release \
 	./build/HashTable.o \
 	./build/Place.o \
-	./build/OptionsView.o \
 	./build/OptionsViewPlaces.o \
 	./build/View.o \
 	./build/AddPlacesView.o \
