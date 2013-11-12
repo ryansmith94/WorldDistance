@@ -10,9 +10,9 @@ class OptionsView {
         int numberOfOptions;
     public:
         OptionsView(OptionType* opts, int len);
-        virtual OptionsView* display();
-        int getOption();
-        OptionType* getOptions();
+        OptionsView* display();
+        virtual int getOption();
+        virtual OptionType* getOptions();
 };
 
 #endif
