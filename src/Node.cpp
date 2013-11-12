@@ -1,24 +1,5 @@
-#ifndef Node_H
-#define Node_H
-
-#include <iostream>
+#include "Node.h"
 using namespace std;
-
-template <class T>
-class Node{
-	private:
-		T *data;
-		Node *next;
-	public:
-		Node(T*,Node*);
-		Node(T*);
-		Node();
-		~Node();
-		Node* getNext();
-		void setNext(Node*);
-		T* getData();
-		void setData(T*);
-};
 
 template <class T>
 Node<T>::Node(T *newData, Node *nextNode){
@@ -32,7 +13,7 @@ Node<T>::Node(T *newData){
 }
 template <class T>
 Node<T>::Node(){
-	data = new T();
+	data = NULL;
 	next = NULL;
 }
 template <class T>
@@ -56,5 +37,3 @@ template <class T>
 void Node<T>::setData(T *newData){
 	data = newData;
 }
-
-#endif

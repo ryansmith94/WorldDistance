@@ -1,48 +1,35 @@
-#ifndef View_H
-#define View_H
-#include <iostream>
-#include <sstream>
-#include <string>
-#include "Place.cpp"
-#include "OptionsViewPlaces.cpp"
+#include "View.h"
 using namespace std;
 
-class View {
-    protected:
-        Place* rootPlace;
-        string getAddress(int rejectEmpty = 0) {
-            string address;
-            do {
-                cout << "<\tPlease enter an address: ";
-                cin.clear();
-                cin.ignore();
-                getline(cin, address);
-            } while (rejectEmpty == 1 && address == "");
-            return address;
+string View::getAddress(int rejectEmpty) {
+    string address;
+    do {
+        cout << "<\tPlease enter an address: ";
+        getline(cin, address);
+    } while (rejectEmpty == 1 && address == "");
+    return address;
+}
+Place* View::getPlace() {
+	Place* place = NULL;
+
+	do {
+		Node<Place>* matched = hashTable->get(getAddress(1));
+
+        if (matched != NULL) {
+            OptionsViewPlaces view(matched);
+            int selected = view.display()->getOption();
+
+            for (int i = 0; i < selected; i += 1) {
+                matched = matched->getNext();
+            }
+
+            place = matched->getData();
         }
-        Place* getPlace() {
-        	Place* place = NULL;
+	} while (place == NULL);
 
-
-        	do {
-        		LList<Place>* matched = rootPlace->getMatchedChildren(getAddress(1));
-        		int size = matched->getSize();
-
-        		if (size == 1) {
-        			place = matched->getData(0);
-        		} else if (size > 1) {
-                    OptionsViewPlaces view(matched);
-        			place = matched->getData(view.display()->getOption());
-        		}
-        	} while (place == NULL);
-
-        	return place;
-        }
-    public:
-        View(Place* place) {
-            rootPlace = place;
-        }
-        virtual View* start() =0;
-};
-
-#endif
+	return place;
+}
+View::View(Place* place, HashTable* hTable) {
+    rootPlace = place;
+    hashTable = hTable;
+}

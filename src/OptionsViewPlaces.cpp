@@ -1,26 +1,22 @@
-#ifndef OptionsViewPlaces_H
-#define OptionsViewPlaces_H
-#include <iostream>
-#include "OptionsView.cpp"
-#include "Place.cpp"
+#include "OptionsViewPlaces.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
 using namespace std;
 
-class OptionsViewPlaces: public OptionsView<LList<Place> > {
-    protected:
-        LList<Place>* options;
-    public:
-        OptionsViewPlaces(LList<Place>* opts) : OptionsView<LList<Place> >(opts, opts->getSize()) {
-            options = opts;
-        }
-        OptionsViewPlaces* display() {
-            for (int i = 0; i < numberOfOptions; i += 1) {
-                cout << "\t" << i + 1 << ". " << options->getData(i)->getAddress() << LF;
-            }
-            return this;
-        }
-};
+OptionsViewPlaces::OptionsViewPlaces(Node<Place>* opts) : OptionsView<Node<Place> >(opts, 0) {
+    options = opts;
+}
+OptionsViewPlaces* OptionsViewPlaces::display() {
+    Node<Place>* option = options;
+    int i = 0;
 
-#endif
+    while (option != NULL && option->getData() != NULL) {
+        cout << "\t" << i + 1 << ". " << option->getData()->getAddress() << LF;
+        option = option->getNext();
+        i += 1;
+    }
+
+    numberOfOptions = i;
+    return this;
+}

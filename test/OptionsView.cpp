@@ -1,6 +1,6 @@
 #ifndef TestOptionsView_H
 #define TestOptionsView_H
-#include "../src/OptionsView.cpp"
+#include "../src/OptionsView.h"
 #include "TestWithStdIO.cpp"
 #include "compareFiles.cpp"
 #include "igloo/igloo_alt.h"

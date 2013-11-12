@@ -1,6 +1,6 @@
 #ifndef TestPlace_H
 #define TestPlace_H
-#include "../src/Place.cpp"
+#include "../src/Place.h"
 #include "compareFiles.cpp"
 #include "igloo/igloo_alt.h"
 using namespace igloo;
@@ -45,6 +45,12 @@ Describe(Place_class) {
 	It(should_expose_a_savePlace_method){
 		Assert::That(!!(&Place::savePlace), Equals(1));
 	}
+	It(should_expose_a_setLongitude_method){
+		Assert::That(!!(&Place::setLongitude), Equals(1));
+	}
+	It(should_expose_a_setLatitude_method){
+		Assert::That(!!(&Place::setLatitude), Equals(1));
+	}
 	Describe(getName_method){
 		It(should_return_the_place_name){
 			Place testPlace("name",1.2,2.3);
@@ -61,6 +67,20 @@ Describe(Place_class) {
 		It(should_return_the_place_latitude){
 			Place testPlace("name",1.2,2.3);
 			Assert::That(testPlace.getLatitude(), Equals(2.3f));
+		}
+	};
+	Describe(setLatitude_method){
+		It(should_set_the_latitude){
+			Place testPlace("name",0.0,0.0);
+			testPlace.setLatitude(1.2);
+			Assert::That(testPlace.getLatitude(), Equals(1.2f));
+		}
+	};
+	Describe(setLongitude_method){
+		It(should_set_the_longitude){
+			Place testPlace("name",0.0,0.0);
+			testPlace.setLongitude(1.2);
+			Assert::That(testPlace.getLongitude(), Equals(1.2f));
 		}
 	};
 	Describe(setName_method){
@@ -82,11 +102,11 @@ Describe(Place_class) {
 			Place *yetAnotherPlace = new Place("yet another name",5.6,6.7);
 			testPlace.addChild(anotherPlace);
 			testPlace.addChild(yetAnotherPlace);
-			Assert::That(anotherPlace->getAddress(), Equals("name, another name"));
-			Assert::That(yetAnotherPlace->getAddress(), Equals("name, yet another name"));
+			Assert::That(anotherPlace->getAddress(), Equals("another name, name"));
+			Assert::That(yetAnotherPlace->getAddress(), Equals("yet another name, name"));
 			testPlace.setName("newName");
-			Assert::That(anotherPlace->getAddress(), Equals("newName, another name"));
-			Assert::That(yetAnotherPlace->getAddress(), Equals("newName, yet another name"));
+			Assert::That(anotherPlace->getAddress(), Equals("another name, newName"));
+			Assert::That(yetAnotherPlace->getAddress(), Equals("yet another name, newName"));
 		}
 	};
 	Describe(getParent_method){
@@ -198,7 +218,7 @@ Describe(Place_class) {
 	Describe(loadPlace_method){
 		It(should_load_places_from_a_file){
 			Place testPlace("Earth",0.0,0.0);
-			testPlace.loadPlace("../test/Place/LoadTestData.txt");
+			testPlace.loadPlace("../test/Place/LoadTestData.txt", new HashTable());
 			Assert::That(testPlace.getChild(0)->getName(), Equals("UK"));
 			Assert::That(testPlace.getChild(0)->getLongitude(), Equals(2.4333f));
 			Assert::That(testPlace.getChild(0)->getLatitude(), Equals(53.55f));
@@ -210,7 +230,7 @@ Describe(Place_class) {
 	Describe(savePlace_method){
 		It(should_save_places_to_a_file){
 			Place testPlace("Earth",0.0,0.0);
-			testPlace.loadPlace("../test/Place/LoadTestData.txt");
+			testPlace.loadPlace("../test/Place/LoadTestData.txt", new HashTable());
 			testPlace.savePlace("../test/Place/SaveTestData.txt");
 			Assert::That(compareFiles("../test/Place/LoadTestData.txt", "../test/Place/SaveTestData.txt"), Equals(1));
 		}
@@ -222,7 +242,7 @@ Describe(Place_class) {
 			Place *testPlace3 = new Place("London",3.4,4.5);
 			testPlace.addChild(testPlace2);
 			testPlace2->addChild(testPlace3);
-			Assert::That(testPlace3->getAddress(), Equals("Earth, UK, London"));
+			Assert::That(testPlace3->getAddress(), Equals("London, UK, Earth"));
 		}
 	};
 };

@@ -1,15 +1,10 @@
-#ifndef AddPlacesView_H
-#define AddPlacesView_H
-#include <iostream>
-#include "View.cpp"
+#include "AddPlacesView.h"
+#ifndef LF
+#define LF (char)0x0A
+#endif
 using namespace std;
 
-class AddPlacesView: public View {
-    public:
-        AddPlacesView(Place* place) : View(place) {}
-        AddPlacesView* start() {
-            return this;
-        }
-};
-
-#endif
+AddPlacesView::AddPlacesView(Place* place, HashTable* hTable) : View(place, hTable){}
+AddPlacesView* AddPlacesView::start() {
+    return this;
+}

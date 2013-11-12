@@ -1,4 +1,4 @@
-#include "DistanceApp.cpp"
+#include "DistanceApp.h"
 using namespace std;
 
 int main() {

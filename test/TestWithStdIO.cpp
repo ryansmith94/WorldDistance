@@ -1,6 +1,7 @@
 #ifndef TestWithStdIO_H
 #define TestWithStdIO_H
 #include <cstdio>
+#include <fstream>
 #include <iostream>
 using namespace igloo;
 

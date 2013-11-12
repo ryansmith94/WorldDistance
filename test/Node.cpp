@@ -1,6 +1,6 @@
 #ifndef TestNode_H
 #define TestNode_H
-#include "../src/Node.cpp"
+#include "../src/Node.h"
 #include "igloo/igloo_alt.h"
 using namespace igloo;
 
