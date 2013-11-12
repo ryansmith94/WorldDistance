@@ -3,11 +3,8 @@ FLAGS=-Wall
 
 objects:
 
-	$(COMPILER) $(FLAGS) -c -g -o ./build/Node.o ./src/Node.cpp && \
 	$(COMPILER) $(FLAGS) -c -g -o ./build/HashTable.o ./src/HashTable.cpp && \
-	$(COMPILER) $(FLAGS) -c -g -o ./build/LList.o ./src/LList.cpp && \
 	$(COMPILER) $(FLAGS) -c -g -o ./build/Place.o ./src/Place.cpp && \
-	$(COMPILER) $(FLAGS) -c -g -o ./build/OptionsView.o ./src/OptionsView.cpp && \
 	$(COMPILER) $(FLAGS) -c -g -o ./build/OptionsViewPlaces.o ./src/OptionsViewPlaces.cpp && \
 	$(COMPILER) $(FLAGS) -c -g -o ./build/View.o ./src/View.cpp && \
 	$(COMPILER) $(FLAGS) -c -g -o ./build/AddPlacesView.o ./src/AddPlacesView.cpp && \
@@ -22,11 +19,8 @@ release:
 
 	$(COMPILER) $(FLAGS) -o \
 	./build/release \
-	./build/Node.o \
 	./build/HashTable.o \
-	./build/LList.o \
 	./build/Place.o \
-	./build/OptionsView.o \
 	./build/OptionsViewPlaces.o \
 	./build/View.o \
 	./build/AddPlacesView.o \
