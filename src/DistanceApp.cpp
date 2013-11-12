@@ -1,16 +1,4 @@
-#ifndef DistanceApp_CPP
-#define DistanceApp_CPP
-#include <iostream>
-#include <string>
 #include "DistanceApp.h"
-#include "OptionsView.h"
-#include "Place.h"
-#include "DistanceView.h"
-#include "PlacesView.h"
-#include "AddPlacesView.h"
-#include "ModifyPlaceView.h"
-#include "DeletePlacesView.h"
-#include "HashTable.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
@@ -59,4 +47,3 @@ DistanceApp* DistanceApp::start() {
 
     return this;
 }
-#endif

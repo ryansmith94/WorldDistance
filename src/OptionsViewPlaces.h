@@ -2,9 +2,11 @@
 #define OptionsViewPlaces_H
 #include <iostream>
 #include "OptionsView.h"
+#include "Place.h"
 #include "Node.h"
-
-class Place;
+#ifndef LF
+#define LF (char)0x0A
+#endif
 
 class OptionsViewPlaces: public OptionsView<Node<Place> > {
     protected:

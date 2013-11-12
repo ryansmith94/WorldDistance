@@ -1,8 +1,11 @@
 #ifndef View_H
 #define View_H
+#include <iostream>
+#include <sstream>
 #include <string>
 #include "Place.h"
 #include "HashTable.h"
+#include "OptionsViewPlaces.h"
 using namespace std;
 
 class View {

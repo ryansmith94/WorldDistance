@@ -1,10 +1,4 @@
-#ifndef DistanceView_CPP
-#define DistanceView_CPP
-#include <iostream>
-#include <cmath>
 #include "DistanceView.h"
-#include "Place.h"
-#include "HashTable.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
@@ -35,5 +29,3 @@ DistanceView* DistanceView::start() {
     cout << LF << "\tThe distance is " << calculateDistance(place1, place2) << "km" << LF;
     return this;
 }
-
-#endif

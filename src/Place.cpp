@@ -1,4 +1,5 @@
 #include "Place.h"
+#include "HashTable.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif

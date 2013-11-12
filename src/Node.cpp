@@ -1,6 +1,3 @@
-#ifndef Node_CPP
-#define Node_CPP
-#include <iostream>
 #include "Node.h"
 using namespace std;
 
@@ -40,5 +37,3 @@ template <class T>
 void Node<T>::setData(T *newData){
 	data = newData;
 }
-
-#endif

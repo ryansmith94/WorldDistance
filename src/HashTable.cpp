@@ -1,9 +1,4 @@
-#ifndef HASHTABLE_CPP
-#define HASHTABLE_CPP
-#include <string>
 #include "HashTable.h"
-#include "Place.h"
-#include "Node.h"
 #define LOWER_A 97
 #define LOWER_Z 122
 #define UPPER_A 65
@@ -154,5 +149,3 @@ Node<Place>* HashTable::get(string address) {
 
     return NULL;
 }
-
-#endif

@@ -1,5 +1,6 @@
 #ifndef ModifyPlaceView_H
 #define ModifyPlaceView_H
+#include <iostream>
 #include "View.h"
 using namespace std;
 

@@ -1,5 +1,6 @@
 #ifndef Node_H
 #define Node_H
+#include <iostream>
 #include <cstddef>
 using namespace std;
 

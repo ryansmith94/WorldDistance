@@ -1,9 +1,9 @@
 #ifndef DeletePlacesView_H
 #define DeletePlacesView_H
 #include "View.h"
-
-class Place;
-class HashTable;
+#include <iostream>
+#include "Place.h"
+#include "HashTable.h"
 
 class DeletePlacesView: public View {
     public:

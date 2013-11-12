@@ -1,9 +1,4 @@
-#ifndef OptionsViewPlaces_CPP
-#define OptionsViewPlaces_CPP
-#include <iostream>
 #include "OptionsViewPlaces.h"
-#include "Place.h"
-#include "Node.h"
 #ifndef LF
 #define LF (char)0x0A
 #endif
@@ -25,5 +20,3 @@ OptionsViewPlaces* OptionsViewPlaces::display() {
     numberOfOptions = i;
     return this;
 }
-
-#endif

@@ -1,11 +1,10 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include <string>
+#include "Place.h"
 #include "Node.h"
 #define LIMIT 30
 using namespace std;
-
-class Place;
 
 class HashTable {
     private:

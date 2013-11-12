@@ -1,6 +1,7 @@
 #ifndef PlacesView_H
 #define PlacesView_H
 #include "View.h"
+#include <iostream>
 
 class PlacesView: public View {
     public:

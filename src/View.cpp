@@ -1,12 +1,4 @@
-#ifndef View_CPP
-#define View_CPP
-#include <iostream>
-#include <sstream>
-#include <string>
 #include "View.h"
-#include "Place.h"
-#include "HashTable.h"
-#include "OptionsViewPlaces.h"
 using namespace std;
 
 string View::getAddress(int rejectEmpty) {
@@ -41,5 +33,3 @@ View::View(Place* place, HashTable* hTable) {
     rootPlace = place;
     hashTable = hTable;
 }
-
-#endif

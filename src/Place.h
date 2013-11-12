@@ -4,7 +4,6 @@
 #include <string>
 #include <sstream>
 #include "LList.h"
-#include "HashTable.h"
 using namespace std;
 
 class HashTable;
