@@ -63,7 +63,7 @@ Describe(OptionsViewPlaces_class) {
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
 			view.display();
             Assert::That(view.getOption(), Equals(0));
-            Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
+            Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/validOuput1.txt"), Equals(1));
         }
         It(should_return_a_valid_option_inputted_below_maximum) {
             Node<Place>* opts;
@@ -78,7 +78,7 @@ Describe(OptionsViewPlaces_class) {
             TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", TMP_OUT);
 			view.display();
             Assert::That(view.getOption(), Equals(2));
-            Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getValidOption.txt"), Equals(1));
+            Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/validOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_below_minimum) {
             Node<Place>* opts;
@@ -93,7 +93,7 @@ Describe(OptionsViewPlaces_class) {
             TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", TMP_OUT);
 			view.display();
             Assert::That(view.getOption(), Equals(0));
-            Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+            Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/invalidOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_above_maximum) {
             Node<Place>* opts;
@@ -108,7 +108,7 @@ Describe(OptionsViewPlaces_class) {
             TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", TMP_OUT);
 			view.display();
             Assert::That(view.getOption(), Equals(2));
-            Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+            Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/invalidOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_of_wrong_type) {
             Node<Place>* opts;
@@ -123,7 +123,7 @@ Describe(OptionsViewPlaces_class) {
             TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", TMP_OUT);
 			view.display();
             Assert::That(view.getOption(), Equals(2));
-            Assert::That(compareFiles(TMP_OUT, "../test/OptionsView/getInvalidOption.txt"), Equals(1));
+            Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/invalidOuput1.txt"), Equals(1));
         }
     };
     Describe(getOptions_method) {
