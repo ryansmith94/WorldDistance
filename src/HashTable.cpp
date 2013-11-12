@@ -9,8 +9,8 @@
 #define LIMIT 30
 
 
-int HashTable::hash(string value) {
-    int asciiChar = value[index];
+int HashTable::hash(char value) {
+    int asciiChar = value;
 
     if (asciiChar >= LOWER_A && asciiChar <= LOWER_Z) {
         return asciiChar - LOWER_A;
@@ -29,7 +29,7 @@ int HashTable::hash(string value) {
 
 // Return the hashtable that the place is added to.
 HashTable* HashTable::addPlace(string address, Place* place) {
-    int key = hash(address);
+    int key = hash(address[index]);
 
     // Add to hashtable.
     if (placeTable[key] != NULL) {
@@ -57,7 +57,7 @@ HashTable* HashTable::addPlace(string address, Place* place) {
 
 // Return the hashtable that the place was removed from.
 HashTable* HashTable::removePlace(string address, Place* place) {
-    int key = hash(address);
+    int key = hash(address[index]);
 
     if (hashTable[key] != NULL) {
         if (address[index + 1] != NUL) {
@@ -130,7 +130,7 @@ HashTable* HashTable::remove(Place* place) {
 }
 
 Node<Place>* HashTable::get(string address) {
-    int key = hash(address);
+    int key = hash(address[index]);
 
     // Get from hashtable.
     if (hashTable[key] != NULL) {
@@ -140,10 +140,18 @@ Node<Place>* HashTable::get(string address) {
             return hashTable[key]->tableToNodes();
         }
     } else if (placeTable[key] != NULL) {
-        if (address[index + 1] != NUL) {
-            return NULL;
-        } else {
+        if (address[index + 1] == NUL) {
             return new Node<Place>(placeTable[key]);
+        } else{
+			string foundAddress = placeTable[key]->getAddress();
+			int i = index;
+			while (address[i] != NUL && hash(foundAddress[i]) == hash(address[i])) {
+				i += 1;
+			}
+			if (hash(foundAddress[i - 1]) == hash(address[i - 1])) {
+				return new Node<Place>(placeTable[key]);
+			}
+            return NULL;
         }
     }
 

@@ -13,7 +13,7 @@ class HashTable {
         int index;
         int count;
 
-        int hash(string value);
+        int hash(char value);
         HashTable* addPlace(string address, Place* place);
         HashTable* removePlace(string address, Place* place);
         Node<Place>* tableToNodes(Node<Place>* lastNode = NULL);
