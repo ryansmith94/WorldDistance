@@ -1,7 +1,4 @@
-#ifndef compareFiles_H
-#define compareFiles_H
-#include <cstring>
-#include <fstream>
+#include "compareFiles.h"
 
 int compareFiles(const char* outFile, const char* expectedFile) {
     int N = 100;
@@ -29,4 +26,3 @@ int compareFiles(const char* outFile, const char* expectedFile) {
 
     return result;
 }
-#endif
