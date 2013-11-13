@@ -11,12 +11,14 @@ all: ./tmp/testMain
 build: $(BUILDDIR)release
 
 test: ./tmp/testMain
+	cd $(TESTDIR) && ../tmp/testMain --output=color
+	rm tmp/*.txt
 
-run:
-	cd build && ./release
+run: 
+	cd $(BUILDDIR) && ./release
 
 clean:
-	rm build/*.o build/release
+	rm $(BUILDDIR)*.o build/release
 
 OptionsViewPlaces.o: $(SRCDIR)OptionsViewPlaces.cpp $(SRCDIR)OptionsViewPlaces.h $(SRCDIR)Place.h $(SRCDIR)OptionsView.h $(SRCDIR)Node.h
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
@@ -44,7 +46,6 @@ $(BUILDDIR)%.o: $(SRCDIR)%.cpp
 
 ./tmp/testMain: $(OBJECTS) $(BUILDDIR)testmain.o
 	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(BUILDDIR)testmain.o
-	cd test && ../tmp/testMain --output=color
 
 $(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o
