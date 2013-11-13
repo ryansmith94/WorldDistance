@@ -10,13 +10,11 @@ TESTDIR=./test/
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
-TESTFILES=$(AddPlacesView $(TESTDIR),main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable)
-OBJFILES=$(addprefix $(BUILDDIR),$(FILES))
 SRCFILES=$(addprefix $(SRCDIR),$(FILES))
-OBJECTS=$(addsuffix .o,$(OBJFILES))
+OBJECTS=$(addprefix $(BUILDDIR),$(addsuffix .o,$(FILES)))
 SOURCES=$(addsuffix .cpp,$(SRCFILES))
 HEADERS=$(addsuffix .h,$(SRCFILES))
-TESTS=$(addsuffix .cpp,$(TESTFILES))
+TESTS=$(addsuffix .cpp,$(addprefix $(TESTDIR),main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable))
 
 all: clean test build run
 
