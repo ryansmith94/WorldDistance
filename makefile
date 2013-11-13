@@ -4,26 +4,19 @@ LDFLAGS= -Wall
 SRCDIR=./src/
 BUILDDIR=./build/
 TESTDIR=./test/
-SOURCES=main.cpp hello.cpp factorial.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
+OBJECTS=$(BUILDDIR)HashTable.o $(BUILDDIR)Place.o $(BUILDDIR)OptionsViewPlaces.o $(BUILDDIR)View.o $(BUILDDIR)AddPlacesView.o $(BUILDDIR)DeletePlacesView.o $(BUILDDIR)DistanceView.o $(BUILDDIR)ModifyPlaceView.o  $(BUILDDIR)PlacesView.o $(BUILDDIR)DistanceApp.o
 
-AddPlacesView.o: $(SRCDIR)AddPlacesView.cpp $(SRCDIR)AddPlacesView.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
-	$(CC) $(CFLAGS) $(SRCDIR)AddPlacesView.cpp -o $(BUILDDIR)AddPlacesView.o
+all: ./tmp/testMain
 
-DeletePlacesView.o: $(SRCDIR)DeletePlacesView.cpp $(SRCDIR)DeletePlacesView.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
-	$(CC) $(CFLAGS) $(SRCDIR)DeletePlacesView.cpp -o $(BUILDDIR)DeletePlacesView.o
+build: $(BUILDDIR)release
 
-DistanceView.o: $(SRCDIR)DistanceView.cpp $(SRCDIR)DistanceView.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
-	$(CC) $(CFLAGS) $(SRCDIR)DistanceView.cpp -o $(BUILDDIR)DistanceView.o
+test: ./tmp/testMain
 
-ModifyPlaceView.o: $(SRCDIR)ModifyPlaceView.cpp $(SRCDIR)ModifyPlaceView.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
-	$(CC) $(CFLAGS) $(SRCDIR)ModifyPlaceView.cpp -o $(BUILDDIR)ModifyPlaceView.o
+run:
+	cd build && ./release
 
-PlacesView.o: $(SRCDIR)PlacesView.cpp $(SRCDIR)PlacesView.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
-	$(CC) $(CFLAGS) $(SRCDIR)PlacesView.cpp -o $(BUILDDIR)PlacesView.o
-
-View.o: $(SRCDIR)View.cpp $(SRCDIR)View.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)OptionsViewPlaces.h
-	$(CC) $(CFLAGS) $(SRCDIR)View.cpp -o $(BUILDDIR)View.o
+clean:
+	rm build/*.o build/release
 
 OptionsViewPlaces.o: $(SRCDIR)OptionsViewPlaces.cpp $(SRCDIR)OptionsViewPlaces.h $(SRCDIR)Place.h $(SRCDIR)OptionsView.h $(SRCDIR)Node.h
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
@@ -40,59 +33,20 @@ main.o: $(SRCDIR)main.cpp $(SRCDIR)main.h $(SRCDIR)DistanceApp.h
 Place.o: $(SRCDIR)Place.cpp $(SRCDIR)Place.h $(SRCDIR)LList.h $(SRCDIR)HashTable.h
 	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(BUILDDIR)Place.o
 
-testMain.o: $(TESTDIR)main.cpp $(TESTDIR)DistanceApp.cpp $(TESTDIR)DistanceView.cpp $(TESTDIR)LList.cpp $(TESTDIR)Node.cpp $(TESTDIR)OptionsView.cpp $(TESTDIR)OptionsViewPlaces.cpp $(TESTDIR)Place.cpp $(TESTDIR)HashTable.cpp
-	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $(BUILDDIR)testmain.o
+$(BUILDDIR)testmain.o: $(TESTDIR)main.cpp $(TESTDIR)DistanceApp.cpp $(TESTDIR)DistanceView.cpp $(TESTDIR)LList.cpp $(TESTDIR)Node.cpp $(TESTDIR)OptionsView.cpp $(TESTDIR)OptionsViewPlaces.cpp $(TESTDIR)Place.cpp $(TESTDIR)HashTable.cpp
+	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
+		
+$(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
+	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(BUILDDIR)$*View.o
+		
+$(BUILDDIR)%.o: $(SRCDIR)%.cpp
+	$(CC) $(CFLAGS) $(SRCDIR)$*.cpp -o $(BUILDDIR)$*.o
 
-test:
-	build
-	testMain.o
-	$(CC) $(LDFLAGS) -o \
-	./tmp/testMain \
-	./build/HashTable.o \
-	./build/Place.o \
-	./build/OptionsViewPlaces.o \
-	./build/View.o \
-	./build/AddPlacesView.o \
-	./build/DeletePlacesView.o \
-	./build/DistanceView.o \
-	./build/ModifyPlaceView.o \
-	./build/PlacesView.o \
-	./build/DistanceApp.o \
-	./build/testmain.o
-	cd test
-	../tmp/testMain --output=color
-	cd ..
+./tmp/testMain: $(OBJECTS) $(BUILDDIR)testmain.o
+	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(BUILDDIR)testmain.o
+	cd test && ../tmp/testMain --output=color
 
-build:
-	AddPlacesView.o
-	DeletePlacesView.o
-	DistanceView.o
-	ModifyPlaceView.o
-	PlacesView.o
-	View.o
-	OptionsViewPlaces.o
-	DistanceApp.o
-	HashTable.o
-	Place.o
-	main.o
-	$(COMPILER) $(LDFLAGS) -o \
-	./build/release \
-	./build/HashTable.o \
-	./build/Place.o \
-	./build/OptionsViewPlaces.o \
-	./build/View.o \
-	./build/AddPlacesView.o \
-	./build/DeletePlacesView.o \
-	./build/DistanceView.o \
-	./build/ModifyPlaceView.o \
-	./build/PlacesView.o \
-	./build/DistanceApp.o \
-	./build/main.o
+$(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
+	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o
 
-clean:
-	cd build
-	rm release
-	find . -name '*.o' -print0 | xargs -0 rm
-	cd ..
-
-.PHONY: test build clean
+.PHONY: all build test clean
