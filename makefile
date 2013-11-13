@@ -49,4 +49,4 @@ $(BUILDDIR)%.o: $(SRCDIR)%.cpp
 $(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o
 
-.PHONY: all build test clean
+.PHONY: all build test run clean
