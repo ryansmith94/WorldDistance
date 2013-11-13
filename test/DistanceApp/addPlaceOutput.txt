@@ -8,6 +8,8 @@ WORLD DISTANCE
 
 <	Please select an option (1-6): 
 ADD PLACE
+<	Please enter an address: <	Please enter the longitude: <	Please enter the latitude: 
+	New place added
 
 WORLD DISTANCE
 	1. Distance

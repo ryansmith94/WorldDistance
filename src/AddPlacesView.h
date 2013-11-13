@@ -8,9 +8,9 @@
 
 class AddPlacesView: public View {
     private:
-        float inputFloat(String out);
+        float inputFloat(string out);
     public:
-        AddPlacesView(Place* place, HashTable* hTable);
+        AddPlacesView(Place* place, HashTable* hashTable);
         AddPlacesView* start();
 };
 

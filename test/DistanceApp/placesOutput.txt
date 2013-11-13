@@ -8,6 +8,8 @@ WORLD DISTANCE
 
 <	Please select an option (1-6): 
 PLACES
+	1. UK, Earth
+
 
 WORLD DISTANCE
 	1. Distance

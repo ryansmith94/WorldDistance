@@ -4,19 +4,20 @@
 #endif
 using namespace std;
 
-float AddPlacesView::inputFloat(String out){
+float AddPlacesView::inputFloat(string out){
     float selected;
     string input;
-    
+    stringstream* myStream;
+
     do {
         cout << "<\t" << out << ": ";
         getline(cin, input);
-        stringstream myStream(input);
-    } while (!(myStream >> selected));
-    
+        myStream = new stringstream(input);
+    } while (!((*myStream) >> selected));
+
     return selected;
 }
-AddPlacesView::AddPlacesView(Place* place, HashTable* hTable) : View(place, hTable){}
+AddPlacesView::AddPlacesView(Place* place, HashTable* hashTable) : View(place, hashTable){}
 AddPlacesView* AddPlacesView::start() {
     string sInput;
     float lInput1, lInput2;
@@ -32,6 +33,6 @@ AddPlacesView* AddPlacesView::start() {
     Place* p = new Place(sInput, lInput1, lInput2);
 
     rootPlace->addChild(p);
-    hTable->add(p);
+    hashTable->add(p);
     return this;
 }
