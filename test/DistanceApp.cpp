@@ -15,6 +15,22 @@ Describe(DistanceApp_class) {
     It(should_expose_a_start_method) {
         Assert::That(!!(&DistanceApp::start), Equals(1));
     }
+    It(should_save_places) {
+        {
+            TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", TMP_OUT);
+            DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
+            app.start();
+        }
+        Assert::That(compareFiles(TMP_SAVE_OUT, "../test/Place/SaveTestData.txt"), Equals(1));
+    }
+    It(should_load_places) {
+        {
+            TestWithStdIO ioTest("../test/DistanceApp/distanceInput.txt", TMP_OUT);
+            DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
+            app.start();
+        }
+        Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/distanceOutput.txt"), Equals(1));
+    }
     Describe(start_method) {
         It(should_return_the_distance_app) {
             TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", TMP_OUT);
@@ -100,22 +116,6 @@ Describe(DistanceApp_class) {
                 app.start();
             }
             Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/quitValidOutput.txt"), Equals(1));
-        }
-        It(should_save_places) {
-            {
-                TestWithStdIO ioTest("../test/DistanceApp/quitValidInput.txt", TMP_OUT);
-                DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
-                app.start();
-            }
-            Assert::That(compareFiles(TMP_SAVE_OUT, "../test/Place/SaveTestData.txt"), Equals(1));
-        }
-        It(should_load_places) {
-            {
-                TestWithStdIO ioTest("../test/DistanceApp/distanceInput.txt", TMP_OUT);
-                DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
-                app.start();
-            }
-            Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/distanceOutput.txt"), Equals(1));
         }
     };
 };
