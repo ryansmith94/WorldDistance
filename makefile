@@ -7,6 +7,7 @@ LDFLAGS= -Wall
 SRCDIR=./src/
 BUILDDIR=./build/
 TESTDIR=./test/
+TMPDIR=./tmp/
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
@@ -20,15 +21,19 @@ all: clean test build run
 
 build: $(BUILDDIR)release
 
-test: ./tmp/testMain
+test: $(TMPDIR)testMain
 	cd $(TESTDIR) && ../tmp/testMain --output=color
-	rm tmp/*.txt
+	rm $(TMPDIR)*.txt
 
 run: 
 	cd $(BUILDDIR) && ./release
 
 clean:
 	rm $(BUILDDIR)*.o $(BUILDDIR)release
+
+watch:
+	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
+	wr "make test" src test
 
 OptionsViewPlaces.o: $(SRCDIR)OptionsViewPlaces.cpp $(SRCDIR)OptionsViewPlaces.h $(SRCDIR)Place.h $(SRCDIR)OptionsView.h $(SRCDIR)Node.h
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
@@ -54,10 +59,10 @@ $(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDI
 $(BUILDDIR)%.o: $(SRCDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
-./tmp/testMain: $(OBJECTS) $(BUILDDIR)testmain.o
+$(TMPDIR)testMain: $(OBJECTS) $(BUILDDIR)testmain.o
 	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(BUILDDIR)testmain.o
 
 $(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o
 
-.PHONY: all build test run clean
+.PHONY: all build test run clean watch
