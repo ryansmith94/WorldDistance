@@ -1,10 +1,22 @@
+# Compiler Variables
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS= -Wall
+
+# Directories
 SRCDIR=./src/
 BUILDDIR=./build/
 TESTDIR=./test/
-OBJECTS=$(BUILDDIR)HashTable.o $(BUILDDIR)Place.o $(BUILDDIR)OptionsViewPlaces.o $(BUILDDIR)View.o $(BUILDDIR)AddPlacesView.o $(BUILDDIR)DeletePlacesView.o $(BUILDDIR)DistanceView.o $(BUILDDIR)ModifyPlaceView.o  $(BUILDDIR)PlacesView.o $(BUILDDIR)DistanceApp.o
+
+# Files
+FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
+TESTFILES=$(AddPlacesView $(TESTDIR),main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable)
+OBJFILES=$(addprefix $(BUILDDIR),$(FILES))
+SRCFILES=$(addprefix $(SRCDIR),$(FILES))
+OBJECTS=$(addsuffix .o,$(OBJFILES))
+SOURCES=$(addsuffix .cpp,$(SRCFILES))
+HEADERS=$(addsuffix .h,$(SRCFILES))
+TESTS=$(addsuffix .cpp,$(TESTFILES))
 
 all: clean test build run
 
@@ -18,12 +30,12 @@ run:
 	cd $(BUILDDIR) && ./release
 
 clean:
-	rm $(BUILDDIR)*.o build/release
+	rm $(BUILDDIR)*.o $(BUILDDIR)release
 
 OptionsViewPlaces.o: $(SRCDIR)OptionsViewPlaces.cpp $(SRCDIR)OptionsViewPlaces.h $(SRCDIR)Place.h $(SRCDIR)OptionsView.h $(SRCDIR)Node.h
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
 
-DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(SRCDIR)DistanceApp.h $(SRCDIR)OptionsView.h $(SRCDIR)Place.h $(SRCDIR)DistanceView.h $(SRCDIR)PlacesView.h $(SRCDIR)AddPlacesView.h $(SRCDIR)ModifyPlaceView.h $(SRCDIR)DeletePlacesView.h $(SRCDIR)HashTable.h
+DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $(BUILDDIR)DistanceApp.o
 
 HashTable.o: $(SRCDIR)HashTable.cpp $(SRCDIR)HashTable.h $(SRCDIR)Place.h $(SRCDIR)Node.h 
@@ -35,14 +47,14 @@ main.o: $(SRCDIR)main.cpp $(SRCDIR)main.h $(SRCDIR)DistanceApp.h
 Place.o: $(SRCDIR)Place.cpp $(SRCDIR)Place.h $(SRCDIR)LList.h $(SRCDIR)HashTable.h
 	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(BUILDDIR)Place.o
 
-$(BUILDDIR)testmain.o: $(TESTDIR)main.cpp $(TESTDIR)DistanceApp.cpp $(TESTDIR)DistanceView.cpp $(TESTDIR)LList.cpp $(TESTDIR)Node.cpp $(TESTDIR)OptionsView.cpp $(TESTDIR)OptionsViewPlaces.cpp $(TESTDIR)Place.cpp $(TESTDIR)HashTable.cpp
+$(BUILDDIR)testmain.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 		
 $(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
 	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(BUILDDIR)$*View.o
 		
 $(BUILDDIR)%.o: $(SRCDIR)%.cpp
-	$(CC) $(CFLAGS) $(SRCDIR)$*.cpp -o $(BUILDDIR)$*.o
+	$(CC) $(CFLAGS) $< -o $@
 
 ./tmp/testMain: $(OBJECTS) $(BUILDDIR)testmain.o
 	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(BUILDDIR)testmain.o
