@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <fstream>
 #include <iostream>
-using namespace igloo;
 
 class TestWithStdIO {
         std::streambuf *cinbuf;

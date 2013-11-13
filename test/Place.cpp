@@ -1,6 +1,7 @@
 #ifndef TestPlace_H
 #define TestPlace_H
 #include "../src/Place.h"
+#include "../src/HashTable.h"
 #include "compareFiles.cpp"
 #include "igloo/igloo_alt.h"
 using namespace igloo;
