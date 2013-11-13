@@ -19,7 +19,7 @@ HEADERS=$(addsuffix .h,$(SRCFILES))
 TESTS=$(addsuffix .cpp,$(addprefix $(TESTDIR),$(TESTFILES)))
 TESTSOBJS=$(addsuffix .o,$(addprefix $(TMPDIR),$(TESTFILES)))
 
-all: clean test build run
+all: test build
 
 build: $(BUILDDIR)release
 
