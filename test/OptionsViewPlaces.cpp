@@ -1,8 +1,8 @@
 #ifndef TestOptionsViewPlaces_H
 #define TestOptionsViewPlaces_H
 #include "../src/OptionsViewPlaces.h"
-#include "TestWithStdIO.cpp"
-#include "compareFiles.cpp"
+#include "TestWithStdIO.h"
+#include "compareFiles.h"
 #include "igloo/igloo_alt.h"
 #ifndef TMP_OUT
 #define TMP_OUT "../tmp/out.txt"

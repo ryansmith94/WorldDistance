@@ -11,17 +11,19 @@ TMPDIR=./tmp/
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
+TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable TestWithStdIO compareFiles
 SRCFILES=$(addprefix $(SRCDIR),$(FILES))
 OBJECTS=$(addprefix $(BUILDDIR),$(addsuffix .o,$(FILES)))
 SOURCES=$(addsuffix .cpp,$(SRCFILES))
 HEADERS=$(addsuffix .h,$(SRCFILES))
-TESTS=$(addsuffix .cpp,$(addprefix $(TESTDIR),main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable))
+TESTS=$(addsuffix .cpp,$(addprefix $(TESTDIR),$(TESTFILES)))
+TESTSOBJS=$(addsuffix .o,$(addprefix $(TMPDIR),$(TESTFILES)))
 
 all: clean test build run
 
 build: $(BUILDDIR)release
 
-test: $(TMPDIR)testMain
+test: $(TESTSOBJS) $(OBJECTS) $(TMPDIR)testMain
 	cd $(TESTDIR) && ../tmp/testMain --output=color
 	rm $(TMPDIR)*.txt
 
@@ -29,7 +31,7 @@ run:
 	cd $(BUILDDIR) && ./release
 
 clean:
-	rm $(BUILDDIR)*.o $(BUILDDIR)release
+	rm $(BUILDDIR)*.o $(BUILDDIR)release $(TMPDIR)*.o
 
 watch:
 	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
@@ -50,7 +52,7 @@ main.o: $(SRCDIR)main.cpp $(SRCDIR)main.h $(SRCDIR)DistanceApp.h
 Place.o: $(SRCDIR)Place.cpp $(SRCDIR)Place.h $(SRCDIR)LList.h $(SRCDIR)HashTable.h
 	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(BUILDDIR)Place.o
 
-$(BUILDDIR)testmain.o: $(TESTS)
+$(TMPDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 		
 $(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
@@ -59,8 +61,11 @@ $(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDI
 $(BUILDDIR)%.o: $(SRCDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
-$(TMPDIR)testMain: $(OBJECTS) $(BUILDDIR)testmain.o
-	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(BUILDDIR)testmain.o
+$(TMPDIR)%.o: $(TESTDIR)%.cpp
+	$(CC) $(CFLAGS) $< -o $@
+
+$(TMPDIR)testMain: $(OBJECTS) $(TMPDIR)main.o
+	$(CC) $(LDFLAGS) -o $@ $(TESTSOBJS) $(OBJECTS)
 
 $(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o

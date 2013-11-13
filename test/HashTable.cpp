@@ -1,5 +1,5 @@
-#ifndef HashTable_H
-#define HashTable_H
+#ifndef TestHashTable_H
+#define TestHashTable_H
 #include "../src/HashTable.h"
 #include "igloo/igloo_alt.h"
 using namespace igloo;

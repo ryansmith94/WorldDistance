@@ -1,8 +1,8 @@
 #ifndef TestDistanceApp_H
 #define TestDistanceApp_H
 #include "../src/DistanceApp.h"
-#include "TestWithStdIO.cpp"
-#include "compareFiles.cpp"
+#include "TestWithStdIO.h"
+#include "compareFiles.h"
 #include "igloo/igloo_alt.h"
 #ifndef TMP_OUT
 #define TMP_OUT "../tmp/out.txt"
