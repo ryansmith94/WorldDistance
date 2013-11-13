@@ -31,7 +31,7 @@ run:
 	cd $(BUILDDIR) && ./release
 
 clean:
-	rm $(BUILDDIR)*.o $(BUILDDIR)release $(TMPDIR)*.o
+	\rm -f $(BUILDDIR)*.o $(BUILDDIR)release $(TMPDIR)*.o
 
 watch:
 	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
