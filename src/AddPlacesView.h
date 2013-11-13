@@ -7,6 +7,8 @@
 #include "View.h"
 
 class AddPlacesView: public View {
+    private:
+        float inputFloat(String out);
     public:
         AddPlacesView(Place* place, HashTable* hTable);
         AddPlacesView* start();
