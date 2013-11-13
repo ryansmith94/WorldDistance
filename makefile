@@ -6,7 +6,7 @@ BUILDDIR=./build/
 TESTDIR=./test/
 OBJECTS=$(BUILDDIR)HashTable.o $(BUILDDIR)Place.o $(BUILDDIR)OptionsViewPlaces.o $(BUILDDIR)View.o $(BUILDDIR)AddPlacesView.o $(BUILDDIR)DeletePlacesView.o $(BUILDDIR)DistanceView.o $(BUILDDIR)ModifyPlaceView.o  $(BUILDDIR)PlacesView.o $(BUILDDIR)DistanceApp.o
 
-all: ./tmp/testMain
+all: clean test build run
 
 build: $(BUILDDIR)release
 
