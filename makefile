@@ -35,27 +35,27 @@ clean:
 
 watch:
 	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
-	wr "make test" src test
+	wr "make all" src test
 
-OptionsViewPlaces.o: $(SRCDIR)OptionsViewPlaces.cpp $(SRCDIR)OptionsViewPlaces.h $(SRCDIR)Place.h $(SRCDIR)OptionsView.h $(SRCDIR)Node.h
+OptionsViewPlaces.o: $(addprefix $(SRCDIR),OptionsViewPlaces.cpp OptionsViewPlaces.h Place.h OptionsView.h Node.h)
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
 
 DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $(BUILDDIR)DistanceApp.o
 
-HashTable.o: $(SRCDIR)HashTable.cpp $(SRCDIR)HashTable.h $(SRCDIR)Place.h $(SRCDIR)Node.h 
+HashTable.o: $(addprefix $(SRCDIR),HashTable.cpp HashTable.h Place.h Node.h)
 	$(CC) $(CFLAGS) $(SRCDIR)HashTable.cpp -o $(BUILDDIR)HashTable.o
 
-main.o: $(SRCDIR)main.cpp $(SRCDIR)main.h $(SRCDIR)DistanceApp.h
+main.o: $(addprefix $(SRCDIR),main.cpp main.h DistanceApp.h)
 	$(CC) $(CFLAGS) $(SRCDIR)main.cpp -o $(BUILDDIR)main.o
 
-Place.o: $(SRCDIR)Place.cpp $(SRCDIR)Place.h $(SRCDIR)LList.h $(SRCDIR)HashTable.h
+Place.o: $(addprefix $(SRCDIR),Place.cpp Place.h LList.h HashTable.h)
 	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(BUILDDIR)Place.o
 
 $(TMPDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 		
-$(BUILDDIR)%View.o: $(SRCDIR)%View.cpp $(SRCDIR)%View.h $(SRCDIR)Place.h $(SRCDIR)HashTable.h $(SRCDIR)View.h
+$(BUILDDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h)
 	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(BUILDDIR)$*View.o
 		
 $(BUILDDIR)%.o: $(SRCDIR)%.cpp
