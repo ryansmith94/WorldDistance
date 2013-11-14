@@ -129,6 +129,15 @@ Place* Place::loadPlace(string dataLocation, HashTable* ht){
 	return this;
 }
 
+int Place::getIndexOfChild(string searchTerm) {
+	for (int n = 0; n<children.getSize(); n++) {
+		if (children.getData(n)->getName() == searchTerm) {
+			return n;
+		}
+	}
+	return -1;
+}
+
 
 Place* Place::savePlace(string dataLocation){
 	ofstream myfile(dataLocation.c_str());
