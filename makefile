@@ -55,7 +55,7 @@ Place.o: $(addprefix $(SRCDIR),Place.cpp Place.h LList.h HashTable.h)
 $(TMPDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 		
-$(BUILDDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h)
+$(BUILDDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h OptionsView.h)
 	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(BUILDDIR)$*View.o
 		
 $(BUILDDIR)%.o: $(SRCDIR)%.cpp
