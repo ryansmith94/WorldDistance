@@ -12,8 +12,8 @@ class View {
     protected:
         Place* rootPlace;
         HashTable* hashTable;
-        string getAddress(int rejectEmpty = 0);
-        Place* getPlace();
+        string getAddress(int rejectEmpty = 0, string message = "");
+        Place* getPlace(string message = "");
     public:
         View(Place* place, HashTable* hTable);
         virtual View* start() =0;

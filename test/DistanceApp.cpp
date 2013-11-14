@@ -85,7 +85,7 @@ Describe(DistanceApp_class) {
             }
             Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/placesOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_add_place_view_if_that_option_is_chosen) {
+        It(should_show_the_add_place_view_if_that_option_is_chosen) {
             {
                 TestWithStdIO ioTest("../test/DistanceApp/addPlaceInput.txt", TMP_OUT);
                 DistanceApp app(LOAD_IN, TMP_SAVE_OUT);

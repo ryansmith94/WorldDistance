@@ -15,7 +15,7 @@ class OptionsView {
     public:
         OptionsView(OptionType* opts, int len);
         OptionsView* display();
-        int getOption();
+        int getOption(string message = "");
         OptionType* getOptions();
 };
 
@@ -35,15 +35,20 @@ OptionsView<OptionType>* OptionsView<OptionType>::display() {
 }
 
 template <class OptionType>
-int OptionsView<OptionType>::getOption() {
+int OptionsView<OptionType>::getOption(string message) {
     int selected = -1;
     string input;
 
     do {
-        cout << "<\tPlease select an option (1-" << numberOfOptions <<  "): ";
+        if (message == "") {
+            cout << "<\tPlease select an option (1-" << numberOfOptions << "): ";
+        } else {
+            cout << "<\t" << message << ": ";
+        }
         getline(cin, input);
         stringstream myStream(input);
         myStream >> selected;
+        
     } while (selected < 1 || selected > numberOfOptions);
 
     return (selected - 1);
