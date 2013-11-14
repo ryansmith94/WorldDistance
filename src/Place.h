@@ -36,6 +36,7 @@ class Place {
 		Place* addChild(Place* newPlace);
 		Place* removeChild(int index);
 		Place* loadPlace(string dataLocation, HashTable* ht);
+		int getIndexOfChild(string searchTerm);
 		Place* savePlace(string dataLocation);
 		string getAddress();
 };
