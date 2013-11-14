@@ -2,7 +2,9 @@
 .DS_Store
 
 # Temporary files
-tmp/
+tmp/src/**
+tmp/test/**
+tmp/testMain
 
 # Stackdump
 **.stackdump
