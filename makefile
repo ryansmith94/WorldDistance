@@ -6,6 +6,8 @@ LDFLAGS= -Wall
 # Directories
 SRCDIR=./src/
 BUILDDIR=./build/
+SRCOBJDIR=./tmp/src/
+TESTOBJDIR=./tmp/test/
 TESTDIR=./test/
 TMPDIR=./tmp/
 
@@ -13,11 +15,11 @@ TMPDIR=./tmp/
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
 TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable TestWithStdIO compareFiles
 SRCFILES=$(addprefix $(SRCDIR),$(FILES))
-OBJECTS=$(addprefix $(BUILDDIR),$(addsuffix .o,$(FILES)))
+OBJECTS=$(addprefix $(SRCOBJDIR),$(addsuffix .o,$(FILES)))
 SOURCES=$(addsuffix .cpp,$(SRCFILES))
 HEADERS=$(addsuffix .h,$(SRCFILES))
 TESTS=$(addsuffix .cpp,$(addprefix $(TESTDIR),$(TESTFILES)))
-TESTSOBJS=$(addsuffix .o,$(addprefix $(TMPDIR),$(TESTFILES)))
+TESTSOBJS=$(addsuffix .o,$(addprefix $(TESTOBJDIR),$(TESTFILES)))
 
 all: test build
 
@@ -31,43 +33,43 @@ run:
 	cd $(BUILDDIR) && ./release
 
 clean:
-	\rm -f $(BUILDDIR)*.o $(BUILDDIR)release $(TMPDIR)*.o
+	\rm -f $(SRCOBJDIR)*.o $(BUILDDIR)release $(TESTOBJDIR)*.o
 
 watch:
 	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
 	wr "make all" src test
 
-OptionsViewPlaces.o: $(addprefix $(SRCDIR),OptionsViewPlaces.cpp OptionsViewPlaces.h Place.h OptionsView.h Node.h)
-	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(BUILDDIR)OptionsViewPlaces.o
+$(SRCOBJDIR)OptionsViewPlaces.o: $(addprefix $(SRCDIR),OptionsViewPlaces.cpp OptionsViewPlaces.h Place.h OptionsView.h Node.h)
+	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(SRCOBJDIR)OptionsViewPlaces.o
 
-DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(HEADERS)
-	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $(BUILDDIR)DistanceApp.o
+$(SRCOBJDIR)DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(HEADERS)
+	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $(SRCOBJDIR)DistanceApp.o
 
-HashTable.o: $(addprefix $(SRCDIR),HashTable.cpp HashTable.h Place.h Node.h)
-	$(CC) $(CFLAGS) $(SRCDIR)HashTable.cpp -o $(BUILDDIR)HashTable.o
+$(SRCOBJDIR)HashTable.o: $(addprefix $(SRCDIR),HashTable.cpp HashTable.h Place.h Node.h)
+	$(CC) $(CFLAGS) $(SRCDIR)HashTable.cpp -o $(SRCOBJDIR)HashTable.o
 
-main.o: $(addprefix $(SRCDIR),main.cpp main.h DistanceApp.h)
-	$(CC) $(CFLAGS) $(SRCDIR)main.cpp -o $(BUILDDIR)main.o
+$(SRCOBJDIR)main.o: $(addprefix $(SRCDIR),main.cpp DistanceApp.h)
+	$(CC) $(CFLAGS) $(SRCDIR)main.cpp -o $(SRCOBJDIR)main.o
 
-Place.o: $(addprefix $(SRCDIR),Place.cpp Place.h LList.h HashTable.h)
-	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(BUILDDIR)Place.o
+$(SRCOBJDIR)Place.o: $(addprefix $(SRCDIR),Place.cpp Place.h LList.h HashTable.h)
+	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(SRCOBJDIR)Place.o
 
-$(TMPDIR)main.o: $(TESTS)
+$(TESTOBJDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 		
-$(BUILDDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h OptionsView.h)
-	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(BUILDDIR)$*View.o
+$(SRCOBJDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h OptionsView.h)
+	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(SRCOBJDIR)$*View.o
 		
-$(BUILDDIR)%.o: $(SRCDIR)%.cpp
+$(SRCOBJDIR)%.o: $(SRCDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
-$(TMPDIR)%.o: $(TESTDIR)%.cpp
+$(TESTOBJDIR)%.o: $(TESTDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
-$(TMPDIR)testMain: $(OBJECTS) $(TMPDIR)main.o
+$(TMPDIR)testMain: $(OBJECTS) $(TESTOBJDIR)main.o
 	$(CC) $(LDFLAGS) -o $@ $(TESTSOBJS) $(OBJECTS)
 
-$(BUILDDIR)release: $(OBJECTS) $(BUILDDIR)main.o
-	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(BUILDDIR)main.o
+$(BUILDDIR)release: $(OBJECTS) $(SRCOBJDIR)main.o
+	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(SRCOBJDIR)main.o
 
 .PHONY: all build test run clean watch
