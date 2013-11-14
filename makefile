@@ -4,12 +4,12 @@ CFLAGS=-c -Wall
 LDFLAGS= -Wall
 
 # Directories
-SRCDIR=./src/
-BUILDDIR=./build/
-SRCOBJDIR=./tmp/src/
-TESTOBJDIR=./tmp/test/
-TESTDIR=./test/
-TMPDIR=./tmp/
+SRCDIR=src/
+BUILDDIR=build/
+TESTDIR=test/
+TMPDIR=tmp/
+SRCOBJDIR=$(TMPDIR)$(SRCDIR)
+TESTOBJDIR=$(TMPDIR)$(TESTDIR)
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
