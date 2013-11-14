@@ -36,7 +36,17 @@ clean:
 	\rm -f $(SRCOBJDIR)*.o $(BUILDDIR)release $(TESTOBJDIR)*.o
 
 watch:
-	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
+	if ! type "wr" > /dev/null; then \
+		if ! type "npm" > /dev/null; then \
+			if type "ruby" > /dev/null; then \
+				ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)" \
+			; fi && \
+			if ! type "ruby" > /dev/null; then \
+				cd .. && git clone git://github.com/ry/node.git && cd node && ./configure && make && sudo make install \
+			; fi \
+		; fi && \
+		sudo npm install wr -g \
+	; fi
 	wr "make all" src test
 
 $(TESTOBJDIR):
