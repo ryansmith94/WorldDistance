@@ -23,9 +23,9 @@ TESTSOBJS=$(addsuffix .o,$(addprefix $(TESTOBJDIR),$(TESTFILES)))
 
 all: test build
 
-build: $(BUILDDIR)release
+build: $(SRCOBJDIR) $(BUILDDIR)release
 
-test: $(TESTSOBJS) $(OBJECTS) $(TMPDIR)testMain
+test: $(TESTOBJDIR) $(SRCOBJDIR) $(TESTSOBJS) $(OBJECTS) $(TMPDIR)testMain
 	cd $(TESTDIR) && ../tmp/testMain --output=color
 	rm $(TMPDIR)*.txt
 
@@ -38,6 +38,12 @@ clean:
 watch:
 	if ! type "wr" > /dev/null; then sudo npm install wr -g; fi
 	wr "make all" src test
+
+$(TESTOBJDIR):
+	mkdir -p $@
+
+$(SRCOBJDIR):
+	mkdir -p $@
 
 $(SRCOBJDIR)OptionsViewPlaces.o: $(addprefix $(SRCDIR),OptionsViewPlaces.cpp OptionsViewPlaces.h Place.h OptionsView.h Node.h)
 	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(SRCOBJDIR)OptionsViewPlaces.o
