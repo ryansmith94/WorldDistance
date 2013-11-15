@@ -96,6 +96,9 @@ void LList<T>::remove(int index){
 }
 template <class T>
 T* LList<T>::getData(int index){
+	if (index < 0) {
+		return NULL;
+	}
 	Node<T> *node = first;
 	for (int i=0;i<index;i++){
 		node = node->getNext();
