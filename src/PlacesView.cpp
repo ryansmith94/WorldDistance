@@ -6,18 +6,15 @@ using namespace std;
 
 PlacesView::PlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 PlacesView* PlacesView::start() {
-    
-	cout << rootPlace->getName() << "\tcontains " << rootPlace->getNbrChildren() << " Children:" << endl << endl;
+    string address = getAddress(0);
+    Node<Place>* node = hashTable->get(address);
 
-	cout << "Name" << "\t\t| " << "Longitude" << "\t| " << "Latitude" << endl;
+	cout << "\tAddress (Longitude, Latitude)" << LF;
 
-	for (int i=0; i < rootPlace->getNbrChildren(); i++) {
-		Place* child = rootPlace->getChild(i);
-
-		// Tab Aesthetics for longer names (Greater than tab width (8) - 2 (see cout's second param))
-		string n = (child->getName().length()<6) ? (child->getName()+"\t"):(child->getName());
-
-		cout << ". " << n << "\t| " << child->getLongitude() << "\t| " << child->getLatitude() << endl;
+	while (node != NULL && node->getData() != NULL) {
+		Place* place = node->getData();
+		cout << "\t" << place->getAddress() << " (" << place->getLongitude() << ", " << place->getLatitude() << ")" << LF;
+        node = node->getNext();
 	}
 
 	return this;
