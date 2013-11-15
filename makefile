@@ -74,7 +74,7 @@ $(TESTOBJDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
 
 $(SRCOBJDIR)PlacesView.o: $(addprefix $(SRCDIR),PlacesView.cpp PlacesView.h Place.h HashTable.h View.h OptionsView.h Node.h)
-	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $@
+	$(CC) $(CFLAGS) $(SRCDIR)PlacesView.cpp -o $@
 		
 $(SRCOBJDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h OptionsView.h)
 	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $@
