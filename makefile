@@ -56,25 +56,28 @@ $(SRCOBJDIR):
 	mkdir -p $@
 
 $(SRCOBJDIR)OptionsViewPlaces.o: $(addprefix $(SRCDIR),OptionsViewPlaces.cpp OptionsViewPlaces.h Place.h OptionsView.h Node.h)
-	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $(SRCOBJDIR)OptionsViewPlaces.o
+	$(CC) $(CFLAGS) $(SRCDIR)OptionsViewPlaces.cpp -o $@
 
 $(SRCOBJDIR)DistanceApp.o: $(SRCDIR)DistanceApp.cpp $(HEADERS)
-	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $(SRCOBJDIR)DistanceApp.o
+	$(CC) $(CFLAGS) $(SRCDIR)DistanceApp.cpp -o $@
 
 $(SRCOBJDIR)HashTable.o: $(addprefix $(SRCDIR),HashTable.cpp HashTable.h Place.h Node.h)
-	$(CC) $(CFLAGS) $(SRCDIR)HashTable.cpp -o $(SRCOBJDIR)HashTable.o
+	$(CC) $(CFLAGS) $(SRCDIR)HashTable.cpp -o $@
 
 $(SRCOBJDIR)main.o: $(addprefix $(SRCDIR),main.cpp DistanceApp.h)
-	$(CC) $(CFLAGS) $(SRCDIR)main.cpp -o $(SRCOBJDIR)main.o
+	$(CC) $(CFLAGS) $(SRCDIR)main.cpp -o $@
 
 $(SRCOBJDIR)Place.o: $(addprefix $(SRCDIR),Place.cpp Place.h LList.h HashTable.h)
-	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $(SRCOBJDIR)Place.o
+	$(CC) $(CFLAGS) $(SRCDIR)Place.cpp -o $@
 
 $(TESTOBJDIR)main.o: $(TESTS)
 	$(CC) $(CFLAGS) $(TESTDIR)main.cpp -o $@
+
+$(SRCOBJDIR)PlacesView.o: $(addprefix $(SRCDIR),PlacesView.cpp PlacesView.h Place.h HashTable.h View.h OptionsView.h Node.h)
+	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $@
 		
 $(SRCOBJDIR)%View.o: $(addprefix $(SRCDIR),%View.cpp %View.h Place.h HashTable.h View.h OptionsView.h)
-	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $(SRCOBJDIR)$*View.o
+	$(CC) $(CFLAGS) $(SRCDIR)$*View.cpp -o $@
 		
 $(SRCOBJDIR)%.o: $(SRCDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
@@ -86,6 +89,6 @@ $(TMPDIR)testMain: $(OBJECTS) $(TESTOBJDIR)main.o
 	$(CC) $(LDFLAGS) -o $@ $(TESTSOBJS) $(OBJECTS)
 
 $(BUILDDIR)release: $(OBJECTS) $(SRCOBJDIR)main.o
-	$(CC) $(LDFLAGS) -o $(BUILDDIR)release $(OBJECTS) $(SRCOBJDIR)main.o
+	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(SRCOBJDIR)main.o
 
 .PHONY: all build test run clean watch

@@ -130,9 +130,14 @@ HashTable* HashTable::remove(Place* place) {
 }
 
 Node<Place>* HashTable::get(string address) {
-    int key = hash(address[index]);
+    // Return entire hashtable.
+    if (address[index] == NUL) {
+        return tableToNodes();
+    }
 
     // Get from hashtable.
+    int key = hash(address[index]);
+
     if (hashTable[key] != NULL) {
         if (address[index + 1] != NUL) {
             return hashTable[key]->get(address);
