@@ -129,9 +129,9 @@ Place* Place::loadPlace(string dataLocation, HashTable* ht){
 	return this;
 }
 
-int Place::getIndexOfChild(string searchTerm) {
+int Place::getIndexOfChild(Place* searchPlace) {
 	for (int n = 0; n<children.getSize(); n++) {
-		if (children.getData(n)->getName() == searchTerm) {
+		if (children.getData(n) == searchPlace) {
 			return n;
 		}
 	}
