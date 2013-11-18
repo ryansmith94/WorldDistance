@@ -17,7 +17,19 @@ Place* View::getPlace(string message) {
 	Place* place = NULL;
 
 	do {
-		Node<Place>* matched = hashTable->get(getAddress(1, message));
+		int includeEarth = 0;
+		if (message == "includeEarth"){includeEarth = 1; message = "";}
+		Node<Place>* matched = NULL;
+		string address = getAddress(1, message);
+		if (includeEarth == 1 && rootPlace->getName().find(address)!=string::npos){
+			matched = new Node<Place>(rootPlace);
+		}
+		if(matched == NULL){
+			matched = hashTable->get(address);
+		}
+		else{
+			matched->setNext(hashTable->get(address));
+		}
 
         if (matched != NULL) {
             OptionsViewPlaces view(matched);
