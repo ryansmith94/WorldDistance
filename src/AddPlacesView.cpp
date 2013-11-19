@@ -25,13 +25,15 @@ AddPlacesView* AddPlacesView::start() {
     float latitude = inputFloat("Please enter the latitude");
 
     Place* p = new Place(name, longitude, latitude);
-
-    if (hashTable->add(p) != NULL) {
-        parent->addChild(p);
-        cout << "Place added" << LF;
-    } else {
-        cout << "Place could not be added" << LF;
-    }
+	parent->addChild(p);
+	cout << "Place added" << LF;
+	
+    //if (hashTable->add(p) != NULL) {
+    //    parent->addChild(p);
+    //    cout << "Place added" << LF;
+    //} else {
+    //    cout << "Place could not be added" << LF;
+    //}
 
 
 
