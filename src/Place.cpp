@@ -24,6 +24,7 @@ void Place::saveConstructor(ofstream *data,int depth){
 }
 
 Place::Place(string newName, float newLongitude, float newLatitude) {
+	hashTable = NULL;
 	name = newName;
 	longitude = newLongitude;
 	latitude = newLatitude;
@@ -33,6 +34,7 @@ Place::Place(string newName, float newLongitude, float newLatitude) {
 }
 
 Place::~Place() {
+	if (hashTable != NULL){hashTable->remove(this);}
 	matches->clear();
 	delete matches;
 }
@@ -87,6 +89,7 @@ int Place::getNbrChildren() {
 }
 
 Place* Place::addChild(Place* newPlace) {
+	newPlace->hashTable = hashTable;
 	newPlace->parent = this;
 	children.append(newPlace);
 	children.getData(children.getSize()-1)->setAddress();
@@ -99,6 +102,7 @@ Place* Place::removeChild(int index){
 }
 
 Place* Place::loadPlace(string dataLocation, HashTable* ht){
+	hashTable = ht;
 	ifstream myfile(dataLocation.c_str());
 	if (myfile.is_open()){
 		Place* placeToAddTo = this;
@@ -130,9 +134,13 @@ Place* Place::loadPlace(string dataLocation, HashTable* ht){
 }
 
 int Place::getIndexOfChild(Place* searchPlace) {
-	for (int n = 0; n<children.getSize(); n++) {
-		if (children.getData(n) == searchPlace) {
-			return n;
+	{
+		int n;
+		int len;
+		for(n = 0,len = children.getSize(); n<len; n++) {
+			if (children.getData(n) == searchPlace) {
+				return n;
+			}
 		}
 	}
 	return -1;

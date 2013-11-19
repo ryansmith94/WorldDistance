@@ -12,8 +12,7 @@ DeletePlacesView* DeletePlacesView::start() {
 
     cout << "\tAre you sure you want to delete?" << LF;
     if (view.display()->getOption() == 0) {
-        place->getParent()->removeChild(place->getIndexOfChild(place));
-        hashTable->remove(place);
+        place->getParent()->removeChild(place->getParent()->getIndexOfChild(place));
         cout << "Place deleted" << LF;
     } else {
         cout << "User abort" << LF;

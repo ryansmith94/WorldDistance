@@ -10,6 +10,7 @@ DistanceApp::DistanceApp(string loadLocation, string saveLocation) : rootPlace("
 }
 DistanceApp::~DistanceApp() {
     rootPlace.savePlace(dataLocation);
+	
 }
 DistanceApp* DistanceApp::start() {
     string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};

@@ -13,8 +13,8 @@
 using namespace std;
 
 class DistanceApp {
-        Place rootPlace;
         HashTable hashTable;
+		Place rootPlace;
         string dataLocation;
     public:
         DistanceApp(string loadLocation = "data.txt", string saveLocation = "data.txt");

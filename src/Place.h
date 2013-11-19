@@ -17,6 +17,7 @@ class Place {
 		LList<Place> children;
 		string address;
 		LList<Place> *matches;
+		HashTable* hashTable;
 
 		void setAddress();
 		void saveConstructor(ofstream *data,int depth);
