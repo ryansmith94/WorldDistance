@@ -5,6 +5,8 @@
 using namespace std;
 
 class ModifyPlacesView: public View {
+	private:
+		float inputFloat(string message);
     public:
         ModifyPlacesView(Place* place, HashTable* hTable);
         ModifyPlacesView* start();
