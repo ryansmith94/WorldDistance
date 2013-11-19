@@ -8,7 +8,7 @@
 
 class AddPlacesView: public View {
     private:
-        float inputFloat(string out);
+        float inputFloat(string message);
     public:
         AddPlacesView(Place* place, HashTable* hashTable);
         AddPlacesView* start();
