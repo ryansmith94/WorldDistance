@@ -94,7 +94,7 @@ Place* Place::addChild(Place* newPlace) {
 	newPlace->hashTable = hashTable;
 	newPlace->parent = this;
 	children.append(newPlace);
-	children.getData(children.getSize()-1)->setAddress();
+	newPlace->setAddress();
 	return this;
 }
 
