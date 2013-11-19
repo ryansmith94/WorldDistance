@@ -6,7 +6,7 @@ using namespace std;
 
 PlacesView::PlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 PlacesView* PlacesView::start() {
-    string address = getAddress(0);
+    string address = getAddress(0, "Enter the name of a parent");
     Node<Place>* node = hashTable->get(address);
 
 	cout << "\tAddress (Longitude, Latitude)" << LF;

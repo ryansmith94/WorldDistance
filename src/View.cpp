@@ -11,6 +11,8 @@ string View::getAddress(int rejectEmpty, string message) {
         }
         getline(cin, address);
     } while (rejectEmpty == 1 && address == "");
+    /* Can I suggest an escape character of some kind? */
+    /* while ((rejectEmpty == 1 && address == "") || address != "cancel"); */
     return address;
 }
 Place* View::getPlace(Place* rtPlace, string message) {
