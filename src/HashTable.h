@@ -12,7 +12,9 @@ class HashTable {
         HashTable* hashTable[LIMIT];
         int index;
         int count;
+		Node<Place>* searchResults;
 
+		void clearResults();
         int hash(char value);
         HashTable* addPlace(string address, Place* place);
         HashTable* removePlace(string address, Place* place);

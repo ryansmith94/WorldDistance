@@ -107,6 +107,7 @@ Node<Place>* HashTable::tableToNodes(Node<Place>* lastNode) {
 HashTable::HashTable(int nIndex) {
     index = nIndex;
     count = 0;
+	searchResults = NULL;
 	for (int i = 0;i<LIMIT;i++){
 		placeTable[i] = NULL;
 		hashTable[i] = NULL;
@@ -114,6 +115,9 @@ HashTable::HashTable(int nIndex) {
 }
 
 HashTable::~HashTable() {
+	if (searchResults != NULL){
+		clearResults();
+	}
     for (int i = 0; i < LIMIT; i += 1) {
         if (hashTable[i] != NULL) {
             delete hashTable[i];
@@ -132,7 +136,11 @@ HashTable* HashTable::remove(Place* place) {
 Node<Place>* HashTable::get(string address) {
     // Return entire hashtable.
     if (address[index] == NUL) {
-        return tableToNodes();
+		if (searchResults != NULL){
+		clearResults();
+		}
+		searchResults = tableToNodes();
+        return searchResults;
     }
 
     // Get from hashtable.
@@ -142,7 +150,11 @@ Node<Place>* HashTable::get(string address) {
         if (address[index + 1] != NUL) {
             return hashTable[key]->get(address);
         } else {
-            return hashTable[key]->tableToNodes();
+			if (searchResults != NULL){
+			clearResults();
+			}
+			searchResults = hashTable[key]->tableToNodes();
+            return searchResults;
         }
     } else if (placeTable[key] != NULL) {
         if (address[index + 1] == NUL) {
@@ -161,4 +173,16 @@ Node<Place>* HashTable::get(string address) {
     }
 
     return NULL;
+}
+
+void HashTable::clearResults(){
+	if (searchResults!=NULL){
+		Node<Place>* current = searchResults;
+		while (current->getNext() != NULL){
+			current->setData(NULL);
+			current = current->getNext();
+		}
+		delete searchResults;
+		searchResults = NULL;
+	}
 }
