@@ -13,10 +13,9 @@ OptionsViewPlaces* OptionsViewPlaces::display(Place* rootPlace) {
 
     while (option != NULL && option->getData() != NULL) {
         if (option->getData() != rootPlace) {
-            cout << "\t" << i + 1 << ". " << option->getData()->getAddress() << LF;
+            cout << "\t" << ++i << ". " << option->getData()->getAddress() << LF;
         }
         option = option->getNext();
-        i += 1;
     }
 
     numberOfOptions = i;

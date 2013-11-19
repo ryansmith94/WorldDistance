@@ -19,7 +19,7 @@ Place* View::getPlace(Place* rtPlace, string message) {
 	do {
         Node<Place>* matched = hashTable->get(getAddress(1, message));
 
-        if (matched != NULL && matched->getData() != rtPlace) {
+        if (matched != NULL && (matched->getData() != rtPlace || matched->getNext() != NULL)) {
             OptionsViewPlaces view(matched);
             int selected = view.display(rtPlace)->getOption();
 
