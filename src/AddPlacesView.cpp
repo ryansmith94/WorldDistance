@@ -19,7 +19,7 @@ float AddPlacesView::inputFloat(string message){
 }
 AddPlacesView::AddPlacesView(Place* place, HashTable* hashTable) : View(place, hashTable){}
 AddPlacesView* AddPlacesView::start() {
-    Place* parent = getPlace("includeEarth");
+    Place* parent = getPlace();
     string name = getAddress(1, "Please enter the name");
     float longitude = inputFloat("Please enter the longitude");
     float latitude = inputFloat("Please enter the latitude");

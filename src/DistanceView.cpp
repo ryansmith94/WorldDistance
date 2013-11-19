@@ -24,8 +24,8 @@ DistanceView::DistanceView(Place* place, HashTable* hTable) : View(place, hTable
 DistanceView* DistanceView::start() {
     Place* place1;
     Place* place2;
-    place1 = getPlace();
-    place2 = getPlace();
+    place1 = getPlace(rootPlace);
+    place2 = getPlace(rootPlace);
     cout << LF << "\tThe distance is " << calculateDistance(place1, place2) << "km" << LF;
     return this;
 }

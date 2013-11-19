@@ -13,7 +13,7 @@ class View {
         Place* rootPlace;
         HashTable* hashTable;
         string getAddress(int rejectEmpty = 0, string message = "");
-        Place* getPlace(string message = "");
+        Place* getPlace(Place* rootPlace = NULL, string message = "");
     public:
         View(Place* place, HashTable* hTable);
         virtual View* start() =0;

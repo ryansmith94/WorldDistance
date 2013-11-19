@@ -13,7 +13,7 @@ class OptionsViewPlaces: public OptionsView<Node<Place> > {
         Node<Place>* options;
     public:
         OptionsViewPlaces(Node<Place>* opts);
-        OptionsViewPlaces* display();
+        OptionsViewPlaces* display(Place* rootPlace = NULL);
 };
 
 #endif

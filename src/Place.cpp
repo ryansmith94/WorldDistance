@@ -103,6 +103,8 @@ Place* Place::removeChild(int index){
 
 Place* Place::loadPlace(string dataLocation, HashTable* ht){
 	hashTable = ht;
+    ht->add(this);
+
 	ifstream myfile(dataLocation.c_str());
 	if (myfile.is_open()){
 		Place* placeToAddTo = this;
