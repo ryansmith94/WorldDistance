@@ -8,7 +8,7 @@ DeletePlacesView::DeletePlacesView(Place* place, HashTable* hTable) : View(place
 DeletePlacesView* DeletePlacesView::start() {
     string opts[2] = {"Yes", "No"};
     OptionsView<string> view(opts, 2);
-    Place* place = getPlace();
+    Place* place = getPlace(rootPlace);
 
     cout << "\tAre you sure you want to delete?" << LF;
     if (view.display()->getOption() == 0) {
