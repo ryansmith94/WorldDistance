@@ -7,14 +7,15 @@ using namespace std;
 OptionsViewPlaces::OptionsViewPlaces(Node<Place>* opts) : OptionsView<Node<Place> >(opts, 0) {
     options = opts;
 }
-OptionsViewPlaces* OptionsViewPlaces::display() {
+OptionsViewPlaces* OptionsViewPlaces::display(Place* rootPlace) {
     Node<Place>* option = options;
     int i = 0;
 
     while (option != NULL && option->getData() != NULL) {
-        cout << "\t" << i + 1 << ". " << option->getData()->getAddress() << LF;
+        if (option->getData() != rootPlace) {
+            cout << "\t" << ++i << ". " << option->getData()->getAddress() << LF;
+        }
         option = option->getNext();
-        i += 1;
     }
 
     numberOfOptions = i;

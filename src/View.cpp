@@ -13,27 +13,15 @@ string View::getAddress(int rejectEmpty, string message) {
     } while (rejectEmpty == 1 && address == "");
     return address;
 }
-Place* View::getPlace(string message) {
+Place* View::getPlace(Place* rtPlace, string message) {
 	Place* place = NULL;
 
 	do {
-		int includeEarth = 0;
-		if (message == "includeEarth"){includeEarth = 1; message = "";}
-		Node<Place>* matched = NULL;
-		string address = getAddress(1, message);
-		if (includeEarth == 1 && rootPlace->getName().find(address)!=string::npos){
-			matched = new Node<Place>(rootPlace);
-		}
-		if(matched == NULL){
-			matched = hashTable->get(address);
-		}
-		else{
-			matched->setNext(hashTable->get(address));
-		}
+        Node<Place>* matched = hashTable->get(getAddress(1, message));
 
-        if (matched != NULL) {
+        if (matched != NULL && (matched->getData() != rtPlace || matched->getNext() != NULL)) {
             OptionsViewPlaces view(matched);
-            int selected = view.display()->getOption();
+            int selected = view.display(rtPlace)->getOption();
 
             for (int i = 0; i < selected; i += 1) {
                 matched = matched->getNext();
