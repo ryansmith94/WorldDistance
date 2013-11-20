@@ -77,7 +77,7 @@ Describe(DistanceApp_class) {
             }
             Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/distanceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_places_view_if_that_option_is_chosen) {
+        It(should_show_the_places_view_if_that_option_is_chosen) {
             {
                 TestWithStdIO ioTest("../test/DistanceApp/placesInput.txt", TMP_OUT);
                 DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
@@ -93,7 +93,7 @@ Describe(DistanceApp_class) {
             }
             Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/addPlaceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_delete_place_view_if_that_option_is_chosen) {
+        It(should_show_the_delete_place_view_if_that_option_is_chosen) {
             {
                 TestWithStdIO ioTest("../test/DistanceApp/deletePlaceInput.txt", TMP_OUT);
                 DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
@@ -101,7 +101,7 @@ Describe(DistanceApp_class) {
             }
             Assert::That(compareFiles(TMP_OUT, "../test/DistanceApp/deletePlaceOutput.txt"), Equals(1));
         }
-        It_Skip(should_show_the_modify_place_view_if_that_option_is_chosen) {
+        It(should_show_the_modify_place_view_if_that_option_is_chosen) {
             {
                 TestWithStdIO ioTest("../test/DistanceApp/modifyPlaceInput.txt", TMP_OUT);
                 DistanceApp app(LOAD_IN, TMP_SAVE_OUT);
