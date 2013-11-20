@@ -21,14 +21,14 @@ Describe(OptionsViewPlaces_class) {
     }
     Describe(display_method) {
         It(should_print_options) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
             {
                 TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
                 view.display();
@@ -36,14 +36,14 @@ Describe(OptionsViewPlaces_class) {
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/validOutput1.txt"), Equals(1));
         }
         It(should_return_the_options_view_places) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
             Assert::That(view.display(), Equals(&view));
@@ -51,14 +51,14 @@ Describe(OptionsViewPlaces_class) {
     };
     Describe(getOption_method) {
         It(should_return_a_valid_option_inputted_above_minimum) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/validInput1.txt", TMP_OUT);
 			view.display();
@@ -66,14 +66,14 @@ Describe(OptionsViewPlaces_class) {
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/validOuput1.txt"), Equals(1));
         }
         It(should_return_a_valid_option_inputted_below_maximum) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/validInput2.txt", TMP_OUT);
 			view.display();
@@ -81,14 +81,14 @@ Describe(OptionsViewPlaces_class) {
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/validOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_below_minimum) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput1.txt", TMP_OUT);
 			view.display();
@@ -96,14 +96,14 @@ Describe(OptionsViewPlaces_class) {
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/invalidOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_above_maximum) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput2.txt", TMP_OUT);
 			view.display();
@@ -111,14 +111,14 @@ Describe(OptionsViewPlaces_class) {
             Assert::That(compareFiles(TMP_OUT, "../test/OptionsViewPlaces/invalidOuput1.txt"), Equals(1));
         }
         It(should_reject_an_invalid_option_of_wrong_type) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
             TestWithStdIO ioTest("../test/OptionsView/invalidInput3.txt", TMP_OUT);
 			view.display();
@@ -128,16 +128,16 @@ Describe(OptionsViewPlaces_class) {
     };
     Describe(getOptions_method) {
         It(should_return_all_of_the_options) {
-            Node<Place>* opts;
+            LList<Place> opts;
             Place place1("place1", 0.0, 0.0);
             Place place2("place2", 0.0, 0.0);
             Place place3("place3", 0.0, 0.0);
-            opts = new Node<Place>(&place1);
-            opts->setNext(new Node<Place>(&place2));
-            opts->getNext()->setNext(new Node<Place>(&place3));
-            OptionsViewPlaces view(opts);
+            opts.append(&place1);
+            opts.append(&place2);
+            opts.append(&place3);
+            OptionsViewPlaces view(&opts);
 
-            Assert::That(view.getOptions(), Equals(opts));
+            Assert::That(view.getOptions(), Equals(&opts));
         }
     };
 };

@@ -39,13 +39,13 @@ Describe(HashTable_class){
             Place place("earth", 0.0, 0.0);
             hashTable.add(&place);
             Assert::That(!!hashTable.get("e"), Equals(1));
-            Assert::That(hashTable.get("earth")->getData(), Equals(&place));
+            Assert::That(hashTable.get("earth")->getData(0), Equals(&place));
         }
         It(should_return_null_if_no_places_contain_the_given_address) {
             HashTable hashTable;
             Place place("earth", 0.0, 0.0);
             hashTable.add(&place);
-            Assert::That(hashTable.get("c") == NULL, Equals(1));
+            Assert::That(hashTable.get("c")->getSize(), Equals(0));
         }
     };
 };
