@@ -178,7 +178,7 @@ Node<Place>* HashTable::get(string address) {
 void HashTable::clearResults(){
 	if (searchResults!=NULL){
 		Node<Place>* current = searchResults;
-		while (current->getNext() != NULL){
+		while (current != NULL){
 			current->setData(NULL);
 			current = current->getNext();
 		}
