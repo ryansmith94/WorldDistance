@@ -107,17 +107,17 @@ Node<Place>* HashTable::tableToNodes(Place* rootPlace, Node<Place>* lastNode) {
 HashTable::HashTable(int nIndex) {
     index = nIndex;
     count = 0;
-	searchResults = NULL;
-	for (int i = 0;i<LIMIT;i++){
-		placeTable[i] = NULL;
-		hashTable[i] = NULL;
-	}
+    searchResults = NULL;
+    for (int i = 0;i<LIMIT;i++){
+        placeTable[i] = NULL;
+        hashTable[i] = NULL;
+    }
 }
 
 HashTable::~HashTable() {
-	if (searchResults != NULL){
-		clearResults();
-	}
+    if (searchResults != NULL){
+        clearResults();
+    }
     for (int i = 0; i < LIMIT; i += 1) {
         if (hashTable[i] != NULL) {
             delete hashTable[i];
@@ -136,10 +136,8 @@ HashTable* HashTable::remove(Place* place) {
 Node<Place>* HashTable::get(string address, Place* rootPlace) {
     // Return entire hashtable.
     if (address[index] == NUL) {
-		if (searchResults != NULL){
-		clearResults();
-		}
-		searchResults = tableToNodes(rootPlace);
+        clearResults();
+        searchResults = tableToNodes(rootPlace);
         return searchResults;
     }
 
@@ -148,29 +146,28 @@ Node<Place>* HashTable::get(string address, Place* rootPlace) {
 
     if (hashTable[key] != NULL) {
         if (address[index + 1] != NUL) {
-            return hashTable[key]->get(address);
+            return hashTable[key]->get(address, rootPlace);
         } else {
-			if (searchResults != NULL){
-			clearResults();
-			}
-			searchResults = hashTable[key]->tableToNodes(rootPlace);
+            clearResults();
+            searchResults = hashTable[key]->tableToNodes(rootPlace);
             return searchResults;
         }
     } else if (placeTable[key] != NULL) {
         if (address[index + 1] == NUL) {
-            return new Node<Place>(placeTable[key]);
-        } else{
-			if (rootPlace != placeTable[key]) {
-				string foundAddress = placeTable[key]->getAddress();
-				int i = index + 1;
-				while (address[i] != NUL && hash(foundAddress[i]) == hash(address[i])) {
-					i += 1;
-				}
-				if (address[i] == NUL || hash(foundAddress[i]) == hash(address[i])) {
-					return new Node<Place>(placeTable[key]);
-				}
-			}
-            return NULL;
+            if (placeTable[key] != rootPlace) {
+                return new Node<Place>(placeTable[key]);
+            }
+        } else {
+            if (rootPlace != placeTable[key]) {
+                string foundAddress = placeTable[key]->getAddress();
+                int i = index + 1;
+                while (address[i] != NUL && hash(foundAddress[i]) == hash(address[i])) {
+                    i += 1;
+                }
+                if ((address[i] == NUL || hash(foundAddress[i]) == hash(address[i])) && placeTable[key] != rootPlace) {
+                    return new Node<Place>(placeTable[key]);
+                }
+            }
         }
     }
 
@@ -178,13 +175,13 @@ Node<Place>* HashTable::get(string address, Place* rootPlace) {
 }
 
 void HashTable::clearResults(){
-	if (searchResults!=NULL){
-		Node<Place>* current = searchResults;
-		while (current->getNext() != NULL){
-			current->setData(NULL);
-			current = current->getNext();
-		}
-		delete searchResults;
-		searchResults = NULL;
-	}
+    if (searchResults!=NULL){
+        Node<Place>* current = searchResults;
+        while (current != NULL){
+            current->setData(NULL);
+            current = current->getNext();
+        }
+        delete searchResults;
+        searchResults = NULL;
+    }
 }
