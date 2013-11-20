@@ -19,25 +19,25 @@ float ModifyPlacesView::inputFloat(string message){
 }
 ModifyPlacesView::ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 ModifyPlacesView* ModifyPlacesView::start() {
-        Place* place = getPlace(rootPlace);
-        string opts[4] = {"Name", "Longitude", "Latitude", "Nothing"};
-        OptionsView<string> view(opts, 4);
-        int menuSelection = 0;
+    Place* place = getPlace(rootPlace);
+    string opts[3] = {"Name", "Longitude", "Latitude"};
+    OptionsView<string> view(opts, 3);
+    int menuSelection = 0;
 
-        do {
-            cout << LF << "\tWhat would you like to modify?" << LF;
-            switch (menuSelection = view.display()->getOption()) {
-                case 0:
-                    place->setName(getAddress(1, "Please enter the name"));
-                    break;
-                case 1:
-                    place->setLongitude(inputFloat("Please enter the longitude"));
-                    break;
-                case 2:
-                    place->setLatitude(inputFloat("Please enter the latitude"));
-                    break;
-            }
-        } while (menuSelection != 3);
+    do {
+        cout << LF << "\tWhat would you like to modify?" << LF;
+        switch (menuSelection = view.display()->getOption()) {
+            case 0:
+                place->setName(getAddress(1, "Please enter the name"));
+                break;
+            case 1:
+                place->setLongitude(inputFloat("Please enter the longitude"));
+                break;
+            case 2:
+                place->setLatitude(inputFloat("Please enter the latitude"));
+                break;
+        }
+    } while (menuSelection != 3);
 
-        return this;
-    }
+    return this;
+}

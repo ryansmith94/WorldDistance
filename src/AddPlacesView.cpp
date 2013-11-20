@@ -27,15 +27,6 @@ AddPlacesView* AddPlacesView::start() {
     Place* p = new Place(name, longitude, latitude);
 	parent->addChild(p);
 	cout << "Place added" << LF;
-	
-    //if (hashTable->add(p) != NULL) {
-    //    parent->addChild(p);
-    //    cout << "Place added" << LF;
-    //} else {
-    //    cout << "Place could not be added" << LF;
-    //}
-
-
 
     return this;
 }

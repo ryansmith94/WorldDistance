@@ -22,7 +22,9 @@ Place* View::getPlace(Place* rtPlace, string message) {
         if (matched->getSize() != 0) {
             OptionsViewPlaces view(matched);
             int selected = view.display()->getOption();
-            place = matched->getData(selected);
+            if (selected < matched->getSize()) {
+                place = matched->getData(selected);
+            }
         }
 	} while (place == NULL);
 
