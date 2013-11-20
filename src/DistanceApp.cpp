@@ -10,11 +10,11 @@ DistanceApp::DistanceApp(string loadLocation, string saveLocation) : rootPlace("
 }
 DistanceApp::~DistanceApp() {
     rootPlace.savePlace(dataLocation);
-	
+
 }
 DistanceApp* DistanceApp::start() {
-    string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
-    OptionsView<string> optionsView(opts, 6);
+    string opts[5] = {"Distance", "Places", "Add place", "Modify place", "Delete place"};
+    OptionsView<string> optionsView(opts, 5);
     DistanceView distanceView(&rootPlace, &hashTable);
     PlacesView placesView(&rootPlace, &hashTable);
     AddPlacesView addPlacesView(&rootPlace, &hashTable);

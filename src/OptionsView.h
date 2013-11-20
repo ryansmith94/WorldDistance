@@ -30,6 +30,7 @@ OptionsView<OptionType>* OptionsView<OptionType>::display() {
     for (int i = 0; i < numberOfOptions; i += 1) {
         cout << "\t" << i + 1 << ". " << options[i] << LF;
     }
+    cout << "\t" << numberOfOptions + 1 << ". Exit" << LF;
     cout << LF;
     return this;
 }
@@ -41,7 +42,7 @@ int OptionsView<OptionType>::getOption(string message) {
 
     do {
         if (message == "") {
-            cout << "<\tPlease select an option (1-" << numberOfOptions << "): ";
+            cout << "<\tPlease select an option (1-" << numberOfOptions + 1 << "): ";
         } else {
             cout << "<\t" << message << ": ";
         }
@@ -49,7 +50,7 @@ int OptionsView<OptionType>::getOption(string message) {
         stringstream myStream(input);
         myStream >> selected;
         
-    } while (selected < 1 || selected > numberOfOptions);
+    } while (selected < 1 || selected > numberOfOptions + 1);
 
     return (selected - 1);
 }

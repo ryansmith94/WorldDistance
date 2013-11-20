@@ -19,9 +19,9 @@ float ModifyPlacesView::inputFloat(string message){
 }
 ModifyPlacesView::ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 ModifyPlacesView* ModifyPlacesView::start() {
-        string opts[4] = {"Name", "Longitude", "Latitude", "Nothing"};
-        OptionsView<string> view(opts, 4);
     Place* place = getPlace(rootPlace);
+    string opts[3] = {"Name", "Longitude", "Latitude"};
+    OptionsView<string> view(opts, 3);
     int menuSelection = 0;
 
     do {
