@@ -5,6 +5,7 @@
 #include <string>
 #include "Place.h"
 #include "HashTable.h"
+#include "LList.h"
 #include "OptionsViewPlaces.h"
 using namespace std;
 

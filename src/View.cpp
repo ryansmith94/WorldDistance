@@ -17,17 +17,12 @@ Place* View::getPlace(Place* rtPlace, string message) {
 	Place* place = NULL;
 
 	do {
-        Node<Place>* matched = hashTable->get(getAddress(1, message), rtPlace);
+        LList<Place>* matched = hashTable->get(getAddress(1, message), rtPlace);
 
-        if (matched != NULL) {
+        if (matched->getSize() != 0) {
             OptionsViewPlaces view(matched);
             int selected = view.display()->getOption();
-
-            for (int i = 0; i < selected; i += 1) {
-                matched = matched->getNext();
-            }
-
-            place = matched->getData();
+            place = matched->getData(selected);
         }
 	} while (place == NULL);
 
