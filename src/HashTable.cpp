@@ -134,9 +134,10 @@ HashTable* HashTable::remove(Place* place) {
 }
 
 Node<Place>* HashTable::get(string address, Place* rootPlace) {
+    clearResults();
+
     // Return entire hashtable.
     if (address[index] == NUL) {
-        clearResults();
         searchResults = tableToNodes(rootPlace);
         return searchResults;
     }
@@ -148,7 +149,6 @@ Node<Place>* HashTable::get(string address, Place* rootPlace) {
         if (address[index + 1] != NUL) {
             return hashTable[key]->get(address, rootPlace);
         } else {
-            clearResults();
             searchResults = hashTable[key]->tableToNodes(rootPlace);
             return searchResults;
         }
