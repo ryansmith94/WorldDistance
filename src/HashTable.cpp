@@ -83,9 +83,10 @@ HashTable* HashTable::removePlace(string address, Place* place) {
     return NULL;
 }
 LList<Place>* HashTable::tableToNodes(Place* rootPlace) {
+    searchResults.clear();
     for (int i = 0; i < LIMIT; i += 1) {
         if (hashTable[i] != NULL) {
-            hashTable[i]->tableToNodes(rootPlace);
+            searchResults.addAll(hashTable[i]->tableToNodes(rootPlace));
         } else if (placeTable[i] != NULL && placeTable[i] != rootPlace) {
             searchResults.append(placeTable[i]);
         }
@@ -158,5 +159,5 @@ LList<Place>* HashTable::get(string address, Place* rootPlace) {
         }
     }
 
-    return NULL;
+    return &searchResults;
 }
