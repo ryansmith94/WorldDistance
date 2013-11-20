@@ -122,6 +122,8 @@ HashTable* HashTable::remove(Place* place) {
 }
 
 LList<Place>* HashTable::get(string address, Place* rootPlace) {
+    searchResults.clear();
+
     // Return entire hashtable.
     if (address[index] == NUL) {
         return tableToNodes(rootPlace);
@@ -137,7 +139,6 @@ LList<Place>* HashTable::get(string address, Place* rootPlace) {
             return hashTable[key]->tableToNodes(rootPlace);
         }
     } else if (placeTable[key] != NULL) {
-        searchResults.clear();
         if (address[index + 1] == NUL) {
             if (placeTable[key] != rootPlace) {
                 searchResults.append(placeTable[key]);
@@ -158,5 +159,5 @@ LList<Place>* HashTable::get(string address, Place* rootPlace) {
         }
     }
 
-    return NULL;
+    return &searchResults;
 }
