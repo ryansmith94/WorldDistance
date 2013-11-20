@@ -9,8 +9,11 @@ WORLD DISTANCE
 <	Please select an option (1-6): 
 DELETE PLACE
 <	Please enter an address: 	1. UK, Earth
-<	Please select an option (1-1): <	Are you sure you want to delete (Y/N): 
-	Place deleted
+<	Please select an option (1-1): 	Are you sure you want to delete?
+	1. Yes
+	2. No
+
+<	Please select an option (1-2): Place deleted
 
 WORLD DISTANCE
 	1. Distance
