@@ -4,18 +4,13 @@
 #endif
 using namespace std;
 
-OptionsViewPlaces::OptionsViewPlaces(Node<Place>* opts) : OptionsView<Node<Place> >(opts, 0) {
+OptionsViewPlaces::OptionsViewPlaces(LList<Place>* opts) : OptionsView<LList<Place> >(opts, opts->getSize()) {
     options = opts;
 }
 OptionsViewPlaces* OptionsViewPlaces::display() {
-    Node<Place>* option = options;
-    int i = 0;
-
-    while (option != NULL && option->getData() != NULL) {
-        cout << "\t" << ++i << ". " << option->getData()->getAddress() << LF;
-        option = option->getNext();
+    for (int i = 0; i < numberOfOptions; i += 1) {
+        cout << "\t" << i + 1 << ". " << options->getData(i)->getAddress() << LF;
     }
 
-    numberOfOptions = i;
     return this;
 }
