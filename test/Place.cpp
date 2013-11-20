@@ -218,8 +218,8 @@ Describe(Place_class) {
 	};
 	Describe(loadPlace_method){
 		It(should_load_places_from_a_file){
-			Place testPlace("Earth",0.0,0.0);
 			HashTable ht;
+			Place testPlace("Earth",0.0,0.0);
 			testPlace.loadPlace("../test/Place/LoadTestData.txt", &ht);
 			Assert::That(testPlace.getChild(0)->getName(), Equals("UK"));
 			Assert::That(testPlace.getChild(0)->getLongitude(), Equals(2.4333f));
@@ -231,8 +231,8 @@ Describe(Place_class) {
 	};
 	Describe(savePlace_method){
 		It(should_save_places_to_a_file){
-			Place testPlace("Earth",0.0,0.0);
 			HashTable ht;
+			Place testPlace("Earth",0.0,0.0);
 			testPlace.loadPlace("../test/Place/LoadTestData.txt", &ht);
 			testPlace.savePlace("../test/Place/SaveTestData.txt");
 			Assert::That(compareFiles("../test/Place/LoadTestData.txt", "../test/Place/SaveTestData.txt"), Equals(1));

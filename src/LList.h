@@ -9,6 +9,8 @@ class LList{
 	private:
 		int size;
 		Node<T> *first;
+		Node<T> *current;
+		int currentNode;
 	public:
 		LList();
 		~LList();
@@ -24,6 +26,8 @@ class LList{
 template <class T>
 LList<T>::LList(){
 	size = 0;
+	currentNode = 0;
+	current = NULL;
 	first = NULL;
 }
 template <class T>
@@ -38,13 +42,15 @@ template <class T>
 void LList<T>::append(T *newData){
 	if (first == NULL){
 		first = new Node<T>(newData);
+		current = first;
+		currentNode = 0;
 	}
 	else{
-		Node<T> *node = first;
-		while(node->getNext() != NULL){
-			node = node->getNext();
+		while(current->getNext() != NULL){
+			current = current->getNext();
+			currentNode++;
 		}
-		node->setNext(new Node<T>(newData));
+		current->setNext(new Node<T>(newData));
 	}
 	size++;
 }
@@ -53,41 +59,53 @@ void LList<T>::insert(T *newData,int index){
 	if (!index){
 		Node<T> *newNode = new Node<T>(newData,first);
 		first = newNode;
+		current = first;
+		currentNode = 0;
 	}
 	else if(index == size){
 		this->append(newData);
 		size--;
 	}
 	else{
-		Node<T> *node = first;
-		for (int i=0;i<index-1;i++){
-			node = node->getNext();
+		if (currentNode > index-1){
+			currentNode = 0;
+			current = first;
 		}
-		Node<T> *newNode = new Node<T>(newData,node->getNext());
-		node->setNext(newNode);
+		while (currentNode < index-1){
+			current = current->getNext();
+			currentNode++;
+		}
+		Node<T> *newNode = new Node<T>(newData,current->getNext());
+		current->setNext(newNode);
 	}
 	size++;
 }
 template <class T>
 void LList<T>::remove(int index){
 	if (!index){
-		Node<T> *temp = first;
+		current = first;
 		first = first->getNext();
-		temp->setNext(NULL);
-		delete temp;
+		current->setNext(NULL);
+		delete current;
+		current = first;
+		currentNode = 0;
 	}
 	else{
-		Node<T> *node = first;
-		for (int i=0;i<index-1;i++){
-			node = node->getNext();
+		if (currentNode > index-1){
+			currentNode = 0;
+			current = first;
 		}
-		if (node->getNext()->getNext() == NULL){
-			delete node->getNext();
-			node->setNext(NULL);
+		while (currentNode < index-1){
+			current = current->getNext();
+			currentNode++;
+		}
+		if (current->getNext()->getNext() == NULL){
+			delete current->getNext();
+			current->setNext(NULL);
 		}
 		else{
-			Node<T> *temp = node->getNext();
-			node->setNext(temp->getNext());
+			Node<T> *temp = current->getNext();
+			current->setNext(temp->getNext());
 			temp->setNext(NULL);
 			delete temp;
 		}
@@ -99,11 +117,15 @@ T* LList<T>::getData(int index){
 	if (index < 0) {
 		return NULL;
 	}
-	Node<T> *node = first;
-	for (int i=0;i<index;i++){
-		node = node->getNext();
+	if (currentNode > index){
+		currentNode = 0;
+		current = first;
 	}
-	return node->getData();
+	while(currentNode < index){
+		current = current->getNext();
+		currentNode++;
+	}
+	return current->getData();
 }
 template <class T>
 void LList<T>::addAll(LList<T> *list){
@@ -114,14 +136,16 @@ void LList<T>::addAll(LList<T> *list){
 template <class T>
 void LList<T>::clear(){
 	if (first!=NULL){
-		Node<T> *temp = first;
+		current = first;
 		for (int i=0;i<size;i++){
-			temp->setData(NULL);
-			temp = temp->getNext();
+			current->setData(NULL);
+			current = current->getNext();
 		}
 		delete first;
 		first = NULL;
+		current = NULL;
 		size = 0;
+		currentNode = 0;
 	}
 }
 

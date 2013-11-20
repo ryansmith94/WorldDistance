@@ -6,11 +6,13 @@
 using namespace std;
 
 void Place::setAddress(){
+	if (hashTable!=NULL){hashTable->remove(this);}
 	string newAddress = name;
 	if (parent!=NULL){
 		newAddress = newAddress + ", " + parent->getAddress();
 	}
 	address = newAddress;
+	if (hashTable!=NULL){hashTable->add(this);}
 	for (int i=0;i<children.getSize();i++){
 		children.getData(i)->setAddress();
 	}
@@ -92,7 +94,7 @@ Place* Place::addChild(Place* newPlace) {
 	newPlace->hashTable = hashTable;
 	newPlace->parent = this;
 	children.append(newPlace);
-	children.getData(children.getSize()-1)->setAddress();
+	newPlace->setAddress();
 	return this;
 }
 

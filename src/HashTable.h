@@ -12,17 +12,19 @@ class HashTable {
         HashTable* hashTable[LIMIT];
         int index;
         int count;
+		Node<Place>* searchResults;
 
+		void clearResults();
         int hash(char value);
         HashTable* addPlace(string address, Place* place);
         HashTable* removePlace(string address, Place* place);
-        Node<Place>* tableToNodes(Node<Place>* lastNode = NULL);
+        Node<Place>* tableToNodes(Place* rootPlace = NULL, Node<Place>* lastNode = NULL);
     public:
         HashTable(int nIndex = 0);
         ~HashTable();
         HashTable* add(Place* place);
         HashTable* remove(Place* place);
-        Node<Place>* get(string address);
+        Node<Place>* get(string address, Place* rootPlace = NULL);
 };
 
 #endif
