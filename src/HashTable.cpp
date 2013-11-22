@@ -48,11 +48,11 @@ HashTable* HashTable::addPlace(string address, Place* place) {
             count += 1;
         }
         return ht;
+    } else {
+        count += 1;
+        placeTable[key] = place;
+        return this;
     }
-
-    count += 1;
-    placeTable[key] = place;
-    return this;
 }
 
 // Return the hashtable that the place was removed from.
