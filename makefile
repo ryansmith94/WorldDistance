@@ -26,7 +26,7 @@ all: test build
 build: $(SRCOBJDIR) $(BUILDDIR)release
 
 test: $(TESTOBJDIR) $(SRCOBJDIR) $(TESTSOBJS) $(OBJECTS) $(TMPDIR)testMain
-	cd $(TESTDIR) && ../tmp/testMain --output=color
+	cd $(TESTDIR) && ../tmp/testMain --output=default
 	rm $(TMPDIR)*.txt
 
 run: 

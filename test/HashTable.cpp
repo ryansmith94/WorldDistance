@@ -52,7 +52,7 @@ Describe(HashTable_class){
             LList<Place>* get3 = hashTable.get("placeA");
             Assert::That(get3->getSize() == 1 && (get3->getData(0)) == &place1, Equals(1));
         }
-        It(should_return_null_if_no_places_contain_the_given_address) {
+        It(should_return_no_places_if_no_places_contain_the_given_address) {
             HashTable hashTable;
             Place place1("placeA", 0.0, 0.0);
             hashTable.add(&place1);
