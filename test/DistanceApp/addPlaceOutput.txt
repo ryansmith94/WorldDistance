@@ -4,12 +4,13 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 ADD PLACE
 <	Please enter an address: 	1. UK, Earth
-<	Please select an option (1-1): <	Please enter the name: <	Please enter the longitude: <	Please enter the latitude: Place added
+	2. Exit
+<	Please select an option (1-2): <	Please enter the name: <	Please enter the longitude: <	Please enter the latitude: Place added
 
 WORLD DISTANCE
 	1. Distance
@@ -17,7 +18,7 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 

@@ -1,1 +1,5 @@
+	1. place1
+	2. place2
+	3. place3
+	4. Exit
 <	Please select an option (1-4): <	Please select an option (1-4): 

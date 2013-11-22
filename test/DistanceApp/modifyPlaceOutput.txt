@@ -4,17 +4,18 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 MODIFY PLACE
 <	Please enter an address: 	1. London, UK, Earth
-<	Please select an option (1-1): 
+	2. Exit
+<	Please select an option (1-2): 
 	What would you like to modify?
 	1. Name
 	2. Longitude
 	3. Latitude
-	4. Nothing
+	4. Exit
 
 <	Please select an option (1-4): 
 WORLD DISTANCE
@@ -23,7 +24,7 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 
