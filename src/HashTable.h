@@ -14,7 +14,6 @@ class HashTable {
         int count;
 		LList<Place> searchResults;
 
-		void clearResults();
         int hash(char value);
         HashTable* addPlace(string address, Place* place);
         HashTable* removePlace(string address, Place* place);
