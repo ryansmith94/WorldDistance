@@ -9,7 +9,7 @@
 #endif
 
 class OptionsViewPlaces: public OptionsView<LList<Place> > {
-    protected:
+    private:
         LList<Place>* options;
     public:
         OptionsViewPlaces(LList<Place>* opts);

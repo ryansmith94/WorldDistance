@@ -48,11 +48,11 @@ HashTable* HashTable::addPlace(string address, Place* place) {
             count += 1;
         }
         return ht;
+    } else {
+        count += 1;
+        placeTable[key] = place;
+        return this;
     }
-
-    count += 1;
-    placeTable[key] = place;
-    return this;
 }
 
 // Return the hashtable that the place was removed from.
@@ -134,15 +134,14 @@ LList<Place>* HashTable::get(string address, Place* rootPlace) {
 
     if (hashTable[key] != NULL) {
         if (address[index + 1] != NUL) {
-            return hashTable[key]->get(address, rootPlace);
+            searchResults.addAll(hashTable[key]->get(address, rootPlace));
         } else {
-            return hashTable[key]->tableToNodes(rootPlace);
+            searchResults.addAll(hashTable[key]->tableToNodes(rootPlace));
         }
     } else if (placeTable[key] != NULL) {
         if (address[index + 1] == NUL) {
             if (placeTable[key] != rootPlace) {
                 searchResults.append(placeTable[key]);
-                return &searchResults;
             }
         } else {
             if (rootPlace != placeTable[key]) {
@@ -153,7 +152,6 @@ LList<Place>* HashTable::get(string address, Place* rootPlace) {
                 }
                 if ((address[i] == NUL || hash(foundAddress[i]) == hash(address[i])) && placeTable[key] != rootPlace) {
                     searchResults.append(placeTable[key]);
-                    return &searchResults;
                 }
             }
         }
