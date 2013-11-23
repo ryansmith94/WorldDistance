@@ -4,7 +4,18 @@
 #endif
 using namespace std;
 
+/* Constructor takes a pointer to a Place Object
+ * Said Place Object is to be removed from its Parent's children and the program's memory
+ *
+ * @see	DeletePlacesView::start()
+ */
 DeletePlacesView::DeletePlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
+
+/* Operational method for the class;
+ * Called to prompt the user to confirm the deletion of the construcor's param Object
+ *
+ * @return	Returns a pointer to itself (this)
+ */
 DeletePlacesView* DeletePlacesView::start() {
     string opts[2] = {"Yes", "No"};
     OptionsView<string> view(opts, 2);
