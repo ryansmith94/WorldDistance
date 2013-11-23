@@ -55,11 +55,13 @@ OptionsView<OptionType>::OptionsView(OptionType* opts, int len) {
 
 template <class OptionType>
 OptionsView<OptionType>* OptionsView<OptionType>::display() {
+    // Output the addresses of all of the places to cout.
     for (int i = 0; i < numberOfOptions; i += 1) {
         cout << "\t" << i + 1 << ". " << options[i] << LF;
     }
-    cout << "\t" << numberOfOptions + 1 << ". Exit" << LF;
-    cout << LF;
+
+    // Output the Exit option to cout.
+    cout << "\t" << numberOfOptions + 1 << ". Exit" << LF << LF;
     return this;
 }
 
@@ -68,12 +70,16 @@ int OptionsView<OptionType>::getOption(string message) {
     int selected = -1;
     string input;
 
+    // Keep getting the user to enter an option until it is within the valid range.
     do {
+        // Ask the user for input.
         if (message == "") {
             cout << "<\tPlease select an option (1-" << numberOfOptions + 1 << "): ";
         } else {
             cout << "<\t" << message << ": ";
         }
+
+        // Using getLine and stringstream to insure that the input was of type int.
         getline(cin, input);
         stringstream myStream(input);
         myStream >> selected;
