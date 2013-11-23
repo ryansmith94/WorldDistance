@@ -4,7 +4,11 @@
 #endif
 using namespace std;
 
-/* Interfaces with the user, prompting the entry of a float value.
+/**
+ * @author Harley Bristow
+ */
+
+/**Interfaces with the user, prompting the entry of a float value.
  * 
  * @param	Takes a message to display in console for the user
  * @return	Returns a float 
@@ -23,14 +27,14 @@ float AddPlacesView::inputFloat(string message){
 	return selected;
 }
 
-/* Constructor takes a pointer to a Place Object, intended to be a Parent
+/**Constructor takes a pointer to a Place Object, intended to be a Parent
  * Said Object is to be the parent of the Child-Object created within AddPlacesView::Start()
  *
  * @see	AddPlacesView::start()
  */
 AddPlacesView::AddPlacesView(Place* place, HashTable* hashTable) : View(place, hashTable){}
 
-/* Operational method for the class;
+/**Operational method for the class;
  * Called to prompt the user for the properties of a new Place Object
  *
  *  @return	Returns a pointer to itself (this)
