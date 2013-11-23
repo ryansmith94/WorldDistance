@@ -4,7 +4,11 @@
 #endif
 using namespace std;
 
-/* Interfaces with the user, prompting the entry of a float value.
+/**
+ * @author Harley Bristow
+ */
+
+/**Interfaces with the user, prompting the entry of a float value.
  * 
  * @param	Takes a message to display in console for the user
  * @return	Returns a float 
@@ -23,14 +27,14 @@ float ModifyPlacesView::inputFloat(string message){
     return selected;
 }
 
-/* Constructor takes a pointer to a Place Object
+/**Constructor takes a pointer to a Place Object
  * Said Place Object is to have certain properties modified by the ModifyPlacesView::start() method
  *
  * @see	ModifyPlacesView::start()
  */
 ModifyPlacesView::ModifyPlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 
-/* Operational method for the class;
+/**Operational method for the class;
  * Called to prompt the user to specificy the Place Object's attribute they wish to change, and
  * the value to set it to.
  *

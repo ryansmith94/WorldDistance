@@ -4,13 +4,17 @@
 #endif
 using namespace std;
 
-/* Constructor takes a pointer to a Place Object
+/**
+ * @author Harley Bristow
+ */
+
+/**Constructor takes a pointer to a Place Object
  * 
  * @see	PlacesView::start()
  */
 PlacesView::PlacesView(Place* place, HashTable* hTable) : View(place, hTable) {}
 
-/* Operational method for the class;
+/**Operational method for the class;
  * Called to prompt the user to specificy the name of a Place Object
  *
  * @return	Returns a pointer to itself (this)
