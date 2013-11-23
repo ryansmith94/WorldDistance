@@ -7,15 +7,43 @@
 #endif
 using namespace std;
 
+/**
+ * @author Ryan Smith, Oliver Parker
+ */
 template <class OptionType>
 class OptionsView {
     protected:
         OptionType* options;
         int numberOfOptions;
     public:
+        /**
+         * Constructs a OptionsView.
+         * @param opts an array of options.
+         * @param len the number of options (length of the opts array).
+         * @pre opts is an array (to allow them to be iterated using `[]` syntax).
+         * @pre opts != NULL.
+         * @post constructed OptionsView with options and a number of options.
+         */
         OptionsView(OptionType* opts, int len);
+
+        /**
+         * Displays the options (options and exit).
+         * @post options (options and exit) printed to `cout`.
+         */
         OptionsView* display();
+
+        /**
+         * Gets a valid option.
+         * Asks the user for input using `cout` and get their chosen option via `cin`.
+         * @param message (optional) a message to print to request input. Defaults to "" (empty string).
+         * @return the index of the selected option in options.
+         */
         int getOption(string message = "");
+
+        /**
+         * Returns all of the options.
+         * @return options.
+         */
         OptionType* getOptions();
 };
 
