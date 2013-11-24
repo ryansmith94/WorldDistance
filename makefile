@@ -13,7 +13,7 @@ TESTOBJDIR=$(TMPDIR)$(TESTDIR)
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
-TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable TestWithStdIO compareFiles
+TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable TestWithStdIO compareFiles     
 SRCFILES=$(addprefix $(SRCDIR),$(FILES))
 OBJECTS=$(addprefix $(SRCOBJDIR),$(addsuffix .o,$(FILES)))
 SOURCES=$(addsuffix .cpp,$(SRCFILES))
@@ -26,7 +26,7 @@ all: test build
 build: $(SRCOBJDIR) $(BUILDDIR)release
 
 test: $(TESTOBJDIR) $(SRCOBJDIR) $(TESTSOBJS) $(OBJECTS) $(TMPDIR)testMain
-	cd $(TESTDIR) && ../tmp/testMain --output=color
+	cd $(TESTDIR) && ../tmp/testMain --output=default
 	rm $(TMPDIR)*.txt
 
 run: 
@@ -85,7 +85,7 @@ $(SRCOBJDIR)%.o: $(SRCDIR)%.cpp
 $(TESTOBJDIR)%.o: $(TESTDIR)%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
-$(TMPDIR)testMain: $(OBJECTS) $(TESTOBJDIR)main.o
+$(TMPDIR)testMain: $(OBJECTS) $(TESTSOBJS) $(TESTOBJDIR)main.o
 	$(CC) $(LDFLAGS) -o $@ $(TESTSOBJS) $(OBJECTS)
 
 $(BUILDDIR)release: $(OBJECTS) $(SRCOBJDIR)main.o

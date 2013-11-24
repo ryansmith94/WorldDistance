@@ -4,12 +4,12 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 PLACES
-	1. UK, Earth
-
+<	Enter the name of a place: 	Address (Longitude, Latitude)
+	UK, Earth (2.4333, 53.55)
 
 WORLD DISTANCE
 	1. Distance
@@ -17,7 +17,7 @@ WORLD DISTANCE
 	3. Add place
 	4. Modify place
 	5. Delete place
-	6. Quit
+	6. Exit
 
 <	Please select an option (1-6): 
 

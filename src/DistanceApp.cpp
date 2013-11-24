@@ -10,18 +10,22 @@ DistanceApp::DistanceApp(string loadLocation, string saveLocation) : rootPlace("
 }
 DistanceApp::~DistanceApp() {
     rootPlace.savePlace(dataLocation);
-	
+
 }
 DistanceApp* DistanceApp::start() {
-    string opts[6] = {"Distance", "Places", "Add place", "Modify place", "Delete place", "Quit"};
-    OptionsView<string> optionsView(opts, 6);
+    // Setup menu.
+    string opts[5] = {"Distance", "Places", "Add place", "Modify place", "Delete place"};
+    OptionsView<string> optionsView(opts, 5);
+    int selected;
+
+    // Construct views.
     DistanceView distanceView(&rootPlace, &hashTable);
     PlacesView placesView(&rootPlace, &hashTable);
     AddPlacesView addPlacesView(&rootPlace, &hashTable);
     ModifyPlacesView modifyPlacesView(&rootPlace, &hashTable);
     DeletePlacesView deletePlacesView(&rootPlace, &hashTable);
-    int selected;
 
+    // Provide menu and start/run views.
     do {
         cout << "WORLD DISTANCE" << LF;
         selected = optionsView.display()->getOption();

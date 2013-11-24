@@ -130,7 +130,6 @@ Place* Place::loadPlace(string dataLocation, HashTable* ht){
 			}
 			lastPlaceAdded = new Place(name,lon, lat);
 			placeToAddTo->addChild(lastPlaceAdded);
-            ht->add(lastPlaceAdded);
 			lastDepth = depth;
 		}
 	}
