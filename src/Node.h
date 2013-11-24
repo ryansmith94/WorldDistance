@@ -4,6 +4,9 @@
 #include <cstddef>
 using namespace std;
 
+/**
+ * @author Oliver Parker
+ */
 template <class T>
 class Node{
     private:
@@ -16,6 +19,8 @@ class Node{
 		 * @pre newData != NULL
 		 * @pre data is of same type as generic
 		 * @post Node is constructed containing newData and next
+		 * @param newData data to be stored in node
+		 * @param nextNode node to be stored in next
 		 */
         Node(T*,Node*);
 		
@@ -24,6 +29,7 @@ class Node{
 		 * @pre newData != NULL
 		 * @pre data is of same type as generic
 		 * @post Node is constructed containing newData and next is set to NULL
+		 * @param newData data to be stored in node
 		 */
         Node(T*);
 		
@@ -50,6 +56,7 @@ class Node{
 		/**
 		 * sets next Node to passed value
 		 * @post next is set to nextNode
+		 * @param nextNode node to be stored in next
 		 */
         void setNext(Node*);
 		
@@ -64,7 +71,8 @@ class Node{
 		 * sets data stored in node
 		 * @pre data is of same type as generic
 		 * @post newData is stored in node
-		 * @post original data is not destructed!!
+		 * @post original data is not destructed
+		 * @param newData data to be stored in node
 		 */
         void setData(T*);
 };
