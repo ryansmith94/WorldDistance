@@ -151,9 +151,40 @@ class Place {
 		 * @return this place
 		 */
 		Place* removeChild(int index);
+		
+		/**
+		 * loads information from a given sataLocation into the children
+		 * of a place
+		 * @pre datafile exists and contains correctly formatted data
+		 * @post data from save file is loaded into place children
+		 * @param dataLocation string containing location of file
+		 * @param ht hashTable into which data is to be added
+		 * @return this place
+		 */
 		Place* loadPlace(string dataLocation, HashTable* ht);
+		
+		/**
+		 * returns index of given child or -1 if place is not a child.
+		 * @post index of child is returned
+		 * @param searchPlace place to return index of
+		 * @return index of child or -1 if not a child
+		 */
 		int getIndexOfChild(Place* searchPlace);
+		
+		/**
+		 * saves all data in place to file in dataLocation
+		 * @pre dataLocation is a valid address to save to
+		 * @post all data in place is saved to dataLocation
+		 * @param dataLocation  file address to save data to
+		 * @return this place
+		 */
 		Place* savePlace(string dataLocation);
+		
+		/**
+		 * returns address of place
+		 * @post address of place is returned
+		 * @return address of place
+		 */
 		string getAddress();
 };
 
