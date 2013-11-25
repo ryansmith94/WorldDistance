@@ -45,6 +45,7 @@ Describe(DeletePlacesView_class) {
                 HashTable ht;
                 Place place1("placeA", 0, 0);
                 Place *place2 = new Place("placeB", 0.0, 0.0);
+                place1.loadPlace("../test/noData.txt", &ht);
                 place1.addChild(place2);
                 ht.add(&place1);
                 ht.add(place2);
