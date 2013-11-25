@@ -1,0 +1,17 @@
+<	Please enter an address: 	1. placeB, placeA
+	2. Exit
+<	Please select an option (1-2): 
+	What would you like to modify?
+	1. Name
+	2. Longitude
+	3. Latitude
+	4. Exit
+
+<	Please select an option (1-4): <	Please enter the name: <	Please enter the name: 
+	What would you like to modify?
+	1. Name
+	2. Longitude
+	3. Latitude
+	4. Exit
+
+<	Please select an option (1-4): 
