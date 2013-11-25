@@ -13,7 +13,7 @@ TESTOBJDIR=$(TMPDIR)$(TESTDIR)
 
 # Files
 FILES=HashTable Place OptionsViewPlaces View AddPlacesView DeletePlacesView DistanceView ModifyPlaceView PlacesView DistanceApp
-TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable TestWithStdIO compareFiles     
+TESTFILES=main DistanceApp DistanceView LList Node OptionsView OptionsViewPlaces Place HashTable PlacesView AddPlacesView DeletePlacesView ModifyPlaceView TestWithStdIO compareFiles     
 SRCFILES=$(addprefix $(SRCDIR),$(FILES))
 OBJECTS=$(addprefix $(SRCOBJDIR),$(addsuffix .o,$(FILES)))
 SOURCES=$(addsuffix .cpp,$(SRCFILES))
